@@ -1,0 +1,242 @@
+{
+  "materials": [
+    {
+      "id": "mat-001",
+      "name": "乳胶漆",
+      "nameEn": "Latex Paint",
+      "category": "墙面",
+      "description": "室内最基础的墙面涂料，哑光表面，微弱纹理",
+      "parameters": {
+        "baseColor": "#F5F5F0",
+        "roughness": 0.9,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "微Bump（Noise Texture, Scale=50, Strength=0.1）",
+        "bump": "可选，模拟微弱刷痕",
+        "texture": "程序化Noise即可",
+        "uvScale": "不需要贴图"
+      },
+      "interiorUse": "客厅/卧室/办公室墙面，覆盖面积最大的材质",
+      "commonMistakes": [
+        "Roughness太低（<0.7），墙面反光像塑料",
+        "加了过强的Bump，墙面看起来像砂纸",
+        "颜色太纯白，缺乏真实涂料的微暖色调"
+      ],
+      "practiceTask": "创建一面乳胶漆墙面，对比Roughness 0.5/0.7/0.9的效果差异"
+    },
+    {
+      "id": "mat-002",
+      "name": "肌理漆",
+      "nameEn": "Textured Paint",
+      "category": "墙面",
+      "description": "有明显纹理的装饰涂料，如微水泥、艺术漆",
+      "parameters": {
+        "baseColor": "#C8C0B8",
+        "roughness": 0.85,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "Noise Texture → Bump → Normal (Strength=0.3-0.5)",
+        "bump": "Voronoi Texture模拟不规则颗粒",
+        "texture": "程序化Voronoi + Noise组合",
+        "uvScale": "Scale=5-10控制纹理大小"
+      },
+      "interiorUse": "背景墙/客厅主墙/商业空间墙面装饰",
+      "commonMistakes": [
+        "纹理Scale太大，颗粒变成大块",
+        "Bump Strength太强，墙面看起来像石头",
+        "颜色饱和度太高，失去涂料感"
+      ],
+      "practiceTask": "使用Noise+Voronoi+ColorRamp+Bump创建微水泥肌理漆材质"
+    },
+    {
+      "id": "mat-003",
+      "name": "浅灰大理石",
+      "nameEn": "Light Grey Marble",
+      "category": "石材",
+      "description": "室内常用大理石，浅灰色带纹理",
+      "parameters": {
+        "baseColor": "#D8D5D0",
+        "roughness": 0.3,
+        "metallic": 0,
+        "ior": 1.52,
+        "normal": "Image Texture (Marble Normal Map)",
+        "bump": "可选微Bump增加表面细节",
+        "texture": "PBR贴图套装（Color+Roughness+Normal）",
+        "uvScale": "Mapping Scale=0.5控制纹理大小"
+      },
+      "interiorUse": "地面/墙面/背景墙/接待台",
+      "commonMistakes": [
+        "Roughness太高，大理石失去光泽",
+        "Normal Map连到Bump通道（应该用Normal Map节点）",
+        "贴图重复太明显，需要调Scale或用无缝贴图"
+      ],
+      "practiceTask": "导入大理石PBR贴图，正确连接Color/Roughness/Normal通道"
+    },
+    {
+      "id": "mat-004",
+      "name": "深灰石材",
+      "nameEn": "Dark Grey Stone",
+      "category": "石材",
+      "description": "深灰色石材，用于地面或背景墙",
+      "parameters": {
+        "baseColor": "#3A3A3A",
+        "roughness": 0.4,
+        "metallic": 0,
+        "ior": 1.52,
+        "normal": "Image Texture (Stone Normal Map)",
+        "bump": "可选",
+        "texture": "PBR贴图或程序化Voronoi",
+        "uvScale": "Scale=0.3-0.5"
+      },
+      "interiorUse": "地面/背景墙/外墙感觉",
+      "commonMistakes": [
+        "颜色太黑，失去石材质感",
+        "Roughness=0像镜面，不像石头"
+      ],
+      "practiceTask": "创建深灰石材地面，对比不同Roughness的效果"
+    },
+    {
+      "id": "mat-005",
+      "name": "木饰面",
+      "nameEn": "Wood Veneer",
+      "category": "木材",
+      "description": "室内设计高频材质，木纹饰面",
+      "parameters": {
+        "baseColor": "#8B6F47",
+        "roughness": 0.5,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "Image Texture (Wood Normal Map)",
+        "bump": "可选，增强木纹凹凸",
+        "texture": "PBR木纹贴图（Color+Roughness+Normal）",
+        "uvScale": "Mapping Scale=1.0（按贴图实际大小）"
+      },
+      "interiorUse": "柜体/背景墙/门套/家具/木地板",
+      "commonMistakes": [
+        "Roughness太低，木头看起来像塑料",
+        "木纹Normal Map方向不对，需要调Mapping Rotation",
+        "贴图重复明显，需要调Scale"
+      ],
+      "practiceTask": "创建木饰面柜体材质，调整纹理方向和大小"
+    },
+    {
+      "id": "mat-006",
+      "name": "深胡桃木",
+      "nameEn": "Dark Walnut",
+      "category": "木材",
+      "description": "深色胡桃木，高端家具常用",
+      "parameters": {
+        "baseColor": "#3E2B1B",
+        "roughness": 0.45,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "Image Texture (Walnut Normal Map)",
+        "bump": "可选",
+        "texture": "PBR深色木纹贴图",
+        "uvScale": "Scale=1.0"
+      },
+      "interiorUse": "高端家具/酒店客房柜体/背景墙装饰",
+      "commonMistakes": [
+        "颜色太黑看不清木纹",
+        "Roughness太低反光太强"
+      ],
+      "practiceTask": "创建深胡桃木材质，与浅木色对比效果"
+    },
+    {
+      "id": "mat-007",
+      "name": "金属",
+      "nameEn": "Metal",
+      "category": "金属",
+      "description": "室内常用金属材质——拉丝/磨砂/亮面",
+      "parameters": {
+        "baseColor": "#B0B0B0",
+        "roughness": 0.3,
+        "metallic": 1,
+        "ior": "—（金属不用IOR）",
+        "normal": "可选（拉丝金属用Anisotropic）",
+        "bump": "可选微Bump模拟表面纹理",
+        "texture": "拉丝金属可用程序化Noise",
+        "uvScale": "Scale=10-20"
+      },
+      "interiorUse": "灯具/把手/装饰条/家具框架/五金件",
+      "commonMistakes": [
+        "Metallic用中间值如0.5（金属是0或1）",
+        "Roughness=0变成镜面（除非要镜面效果）",
+        "忘记Metallic=1后Base Color变成反射颜色而非漫反射"
+      ],
+      "practiceTask": "创建三种金属：亮面(R=0.1)/磨砂(R=0.4)/拉丝(R=0.6+Anisotropic)"
+    },
+    {
+      "id": "mat-008",
+      "name": "玻璃",
+      "nameEn": "Glass",
+      "category": "透明材质",
+      "description": "透明玻璃材质",
+      "parameters": {
+        "baseColor": "#FFFFFF",
+        "roughness": 0,
+        "metallic": 0,
+        "ior": 1.5,
+        "normal": "—",
+        "bump": "—",
+        "texture": "—（纯参数即可）",
+        "uvScale": "—"
+      },
+      "interiorUse": "隔断/窗户/展柜/桌面玻璃",
+      "commonMistakes": [
+        "Transmission=0看不到透明效果",
+        "Roughness>0玻璃变磨砂（除非要做磨砂玻璃）",
+        "Eevee下需要开启Screen Space Refraction才能看到透明"
+      ],
+      "practiceTask": "创建透明玻璃隔断，测试在Eevee和Cycles下的效果"
+    },
+    {
+      "id": "mat-009",
+      "name": "布艺",
+      "nameEn": "Fabric",
+      "category": "织物",
+      "description": "室内软装布料材质",
+      "parameters": {
+        "baseColor": "#9B8B7A",
+        "roughness": 0.8,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "可选微Bump（Noise Scale=100 Strength=0.05）",
+        "bump": "微Bump模拟织物纹理",
+        "texture": "可选布料贴图",
+        "uvScale": "Scale=0.1"
+      },
+      "interiorUse": "沙发/窗帘/抱枕/床头软包",
+      "commonMistakes": [
+        "Roughness太低像塑料",
+        "忽略Sheen参数，织物没有毛感",
+        "Bump太强，布面像砂纸"
+      ],
+      "practiceTask": "创建布艺沙发材质，对比有无Sheen和微Bump的差异"
+    },
+    {
+      "id": "mat-010",
+      "name": "皮革",
+      "nameEn": "Leather",
+      "category": "皮革",
+      "description": "室内常用皮革材质",
+      "parameters": {
+        "baseColor": "#4A3528",
+        "roughness": 0.6,
+        "metallic": 0,
+        "ior": 1.45,
+        "normal": "Image Texture (Leather Normal Map)",
+        "bump": "可选，增强皮纹凹凸",
+        "texture": "PBR皮革贴图（Color+Roughness+Normal）",
+        "uvScale": "Scale=0.5"
+      },
+      "interiorUse": "皮椅/沙发/床头软包/软装",
+      "commonMistakes": [
+        "没有Normal Map，皮革像PU皮",
+        "Roughness太低像塑料皮",
+        "颜色太黑看不出皮纹"
+      ],
+      "practiceTask": "创建皮革材质，赋予一个椅子模型，对比有无Normal Map"
+    }
+  ]
+}

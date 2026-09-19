@@ -1,0 +1,142 @@
+{
+  "cameraPresets": [
+    {
+      "id": "cam-001",
+      "focalLength": "24mm",
+      "name": "24mm 广角",
+      "nameEn": "24mm Wide Angle",
+      "sensorWidth": "36mm (Full Frame)",
+      "description": "广角镜头，适合拍摄大空间全景",
+      "characteristics": ["视野开阔", "透视夸张", "边缘变形", "适合小空间拍出大气感"],
+      "interiorUse": "小户型全景/紧凑空间/想要大气感的效果图",
+      "compositionTips": [
+        "拍摄时尽量居中，减少边缘变形",
+        "适合正面对称构图",
+        "小空间用它拍出大气感",
+        "注意不要让前景物体离镜头太近"
+      ],
+      "commonMistakes": [
+        "离物体太近，变形严重",
+        "边缘家具严重拉伸",
+        "对称构图没居中，透视歪斜"
+      ],
+      "practiceTask": "在室内场景中用24mm拍摄正面全景构图"
+    },
+    {
+      "id": "cam-002",
+      "focalLength": "28mm",
+      "name": "28mm 半广角",
+      "nameEn": "28mm Semi-Wide",
+      "sensorWidth": "36mm",
+      "description": "半广角，室内效果图最常用焦距之一",
+      "characteristics": ["视野较宽", "透视自然", "变形较小", "室内首选焦距"],
+      "interiorUse": "室内效果图最常用——视野够宽，变形可接受",
+      "compositionTips": [
+        "室内效果图首选焦距",
+        "适合3/4角度拍摄（不全正面也不全侧面）",
+        "三点构图法适用",
+        "保持相机水平避免透视倾斜"
+      ],
+      "commonMistakes": [
+        "相机不水平，墙面倾斜",
+        "构图太满，没有呼吸空间"
+      ],
+      "practiceTask": "在室内场景中用28mm拍摄3/4角度构图"
+    },
+    {
+      "id": "cam-003",
+      "focalLength": "35mm",
+      "name": "35mm 标准",
+      "nameEn": "35mm Standard",
+      "sensorWidth": "36mm",
+      "description": "标准焦距，接近人眼视角",
+      "characteristics": ["透视自然", "变形极小", "接近人眼", "适合局部特写"],
+      "interiorUse": "局部空间/家具组合/不想变形的效果图",
+      "compositionTips": [
+        "适合拍摄家具组合特写",
+        "透视最自然，不夸张",
+        "可以拍局部空间",
+        "适合细节表达"
+      ],
+      "commonMistakes": [
+        "空间太小35mm拍不全",
+        "后退不够导致构图太紧"
+      ],
+      "practiceTask": "在室内场景中用35mm拍摄一个家具组合特写"
+    },
+    {
+      "id": "cam-004",
+      "focalLength": "50mm",
+      "name": "50mm 标准",
+      "nameEn": "50mm Normal",
+      "sensorWidth": "36mm",
+      "description": "标准镜头，透视与人眼完全一致",
+      "characteristics": ["无变形", "完全自然", "视野窄", "适合特写"],
+      "interiorUse": "单品特写/局部细节/材质表现",
+      "compositionTips": [
+        "适合拍摄单品家具",
+        "材质和细节表现最佳",
+        "用于表现材质质感",
+        "大空间局部取景"
+      ],
+      "commonMistakes": [
+        "在狭小空间用50mm拍不全",
+        "后退太远穿墙了（用Local View检查）"
+      ],
+      "practiceTask": "在室内场景中用50mm拍摄一个家具单品特写"
+    }
+  ],
+  "cameraTechniques": [
+    {
+      "id": "cam-tech-001",
+      "name": "Camera高度",
+      "nameEn": "Camera Height",
+      "description": "室内摄影常用1200-1500mm高度（人站立视线高度）",
+      "tips": [
+        "1200mm：人站立视线高度，最自然",
+        "900mm：人坐姿高度，适合客厅/沙发区",
+        "600mm：低角度，适合表现天花/高度感",
+        "俯拍：适合平面布局表现"
+      ]
+    },
+    {
+      "id": "cam-tech-002",
+      "name": "景深",
+      "nameEn": "Depth of Field",
+      "description": "控制焦点范围，虚化前景或背景",
+      "tips": [
+        "F-stop 2.8：浅景深，背景虚化",
+        "F-stop 8：深景深，全部清晰",
+        "室内效果图通常用F8-F11保证全部清晰",
+        "特写可以用浅景深突出重点"
+      ]
+    },
+    {
+      "id": "cam-tech-003",
+      "name": "构图规则",
+      "nameEn": "Composition Rules",
+      "description": "室内摄影构图原则",
+      "tips": [
+        "三分法：将画面分为3×3，主体放在交叉点",
+        "对角线：利用空间对角线增加深度",
+        "对称：正面构图适合对称空间",
+        "引导线：用地板/天花线条引导视线",
+        "前景：用家具做前景增加层次"
+      ]
+    },
+    {
+      "id": "cam-tech-004",
+      "name": "Camera Movement",
+      "nameEn": "Camera Movement",
+      "description": "动画中Camera运动方式",
+      "tips": [
+        "推进：Camera沿视线方向前进",
+        "拉远：Camera沿视线方向后退",
+        "横移：Camera平行移动（侧滑）",
+        "环绕：Camera围绕物体旋转",
+        "转弯：Camera在走廊/转角处转弯",
+        "固定机位微推：固定不动微调推进"
+      ]
+    }
+  ]
+}

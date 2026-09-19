@@ -1,0 +1,179 @@
+{
+  "lightingTypes": [
+    {
+      "id": "light-001",
+      "name": "Sun（太阳光）",
+      "nameEn": "Sun Light",
+      "description": "模拟自然日光，平行光源",
+      "parameters": {
+        "type": "Sun",
+        "strength": "3-5 W/m²",
+        "color": "#FFEBC4（暖白）",
+        "angle": "根据时间/季节调整",
+        "shadowType": "Area Shadow（Cycles）",
+        "notes": "Sun方向=太阳方位角+高度角"
+      },
+      "interiorUse": "日景室内自然光——从窗户/天窗射入的阳光",
+      "commonMistakes": [
+        "强度太高，室内曝光过度",
+        "颜色太白，缺乏阳光的暖色调",
+        "角度不对，阳光没有穿过窗户"
+      ],
+      "practiceScene": "办公室日景——Sun从窗户方向45度射入",
+      "practiceTask": "在室内场景中设置Sun，调整角度让阳光穿过窗户照到地面"
+    },
+    {
+      "id": "light-002",
+      "name": "Area（面光）",
+      "nameEn": "Area Light",
+      "description": "面光源，柔和阴影，最接近室内灯带/面板灯效果",
+      "parameters": {
+        "type": "Area",
+        "strength": "50-200 W",
+        "color": "#FFE8D0（暖白）",
+        "size": "0.5m × 2m（灯带）/ 0.3m × 0.3m（射灯）",
+        "shadowType": "Soft Shadow",
+        "notes": "Area越大，阴影越柔和"
+      },
+      "interiorUse": "灯带/面板灯/面光源补光/吊顶灯槽",
+      "commonMistakes": [
+        "Area太小，阴影太硬像点光",
+        "强度太高，局部过曝",
+        "不调色温，灯光颜色不自然"
+      ],
+      "practiceScene": "吊顶灯槽——Area放在灯槽内向下照射",
+      "practiceTask": "在吊顶灯槽内放置Area灯，调整大小和强度模拟灯带"
+    },
+    {
+      "id": "light-003",
+      "name": "Spot（射灯）",
+      "nameEn": "Spot Light",
+      "description": "锥形光束，有方向性，适合射灯/轨道灯",
+      "parameters": {
+        "type": "Spot",
+        "strength": "100-500 W",
+        "color": "#FFD9B0（暖白）",
+        "spotSize": "30-60度（光束角）",
+        "spotBlend": "0.5-1.0（边缘柔和度）",
+        "shadowType": "Soft Shadow",
+        "notes": "Spot Size=光锥角度，Blend=边缘羽化"
+      },
+      "interiorUse": "射灯/轨道灯/洗墙灯/重点照明",
+      "commonMistakes": [
+        "Spot Size太大，没有聚光效果",
+        "不调Blend，光束边缘太硬",
+        "强度太高，亮斑过曝"
+      ],
+      "practiceScene": "洗墙灯——Spot向上45度照射墙面",
+      "practiceTask": "在墙面放置3个Spot射灯，45度向上洗墙"
+    },
+    {
+      "id": "light-004",
+      "name": "Point（点光）",
+      "nameEn": "Point Light",
+      "description": "点光源，向四面八方照射",
+      "parameters": {
+        "type": "Point",
+        "strength": "10-100 W",
+        "color": "#FFE8D0（暖白）",
+        "radius": "0.01-0.1m（光源大小，影响阴影柔和度）",
+        "shadowType": "Soft Shadow（Radius>0时）",
+        "notes": "Radius=0时阴影最硬，Radius越大阴影越柔"
+      },
+      "interiorUse": "台灯/落地灯/吊灯/装饰小灯",
+      "commonMistakes": [
+        "Radius=0，阴影太硬不真实",
+        "强度太高，像灯泡直射",
+        "颜色不对，灯光与环境不协调"
+      ],
+      "practiceScene": "台灯——Point放在灯罩内部",
+      "practiceTask": "在一个台灯模型内部放置Point灯，调整强度和Radius"
+    },
+    {
+      "id": "light-005",
+      "name": "Emission（自发光）",
+      "nameEn": "Emission Shader",
+      "description": "通过材质自发光，不是灯对象而是材质属性",
+      "parameters": {
+        "type": "Emission (Material)",
+        "strength": "1-10",
+        "color": "#FFFFFF",
+        "notes": "在Shader Editor中给材质加Emission节点",
+        "shadowType": "—（不能直接控制阴影）",
+        "renderNote": "Eevee需要开启Bloom才能看到光晕"
+      },
+      "interiorUse": "灯带/发光字/屏幕/LED灯条/氛围灯",
+      "commonMistakes": [
+        "强度太高，渲染噪点暴增",
+        "Emission面没有厚度，从背面也发光",
+        "Eevee下不开启Bloom看不到光晕"
+      ],
+      "practiceScene": "LED灯带——在灯槽内壁给自发光材质",
+      "practiceTask": "给吊顶灯槽内壁赋Emission材质，模拟LED灯带"
+    },
+    {
+      "id": "light-006",
+      "name": "HDRI（环境光）",
+      "nameEn": "HDRI Environment",
+      "description": "高动态范围环境贴图，模拟整个环境的光照",
+      "parameters": {
+        "type": "HDRI (World)",
+        "strength": "0.5-2.0",
+        "color": "—（由HDRI图片决定）",
+        "rotation": "Z轴旋转控制阳光方向",
+        "notes": "World Properties → Surface → Background → Environment Texture",
+        "renderNote": "Cycles下HDRI是最自然的环境光来源"
+      },
+      "interiorUse": "自然光室内/室外环境光/窗外光线",
+      "commonMistakes": [
+        "强度太高，整个场景过亮",
+        "不旋转HDRI，阳光方向不合适",
+        "背景显示HDRI但渲染时不需要——需要在渲染设置中关闭背景"
+      ],
+      "practiceScene": "自然光室内——HDRI从窗户提供环境光",
+      "practiceTask": "加载一个室外HDRI，调整旋转角度让阳光从窗户方向进入"
+    }
+  ],
+  "interiorScenes": [
+    {
+      "id": "scene-001",
+      "name": "办公室",
+      "nameEn": "Office",
+      "lightingSetup": "Sun(窗外) + Area(面板灯) + Spot(射灯重点照明)",
+      "description": "办公空间日景，自然光+人工光组合",
+      "tips": "面板灯色温5500K偏冷白，营造专业感"
+    },
+    {
+      "id": "scene-002",
+      "name": "酒店客房",
+      "nameEn": "Hotel Room",
+      "lightingSetup": "Area(灯带) + Point(台灯) + Emission(氛围灯)",
+      "description": "酒店客房夜景，温馨氛围",
+      "tips": "色温2700-3000K暖白，强度不要太高，营造私密感"
+    },
+    {
+      "id": "scene-003",
+      "name": "酒店大堂",
+      "nameEn": "Hotel Lobby",
+      "lightingSetup": "HDRI(自然光) + Spot(射灯) + Area(面光) + Emission(灯带)",
+      "description": "酒店大堂日景，大气明亮",
+      "tips": "大堂需要层次感——自然光+重点照明+氛围光"
+    },
+    {
+      "id": "scene-004",
+      "name": "商业空间",
+      "nameEn": "Commercial Space",
+      "lightingSetup": "Spot(轨道射灯) + Area(面光) + Emission(发光字)",
+      "description": "商业空间照明，高对比度",
+      "tips": "商业空间需要高对比度——重点照明亮，环境暗"
+    },
+    {
+      "id": "scene-005",
+      "name": "日料店",
+      "nameEn": "Japanese Restaurant",
+      "lightingSetup": "Point(纸灯笼) + Area(灯带) + Spot(射灯重点)",
+      "description": "日料店暖色氛围",
+      "tips": "色温2700K暖光，纸灯笼柔光，营造日式暖意"
+    }
+  ]
+}

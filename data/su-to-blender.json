@@ -1,0 +1,111 @@
+{
+  "workflows": [
+    {
+      "id": "wflow-001",
+      "name": "效果图工作流",
+      "nameEn": "Render Workflow",
+      "description": "从SketchUp模型到Blender效果图输出",
+      "steps": [
+        { "id": "step-01", "name": "SketchUp模型检查", "nameEn": "SU Model Check", "detail": "检查Group/Component命名、Tag清理、删除不可见几何体" },
+        { "id": "step-02", "name": "Group整理", "nameEn": "Group Organization", "detail": "按墙体/门窗/家具/灯具分组" },
+        { "id": "step-03", "name": "Tag整理", "nameEn": "Tag Management", "detail": "确保Tag干净，无多余图层" },
+        { "id": "step-04", "name": "FBX导出", "nameEn": "FBX Export", "detail": "File → Export → FBX，单位Millimeters" },
+        { "id": "step-05", "name": "Blender导入", "nameEn": "Blender Import", "detail": "File → Import → FBX" },
+        { "id": "step-06", "name": "单位检查", "nameEn": "Unit Check", "detail": "Scene Properties → Units → Centimeters" },
+        { "id": "step-07", "name": "Scale检查", "nameEn": "Scale Check", "detail": "Ctrl+A → All Transforms，确认Scale=1" },
+        { "id": "step-08", "name": "Normal检查", "nameEn": "Normal Check", "detail": "Edit Mode → Shift+N → Recalculate Outside" },
+        { "id": "step-09", "name": "模型整理", "nameEn": "Model Cleanup", "detail": "Merge by Distance, Collection组织" },
+        { "id": "step-10", "name": "材质", "nameEn": "Materials", "detail": "创建/赋予室内材质" },
+        { "id": "step-11", "name": "灯光", "nameEn": "Lighting", "detail": "Sun/HDRI + Area/Spot + Emission" },
+        { "id": "step-12", "name": "Camera", "nameEn": "Camera", "detail": "设置焦距/高度/构图" },
+        { "id": "step-13", "name": "Eevee测试", "nameEn": "Eevee Test", "detail": "快速预览效果图效果" },
+        { "id": "step-14", "name": "Cycles最终渲染", "nameEn": "Cycles Final Render", "detail": "高采样+降噪，输出效果图" }
+      ]
+    },
+    {
+      "id": "wflow-002",
+      "name": "材质工作流",
+      "nameEn": "Material Workflow",
+      "description": "从SU模型到Blender材质完善",
+      "steps": [
+        { "id": "step-01", "name": "SketchUp模型检查", "nameEn": "SU Model Check", "detail": "同效果图工作流" },
+        { "id": "step-02", "name": "Group整理", "nameEn": "Group Organization", "detail": "同效果图工作流" },
+        { "id": "step-03", "name": "Tag整理", "nameEn": "Tag Management", "detail": "同效果图工作流" },
+        { "id": "step-04", "name": "FBX导出", "nameEn": "FBX Export", "detail": "同效果图工作流" },
+        { "id": "step-05", "name": "Blender导入", "nameEn": "Blender Import", "detail": "同效果图工作流" },
+        { "id": "step-06", "name": "单位检查", "nameEn": "Unit Check", "detail": "同效果图工作流" },
+        { "id": "step-07", "name": "Scale检查", "nameEn": "Scale Check", "detail": "同效果图工作流" },
+        { "id": "step-08", "name": "Normal检查", "nameEn": "Normal Check", "detail": "同效果图工作流" },
+        { "id": "step-09", "name": "模型整理", "nameEn": "Model Cleanup", "detail": "同效果图工作流" },
+        { "id": "step-10", "name": "材质", "nameEn": "Materials", "detail": "重点：创建PBR材质，UV展开" },
+        { "id": "step-11", "name": "材质测试渲染", "nameEn": "Material Test Render", "detail": "Eevee快速查看材质效果" }
+      ]
+    },
+    {
+      "id": "wflow-003",
+      "name": "灯光工作流",
+      "nameEn": "Lighting Workflow",
+      "description": "从SU模型到Blender灯光设置",
+      "steps": [
+        { "id": "step-01", "name": "SketchUp模型检查", "nameEn": "SU Model Check", "detail": "同效果图工作流" },
+        { "id": "step-02", "name": "Group整理", "nameEn": "Group Organization", "detail": "同效果图工作流" },
+        { "id": "step-03", "name": "Tag整理", "nameEn": "Tag Management", "detail": "同效果图工作流" },
+        { "id": "step-04", "name": "FBX导出", "nameEn": "FBX Export", "detail": "同效果图工作流" },
+        { "id": "step-05", "name": "Blender导入", "nameEn": "Blender Import", "detail": "同效果图工作流" },
+        { "id": "step-06", "name": "单位检查", "nameEn": "Unit Check", "detail": "同效果图工作流" },
+        { "id": "step-07", "name": "Scale检查", "nameEn": "Scale Check", "detail": "同效果图工作流" },
+        { "id": "step-08", "name": "Normal检查", "nameEn": "Normal Check", "detail": "同效果图工作流" },
+        { "id": "step-09", "name": "模型整理", "nameEn": "Model Cleanup", "detail": "同效果图工作流" },
+        { "id": "step-10", "name": "基础材质", "nameEn": "Basic Materials", "detail": "简单材质即可（灯光测试不需要精细材质）" },
+        { "id": "step-11", "name": "灯光", "nameEn": "Lighting", "detail": "重点：Sun/HDRI + 人工光 + 氛围光" },
+        { "id": "step-12", "name": "灯光测试渲染", "nameEn": "Lighting Test Render", "detail": "Eevee快速查看灯光效果" }
+      ]
+    },
+    {
+      "id": "wflow-004",
+      "name": "动画工作流",
+      "nameEn": "Animation Workflow",
+      "description": "从SU模型到Blender Camera动画",
+      "steps": [
+        { "id": "step-01", "name": "SketchUp模型检查", "nameEn": "SU Model Check", "detail": "同效果图工作流" },
+        { "id": "step-02", "name": "Group整理", "nameEn": "Group Organization", "detail": "同效果图工作流" },
+        { "id": "step-03", "name": "Tag整理", "nameEn": "Tag Management", "detail": "同效果图工作流" },
+        { "id": "step-04", "name": "FBX导出", "nameEn": "FBX Export", "detail": "同效果图工作流" },
+        { "id": "step-05", "name": "Blender导入", "nameEn": "Blender Import", "detail": "同效果图工作流" },
+        { "id": "step-06", "name": "单位检查", "nameEn": "Unit Check", "detail": "同效果图工作流" },
+        { "id": "step-07", "name": "Scale检查", "nameEn": "Scale Check", "detail": "同效果图工作流" },
+        { "id": "step-08", "name": "Normal检查", "nameEn": "Normal Check", "detail": "同效果图工作流" },
+        { "id": "step-09", "name": "模型整理", "nameEn": "Model Cleanup", "detail": "同效果图工作流" },
+        { "id": "step-10", "name": "材质", "nameEn": "Materials", "detail": "完成材质" },
+        { "id": "step-11", "name": "灯光", "nameEn": "Lighting", "detail": "完成灯光" },
+        { "id": "step-12", "name": "Camera", "nameEn": "Camera", "detail": "设置初始机位" },
+        { "id": "step-13", "name": "动画路径", "nameEn": "Animation Path", "detail": "创建Bezier Curve + Follow Path + Track To" },
+        { "id": "step-14", "name": "动画预览", "nameEn": "Animation Preview", "detail": "Play预览，Graph Editor调整" }
+      ]
+    },
+    {
+      "id": "wflow-005",
+      "name": "室内漫游视频工作流",
+      "nameEn": "Walkthrough Video Workflow",
+      "description": "从SU模型到完整室内漫游视频输出",
+      "steps": [
+        { "id": "step-01", "name": "SketchUp模型检查", "nameEn": "SU Model Check", "detail": "同效果图工作流" },
+        { "id": "step-02", "name": "Group整理", "nameEn": "Group Organization", "detail": "同效果图工作流" },
+        { "id": "step-03", "name": "Tag整理", "nameEn": "Tag Management", "detail": "同效果图工作流" },
+        { "id": "step-04", "name": "FBX导出", "nameEn": "FBX Export", "detail": "同效果图工作流" },
+        { "id": "step-05", "name": "Blender导入", "nameEn": "Blender Import", "detail": "同效果图工作流" },
+        { "id": "step-06", "name": "单位检查", "nameEn": "Unit Check", "detail": "同效果图工作流" },
+        { "id": "step-07", "name": "Scale检查", "nameEn": "Scale Check", "detail": "同效果图工作流" },
+        { "id": "step-08", "name": "Normal检查", "nameEn": "Normal Check", "detail": "同效果图工作流" },
+        { "id": "step-09", "name": "模型整理", "nameEn": "Model Cleanup", "detail": "同效果图工作流" },
+        { "id": "step-10", "name": "材质", "nameEn": "Materials", "detail": "完成所有材质" },
+        { "id": "step-11", "name": "灯光", "nameEn": "Lighting", "detail": "完成所有灯光" },
+        { "id": "step-12", "name": "Camera", "nameEn": "Camera", "detail": "设置多机位" },
+        { "id": "step-13", "name": "动画", "nameEn": "Animation", "detail": "多段路径+镜头编排" },
+        { "id": "step-14", "name": "Eevee测试", "nameEn": "Eevee Test", "detail": "低质量快速预览完整动画" },
+        { "id": "step-15", "name": "Cycles最终渲染", "nameEn": "Cycles Final Render", "detail": "高质量渲染动画序列" },
+        { "id": "step-16", "name": "视频输出", "nameEn": "Video Output", "detail": "FFmpeg H.264 输出.mp4" }
+      ]
+    }
+  ]
+}

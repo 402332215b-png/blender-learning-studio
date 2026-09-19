@@ -1,0 +1,100 @@
+{
+  "routes": [
+    {
+      "id": "A",
+      "name": "SU + Blender 工作路线",
+      "subtitle": "SketchUp建模 + Blender增强",
+      "duration": 12,
+      "description": "不影响当前室内设计项目工作，以SketchUp为建模主力、Blender为增强工具。学习模型传递、材质、灯光、Camera、渲染、动画到完整漫游视频的全流程。",
+      "target": "马上能够用于真实室内设计项目",
+      "workflow": "CAD → SketchUp → SU完成空间模型 → Blender → 模型整理 → 材质 → 灯光 → Camera → 效果图 → 动画 → 视频",
+      "color": "#F5792A",
+      "phases": [
+        {
+          "id": "A-P1",
+          "name": "模型传递与整理",
+          "weeks": [1, 2],
+          "description": "从SketchUp到Blender的模型传递全流程，包括FBX导出、导入、单位检查、Scale检查、Normal检查和模型整理优化。"
+        },
+        {
+          "id": "A-P2",
+          "name": "材质与贴图",
+          "weeks": [3, 4, 5],
+          "description": "室内材质创建、PBR工作流、UV展开。涵盖乳胶漆、木饰面、金属、玻璃、布艺等室内常用材质。"
+        },
+        {
+          "id": "A-P3",
+          "name": "灯光与环境",
+          "weeks": [6, 7],
+          "description": "室内灯光类型、色温、亮度、阴影控制，以及HDRI环境光设置。"
+        },
+        {
+          "id": "A-P4",
+          "name": "Camera与渲染",
+          "weeks": [8, 9, 10],
+          "description": "Camera设置与构图、Eevee快速渲染、Cycles高品质渲染。"
+        },
+        {
+          "id": "A-P5",
+          "name": "动画与漫游",
+          "weeks": [11, 12],
+          "description": "Camera动画基础、Follow Path、镜头编排、室内漫游视频输出。"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Blender 系统成长路线",
+      "subtitle": "完整掌握Blender",
+      "duration": 24,
+      "description": "系统完整掌握Blender，从基础到高级全链路学习。涵盖基础操作、建模、Modifier、拓扑、UV、材质、灯光、Camera、渲染、动画、Geometry Nodes到完整室内项目。",
+      "target": "真正掌握Blender",
+      "learningOrder": "Blender基础 → 视图 → Object Mode → Edit Mode → 基础建模 → 室内建模 → Modifier → 拓扑 → Normal → UV → Material → PBR → Texture → Lighting → Camera → Eevee → Cycles → Animation → Bezier Curve → Follow Path → Camera Animation → Render Animation → Geometry Nodes → Asset Browser → 完整室内项目",
+      "color": "#4A90D9",
+      "phases": [
+        {
+          "id": "B-P1",
+          "name": "Blender基础",
+          "weeks": [1, 2, 3, 4],
+          "description": "界面布局、视图操作、Object Mode、Edit Mode——Blender四大基础模块。"
+        },
+        {
+          "id": "B-P2",
+          "name": "建模",
+          "weeks": [5, 6, 7],
+          "description": "基础建模、室内建模（墙体/门窗/吊顶/柜体）——从简单几何到室内空间构件。"
+        },
+        {
+          "id": "B-P3",
+          "name": "修改器与拓扑",
+          "weeks": [8, 9, 10, 11],
+          "description": "Modifier全系列、拓扑原则、Normal与法线——掌握非破坏性建模工作流。"
+        },
+        {
+          "id": "B-P4",
+          "name": "UV与材质",
+          "weeks": [12, 13, 14, 15, 16],
+          "description": "UV Mapping、Material、PBR材质、Texture——完整的材质制作能力。"
+        },
+        {
+          "id": "B-P5",
+          "name": "灯光/相机/渲染",
+          "weeks": [17, 18, 19, 20],
+          "description": "Lighting、Camera、Eevee、Cycles——从灯光到最终渲染输出。"
+        },
+        {
+          "id": "B-P6",
+          "name": "动画",
+          "weeks": [21, 22, 23],
+          "description": "Animation基础、Bezier曲线、Camera Animation——室内漫游动画制作。"
+        },
+        {
+          "id": "B-P7",
+          "name": "综合项目",
+          "weeks": [24],
+          "description": "Asset Browser、Geometry Nodes入门、完整室内场景制作与输出——综合应用全部技能。"
+        }
+      ]
+    }
+  ]
+}

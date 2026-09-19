@@ -1,0 +1,16 @@
+{
+  "name": "Blender Learning Studio",
+  "short_name": "BLS",
+  "description": "室内设计师 Blender 成长系统",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1A1A",
+  "theme_color": "#F5792A",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

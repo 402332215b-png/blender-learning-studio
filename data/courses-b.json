@@ -1,0 +1,892 @@
+{
+  "routeId": "B",
+  "routeName": "Blender 系统成长路线",
+  "weeks": [
+    {
+      "week": 1,
+      "phase": "B-P1",
+      "title": "Blender基础",
+      "objective": "熟悉Blender界面布局、工作区、偏好设置和文件管理",
+      "lessons": [
+        {
+          "lessonId": "B01-01",
+          "routeId": "B",
+          "week": 1,
+          "lessonNumber": "01.1",
+          "title": "界面布局与工作区",
+          "englishName": "Interface & Workspaces",
+          "shortcut": "Ctrl+Space (Toggle Fullscreen) · Ctrl+Left/Right (Workspace Switch)",
+          "objective": "熟悉Blender界面布局，理解不同工作区的用途",
+          "principle": "Blender界面由多个区域组成：3D Viewport、Outliner、Properties、Timeline等。不同工作区（Layout/Modeling/UV/Shading/Rendering/Compositing）预设了不同面板布局，适配不同工作阶段。",
+          "blenderOperations": [
+            "1. 启动Blender → 观察默认布局（Layout工作区）",
+            "2. 顶部标签切换：Modeling / UV / Shading / Rendering / Compositing",
+            "3. 拖拽区域边缘分割/合并面板",
+            "4. 自定义工作区 → 保存为Startup File (Ctrl+U)"
+          ],
+          "interiorDesignUse": "室内设计工作主要使用Layout和Shading工作区。Layout做场景组织，Shading做材质。渲染时切换到Rendering工作区。",
+          "sketchupReference": "SketchUp只有简单的一窗口界面。Blender的多面板布局更接近Rhino或3ds Max，但可以自定义到你舒适的样子。",
+          "commonMistakes": [
+            "不小心关闭了某个面板不知道怎么恢复",
+            "在错误的工作区做不相关的工作"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B01-01-P1",
+              "title": "自定义你的工作区",
+              "description": "切换到Layout工作区，调整面板布局到你觉得舒适的状态，保存为Startup File。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "3D Viewport",
+            "Outliner",
+            "Properties面板",
+            "工作区切换",
+            "面板分割与合并"
+          ]
+        },
+        {
+          "lessonId": "B01-02",
+          "routeId": "B",
+          "week": 1,
+          "lessonNumber": "01.2",
+          "title": "偏好设置与文件管理",
+          "englishName": "Preferences & File Management",
+          "shortcut": "Edit → Preferences · Ctrl+S (Save) · Ctrl+Shift+S (Save As)",
+          "objective": "配置Blender偏好设置，掌握.blend文件管理",
+          "principle": "良好的偏好设置能大幅提升工作效率。Blender使用.blend文件格式，支持Append和Link两种文件间引用方式。",
+          "blenderOperations": [
+            "1. Edit → Preferences → 输入设置（鼠标/键盘习惯）",
+            "2. Preferences → Add-ons → 启用常用插件（Import-Export FBX等）",
+            "3. File → Save (Ctrl+S) → 保存.blend",
+            "4. File → Append/Link → 从其他.blend文件导入资源"
+          ],
+          "interiorDesignUse": "配置好偏好设置后每次打开都是你舒适的状态。Append功能让你可以跨项目复用材质库、模型库。",
+          "sketchupReference": "偏好设置相当于SketchUp的Preferences。.blend文件相当于.skp文件。Append相当于SketchUp中'导入组件'。",
+          "commonMistakes": [
+            "不保存Startup File，每次打开都要重新设置",
+            "不理解Append和Link的区别",
+            "不备份.blend文件，损坏后无法恢复"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B01-02-P1",
+              "title": "配置偏好设置并保存",
+              "description": "配置你的偏好设置（单位、输入、插件），保存Startup File，创建一个新的.blend文件保存。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "偏好设置",
+            "Add-ons安装",
+            ".blend文件管理",
+            "Append vs Link"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "phase": "B-P1",
+      "title": "视图操作",
+      "objective": "精通Blender视图导航和显示模式",
+      "lessons": [
+        {
+          "lessonId": "B02-01",
+          "routeId": "B",
+          "week": 2,
+          "lessonNumber": "02.1",
+          "title": "视图导航",
+          "englishName": "Viewport Navigation",
+          "shortcut": "中键 (Rotate) · Shift+中键 (Pan) · 滚轮 (Zoom) · Numpad 0 (Camera View) · Numpad . (Frame Selected)",
+          "objective": "熟练掌握Blender视图导航操作",
+          "principle": "Blender的视图导航与SketchUp不同。中键旋转视图，Shift+中键平移，滚轮缩放。这些操作将成为你的肌肉记忆。",
+          "blenderOperations": [
+            "1. 中键拖拽 → 旋转视图",
+            "2. Shift+中键 → 平移视图",
+            "3. 滚轮 → 缩放",
+            "4. Numpad 1/3/7 → 正视图/侧视图/顶视图",
+            "5. Numpad 5 → 正交/透视切换",
+            "6. Numpad 0 → 相机视角",
+            "7. Numpad . → 聚焦选中物体"
+          ],
+          "interiorDesignUse": "在室内场景中导航是你每时每刻都在做的操作。熟练后可以快速定位到任何角落检查模型。",
+          "sketchupReference": "SketchUp用轨道/平移/缩放工具。Blender直接用鼠标中键，不需要切换工具——更快。",
+          "commonMistakes": [
+            "用左键拖拽想旋转视图（左键是选择）",
+            "在相机视角下无法旋转视图（按Numpad 0退出）",
+            "不知道Numpad快捷键"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B02-01-P1",
+              "title": "视图导航练习",
+              "description": "在一个室内场景中练习：旋转到不同角度 → 聚焦某个家具 → 切换正视图 → 回到透视图 → 进入相机视角 → 退出。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "旋转视图（中键）",
+            "平移视图（Shift+中键）",
+            "缩放（滚轮）",
+            "正交/透视切换（Numpad 5）",
+            "正视图快捷键（Numpad 1/3/7）",
+            "聚焦选中（Numpad .）"
+          ]
+        },
+        {
+          "lessonId": "B02-02",
+          "routeId": "B",
+          "week": 2,
+          "lessonNumber": "02.2",
+          "title": "视图着色模式",
+          "englishName": "Shading Modes",
+          "shortcut": "Z (Pie Menu) · Alt+Z (Toggle X-Ray) · Shift+Z (Toggle Wireframe/Material)",
+          "objective": "掌握四种视图着色模式及其用途",
+          "principle": "Blender有四种着色模式：Wireframe（线框）、Solid（实体）、Material Preview（材质预览）、Rendered（渲染预览）。不同模式适配不同工作阶段。",
+          "blenderOperations": [
+            "1. Z → Pie菜单切换着色模式",
+            "2. Wireframe → 看内部结构/拓扑",
+            "3. Solid → 建模时常用，清晰显示形状",
+            "4. Material Preview → 查看材质效果（快）",
+            "5. Rendered → 查看最终渲染效果（慢）",
+            "6. Alt+Z → X-Ray模式（透视看穿模型）"
+          ],
+          "interiorDesignUse": "建模时用Solid，看材质用Material Preview，看灯光效果用Rendered。灵活切换模式是效率的关键。",
+          "sketchupReference": "SketchUp有线框/着色/纹理模式。Blender的Material Preview和Rendered是SU没有的——能实时看到PBR材质和灯光效果。",
+          "commonMistakes": [
+            "一直在Rendered模式工作，导致视口卡顿",
+            "不知道X-Ray透视模式，难以选择内部物体"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B02-02-P1",
+              "title": "着色模式切换练习",
+              "description": "在一个有材质和灯光的场景中，依次切换四种着色模式，观察差异。尝试X-Ray模式选择被遮挡的物体。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Wireframe模式",
+            "Solid模式",
+            "Material Preview模式",
+            "Rendered模式",
+            "X-Ray透视模式"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "phase": "B-P1",
+      "title": "Object Mode",
+      "objective": "掌握对象级别的操作——选择、变换、复制、对齐",
+      "lessons": [
+        {
+          "lessonId": "B03-01",
+          "routeId": "B",
+          "week": 3,
+          "lessonNumber": "03.1",
+          "title": "选择操作",
+          "englishName": "Selection",
+          "shortcut": "左键 (Select) · A (Select All) · B (Box Select) · C (Circle Select) · Ctrl+左键 (Lasso Select) · Alt+左键 (Loop Select)",
+          "objective": "熟练掌握Blender的各种选择方式",
+          "principle": "选择是所有操作的基础。Blender提供框选、刷选、套索选、循环选等多种方式，高效选择能大幅提升建模速度。",
+          "blenderOperations": [
+            "1. 左键 → 单选",
+            "2. Shift+左键 → 加选/减选",
+            "3. A → 全选/取消全选",
+            "4. B → 框选",
+            "5. C → 刷选（滚轮调半径）",
+            "6. Alt+左键 → 循环选择（选择连续边/面）"
+          ],
+          "interiorDesignUse": "选择场景中的家具、选中一排柜子、选中所有灯具——高效选择让场景管理更快。",
+          "sketchupReference": "SketchUp的选择工具比较简单。Blender的Loop Select和Lasso Select是SU没有的高效选择方式。",
+          "commonMistakes": [
+            "不知道Alt+左键循环选择，手动一个个选浪费时间",
+            "框选时只选到正面物体（需要X-Ray透视）"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B03-01-P1",
+              "title": "选择方式练习",
+              "description": "在一个室内场景中练习：框选所有家具 → Lasso选特定几个 → Loop选择一排柜子 → 用X-Ray模式选择内部物体。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单选/加选/减选",
+            "全选(A)",
+            "框选(B)",
+            "刷选(C)",
+            "套索选(Ctrl+左键)",
+            "循环选择(Alt+左键)"
+          ]
+        },
+        {
+          "lessonId": "B03-02",
+          "routeId": "B",
+          "week": 3,
+          "lessonNumber": "03.2",
+          "title": "变换操作——移动、旋转、缩放",
+          "englishName": "Transform — Move, Rotate, Scale",
+          "shortcut": "G (Move) · R (Rotate) · S (Scale) · G+X/Y/Z (Move on Axis) · R+X/Y/Z (Rotate on Axis) · Ctrl (Snapping)",
+          "objective": "精通移动、旋转、缩放三大变换操作",
+          "principle": "G/R/S是Blender最核心的三个快捷键。配合轴向限制(X/Y/Z)和精确输入，可以实现任何变换操作。",
+          "blenderOperations": [
+            "1. G → 移动（再按X/Y/Z限制轴向）",
+            "2. R → 旋转（再按X/Y/Z限制轴向）",
+            "3. S → 缩放（再按X/Y/Z限制轴向）",
+            "4. G → X → 1 → 回车 → 精确移动X方向1米",
+            "5. Ctrl → 拖拽时吸附",
+            "6. N面板 → 精确数值输入"
+          ],
+          "interiorDesignUse": "摆放家具位置、调整灯具高度、缩放装饰品大小——G/R/S是你用得最多的操作。",
+          "sketchupReference": "SketchUp用移动工具/旋转工具/缩放工具。Blender用快捷键G/R/S——不需要切换工具，直接按。",
+          "commonMistakes": [
+            "用鼠标拖拽而不是G/R/S快捷键",
+            "不限制轴向，物体移动到意外位置",
+            "忘记精确数值输入功能"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B03-02-P1",
+              "title": "变换操作练习",
+              "description": "在一个室内场景中：移动一把椅子到指定位置 → 旋转一个灯具30度 → 缩放一个花瓶到80%大小 → 用精确数值移动一个柜子。",
+              "difficultyLevel": 1,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "移动(G)与轴向限制",
+            "旋转(R)与轴向限制",
+            "缩放(S)与轴向限制",
+            "精确数值输入",
+            "吸附(Ctrl)"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "phase": "B-P1",
+      "title": "Edit Mode",
+      "objective": "掌握编辑模式下的几何体操作",
+      "lessons": [
+        {
+          "lessonId": "B04-01",
+          "routeId": "B",
+          "week": 4,
+          "lessonNumber": "04.1",
+          "title": "顶点/边/面操作",
+          "englishName": "Vertex / Edge / Face",
+          "shortcut": "Tab (Edit Mode) · 1/2/3 (Vertex/Edge/Face) · E (Extrude) · Ctrl+B (Bevel) · Ctrl+R (Loop Cut)",
+          "objective": "掌握Edit Mode下顶点、边、面的选择和基本操作",
+          "principle": "Edit Mode是进入模型内部编辑几何体的模式。顶点/边/面是三大几何元素。掌握Extrude、Bevel、Loop Cut等核心操作就能完成大部分建模。",
+          "blenderOperations": [
+            "1. Tab → 进入Edit Mode",
+            "2. 1/2/3 → 切换顶点/边/面选择",
+            "3. E → 挤出（从面/边挤出新几何体）",
+            "4. Ctrl+B → 倒角（给边/面加圆角）",
+            "5. Ctrl+R → 环切（在面上加线）",
+            "6. F → 填充（给空洞封面）",
+            "7. M → 合并（合并顶点）"
+          ],
+          "interiorDesignUse": "从零建一个床头柜、给柜子加圆角、在墙面开洞——这些都在Edit Mode完成。",
+          "sketchupReference": "SketchUp的推拉工具≈Extrude。倒角工具≈Bevel。但Blender的Edit Mode更接近Rhino的编辑方式——直接编辑几何元素。",
+          "commonMistakes": [
+            "在Object Mode试图编辑几何体（需要先Tab进入Edit Mode）",
+            "Extrude后不移动导致重面",
+            "Loop Cut位置不对不知道怎么调整"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B04-01-P1",
+              "title": "基础建模练习——床头柜",
+              "description": "从Cube开始，用Extrude+Bevel+Loop Cut建模一个简单的床头柜（长400×宽400×高500mm）。",
+              "difficultyLevel": 2,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "顶点/边/面选择(1/2/3)",
+            "挤出(E)",
+            "倒角(Ctrl+B)",
+            "环切(Ctrl+R)",
+            "填充(F)",
+            "合并(M)"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "phase": "B-P2",
+      "title": "基础建模",
+      "objective": "从Primitive开始，掌握Blender建模方法",
+      "lessons": [
+        {
+          "lessonId": "B05-01",
+          "routeId": "B",
+          "week": 5,
+          "lessonNumber": "05.1",
+          "title": "Mesh Primitive与挤出建模",
+          "englishName": "Mesh Primitives & Extrusion Modeling",
+          "shortcut": "Shift+A (Add Menu) · E (Extrude) · Tab (Edit Mode)",
+          "objective": "使用基础几何体和挤出法进行建模",
+          "principle": "Blender提供Cube/Cylinder/Sphere/Plane等基础几何体。通过挤出(E)、缩放(S)、移动(G)组合操作，可以建模出大部分家具和室内构件。",
+          "blenderOperations": [
+            "1. Shift+A → Mesh → Cube/Cylinder/Sphere",
+            "2. Tab → Edit Mode → E挤出",
+            "3. S+Z → 缩放高度",
+            "4. Ctrl+R → 环切加线",
+            "5. E → 挤出新部分"
+          ],
+          "interiorDesignUse": "桌子、椅子、柜子、灯具等大部分家具都可以从基础几何体挤出建模。",
+          "sketchupReference": "相当于SketchUp中画矩形/圆形 → 推拉。但Blender的挤出可以多次连续操作，更灵活。",
+          "commonMistakes": [
+            "不使用参考图，尺寸不准",
+            "挤出后不调整比例，模型看起来不协调"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B05-01-P1",
+              "title": "建模一个简单桌子",
+              "description": "从Cube开始挤出建模一个办公桌（长1200×宽600×高750mm），桌面+四条腿。",
+              "difficultyLevel": 2,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Mesh Primitive",
+            "挤出建模(E)",
+            "缩放(S)",
+            "环切(Ctrl+R)"
+          ]
+        },
+        {
+          "lessonId": "B05-02",
+          "routeId": "B",
+          "week": 5,
+          "lessonNumber": "05.2",
+          "title": "布尔运算",
+          "englishName": "Boolean Operations",
+          "shortcut": "Shift+A → Modifier → Boolean",
+          "objective": "使用布尔运算进行组合和切割建模",
+          "principle": "布尔运算是用两个几何体进行Union（合并）、Difference（差集）、Intersect（交集）操作。适合在模型上开洞、切割。",
+          "blenderOperations": [
+            "1. 选中物体A → Add Modifier → Boolean",
+            "2. Operation → Difference",
+            "3. Object → 选择物体B",
+            "4. Apply → 应用布尔结果",
+            "5. 删除或隐藏物体B"
+          ],
+          "interiorDesignUse": "在墙面开门洞/窗洞、在柜体上开把手槽——布尔运算是最快的方式。",
+          "sketchupReference": "SketchUp的实体工具中有类似的布尔运算。Blender的Boolean Modifier是非破坏性的——可以在Apply前随时调整。",
+          "commonMistakes": [
+            "法线不正确导致布尔失败",
+            "两个物体重面导致布尔结果异常",
+            "不Apply Modifier导致导出/渲染问题"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B05-02-P1",
+              "title": "墙面开窗洞",
+              "description": "创建一面墙（3000×2700mm），使用布尔运算在墙上开一个窗洞（1500×1200mm）。",
+              "difficultyLevel": 3,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Union/Difference/Intersect",
+            "Boolean Modifier使用",
+            "非破坏性工作流"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "phase": "B-P2",
+      "title": "室内建模（一）",
+      "objective": "掌握室内空间基础构件的建模方法",
+      "lessons": [
+        {
+          "lessonId": "B06-01",
+          "routeId": "B",
+          "week": 6,
+          "lessonNumber": "06.1",
+          "title": "墙体建模",
+          "englishName": "Wall Modeling",
+          "shortcut": "Shift+A → Mesh → Plane · E (Extrude) · Tab (Edit Mode)",
+          "objective": "从平面图出发，建模室内墙体",
+          "principle": "室内建模通常从CAD平面图开始。导入CAD → 描线 → 挤出墙体高度 → 开门窗洞。也可以直接从Plane挤出。",
+          "blenderOperations": [
+            "1. 导入CAD平面图（DXF或图片参考）",
+            "2. Shift+A → Mesh → Plane → 调整到墙体厚度",
+            "3. Tab → Edit Mode → E挤出墙体走向",
+            "4. E → 向上挤出墙体高度（2700mm）",
+            "5. 用Boolean开门窗洞",
+            "6. 增加踢脚线/顶角线细节"
+          ],
+          "interiorDesignUse": "这是室内设计最基础的建模工作——每个项目都从墙体开始。",
+          "sketchupReference": "SketchUp中画矩形→推拉做墙。Blender方法类似，但通过挤出+布尔可以更精确控制。",
+          "commonMistakes": [
+            "墙体厚度不统一",
+            "门窗洞口位置/尺寸不准确",
+            "不注意法线方向"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B06-01-P1",
+              "title": "建模一个房间墙体",
+              "description": "根据一个简单矩形平面（4×5m），建模完整墙体（高2.7m，墙厚200mm），开一个门洞和一个窗洞。",
+              "difficultyLevel": 3,
+              "estimatedTime": "30分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "CAD参考导入",
+            "墙体挤出建模",
+            "Boolean开门洞",
+            "墙体厚度控制"
+          ]
+        },
+        {
+          "lessonId": "B06-02",
+          "routeId": "B",
+          "week": 6,
+          "lessonNumber": "06.2",
+          "title": "地面与吊顶",
+          "englishName": "Floor & Ceiling",
+          "shortcut": "Shift+A → Mesh → Plane · E (Extrude)",
+          "objective": "建模地面和吊顶",
+          "principle": "地面通常是一个平面或带拼花的平面。吊顶可以简单（平面）或复杂（多级吊顶、灯槽）。",
+          "blenderOperations": [
+            "1. 地面：Shift+A → Plane → 调整到房间大小",
+            "2. 地面材质分区：Edit Mode → 选面 → Separate(P) → 分别给材质",
+            "3. 吊顶：Shift+A → Plane → 调整到房间大小 → 放在2700高度",
+            "4. 多级吊顶：挤出不同高度层次",
+            "5. 灯槽：挤出留槽 → 内壁给自发光材质"
+          ],
+          "interiorDesignUse": "地面分区（木地板vs瓷砖）、吊顶设计（平面vs多级vs灯槽）是室内设计的核心内容。",
+          "sketchupReference": "SketchUp中做地面和吊顶也是用平面推拉。Blender的优势在于可以更灵活地分离面和赋予材质。",
+          "commonMistakes": [
+            "地面没有分区，全部一个材质",
+            "吊顶高度不合理，压迫感强",
+            "灯槽没有内壁自发光，效果不真实"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B06-02-P1",
+              "title": "建模地面和吊顶",
+              "description": "在上节课的房间内建模地面（木地板+瓷砖分区）和简单吊顶（2500高，留一圈灯槽）。",
+              "difficultyLevel": 3,
+              "estimatedTime": "25分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "地面平面建模",
+            "材质分区（Separate by Material）",
+            "吊顶建模",
+            "灯槽制作"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "phase": "B-P2",
+      "title": "室内建模（二）",
+      "objective": "掌握复杂室内构件建模",
+      "lessons": [
+        {
+          "lessonId": "B07-01",
+          "routeId": "B",
+          "week": 7,
+          "lessonNumber": "07.1",
+          "title": "背景墙建模",
+          "englishName": "Feature Wall Modeling",
+          "shortcut": "Tab (Edit) · E (Extrude) · Ctrl+R (Loop Cut) · Ctrl+B (Bevel)",
+          "objective": "建模室内设计中的背景墙",
+          "principle": "背景墙是室内设计的重点表达元素。通过挤出、倒角、嵌套等操作可以创建各种风格的背景墙。",
+          "blenderOperations": [
+            "1. 从墙面基础开始 → Edit Mode",
+            "2. Ctrl+R → 环切划分背景墙区域",
+            "3. E → 挤出装饰层次",
+            "4. Ctrl+B → 倒角增加细节",
+            "5. 嵌入材质分区（木饰面/石材/金属条）"
+          ],
+          "interiorDesignUse": "电视背景墙、床头背景墙、接待台背景墙——这些是室内效果图中最需要表现的元素。",
+          "sketchupReference": "SketchUp中用推拉+偏移做背景墙。Blender通过挤出+倒角可以做出更精细的层次和圆角。",
+          "commonMistakes": [
+            "层次太多太碎，没有重点",
+            "倒角太小看不到效果",
+            "材质对比不够，背景墙不突出"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B07-01-P1",
+              "title": "建模一个电视背景墙",
+              "description": "建模一个电视背景墙：木饰面基础+中间石材嵌入+金属线条装饰+底部地台。",
+              "difficultyLevel": 4,
+              "estimatedTime": "35分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "背景墙层次设计",
+            "挤出+倒角组合",
+            "材质嵌入"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "phase": "B-P3",
+      "title": "Modifier（一）",
+      "objective": "掌握Array/Mirror/Solidify/Bevel等核心Modifier",
+      "lessons": [
+        {
+          "lessonId": "B08-01",
+          "routeId": "B",
+          "week": 8,
+          "lessonNumber": "08.1",
+          "title": "Array Modifier",
+          "englishName": "Array Modifier",
+          "shortcut": "Properties → Modifier → Add → Array",
+          "objective": "使用Array Modifier进行阵列复制",
+          "principle": "Array Modifier沿指定方向阵列复制物体。适合做栏杆、瓷砖、百叶窗等重复元素。",
+          "blenderOperations": [
+            "1. 选中物体 → Properties → Modifier → Add → Array",
+            "2. Count → 阵列数量",
+            "3. Factor X/Y/Z → 间距",
+            "4. Object Offset → 使用另一个物体控制旋转/缩放阵列"
+          ],
+          "interiorDesignUse": "栏杆、百叶窗、瓷砖排列、重复柱子——Array Modifier是最高效的重复元素工具。",
+          "sketchupReference": "SketchUp中阵列需要手动复制或用组件。Blender的Array Modifier是非破坏性的——随时调整数量和间距。",
+          "commonMistakes": [
+            "间距设错，元素重叠或间距太大",
+            "不Apply导致导出问题"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B08-01-P1",
+              "title": "制作一排栏杆",
+              "description": "建模一个竖向栏杆，使用Array Modifier阵列10根，间距100mm。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Array Count",
+            "Factor间距",
+            "Object Offset"
+          ]
+        },
+        {
+          "lessonId": "B08-02",
+          "routeId": "B",
+          "week": 8,
+          "lessonNumber": "08.2",
+          "title": "Mirror Modifier",
+          "englishName": "Mirror Modifier",
+          "shortcut": "Properties → Modifier → Add → Mirror",
+          "objective": "使用Mirror Modifier进行镜像对称建模",
+          "principle": "Mirror Modifier沿指定轴镜像复制。建模对称物体时只需做一半，自动生成另一半。",
+          "blenderOperations": [
+            "1. 选中物体 → Modifier → Add → Mirror",
+            "2. 选择镜像轴（X/Y/Z）",
+            "3. 建模时只需编辑一半",
+            "4. 可选：Mirror Object指定镜像中心物体"
+          ],
+          "interiorDesignUse": "对称家具（双床头柜、双洗手台）、对称背景墙——Mirror让你只做一半的工作。",
+          "sketchupReference": "SketchUp中镜像需要复制+缩放-1。Blender的Mirror Modifier是实时非破坏性的——修改一边另一边自动跟。",
+          "commonMistakes": [
+            "镜像轴选错",
+            "中心线有重面"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B08-02-P1",
+              "title": "对称家具建模",
+              "description": "建模一个对称的床头柜（只做左半边），用Mirror Modifier自动生成右边。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "镜像轴选择",
+            "Mirror Object",
+            "对称建模工作流"
+          ]
+        },
+        {
+          "lessonId": "B08-03",
+          "routeId": "B",
+          "week": 8,
+          "lessonNumber": "08.3",
+          "title": "Solidify与Bevel Modifier",
+          "englishName": "Solidify & Bevel Modifier",
+          "shortcut": "Properties → Modifier → Add → Solidify/Bevel",
+          "objective": "使用Solidify给面增加厚度，使用Bevel给边增加圆角",
+          "principle": "Solidify Modifier给单面增加厚度（适合从SU导入的薄面）。Bevel Modifier给所有边自动倒角，让模型看起来更真实。",
+          "blenderOperations": [
+            "1. 选中物体 → Modifier → Solidify → Thickness设厚度",
+            "2. Modifier → Bevel → Width设宽度 → Segments设段数(2-3)",
+            "3. Limit Method → Angle → 只倒角大于30度的边"
+          ],
+          "interiorDesignUse": "Solidify适合修复从SU导入的薄面（墙厚为0）。Bevel是专业建模的秘密武器——所有真实物体的边都有圆角。",
+          "sketchupReference": "SketchUp中需要手动倒角每个边。Blender的Bevel Modifier一次给所有符合条件的边自动倒角。",
+          "commonMistakes": [
+            "Bevel Segments=1，圆角太硬（建议2-3）",
+            "Bevel Width太大，变形严重",
+            "不使用Angle限制，给所有边倒角导致面数暴增"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B08-03-P1",
+              "title": "Modifier组合练习",
+              "description": "建模一个简单柜子，使用Solidify给面板加厚度+Bevel给所有边倒角（Width=2, Segments=3, Angle=30）。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Solidify厚度",
+            "Bevel Width/Segments",
+            "Limit Method (Angle)"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "phase": "B-P3",
+      "title": "Modifier（二）",
+      "objective": "掌握Subdivision Surface/Boolean/Screw/Curve Modifier",
+      "lessons": [
+        {
+          "lessonId": "B09-01",
+          "routeId": "B",
+          "week": 9,
+          "lessonNumber": "09.1",
+          "title": "Subdivision Surface Modifier",
+          "englishName": "Subdivision Surface",
+          "shortcut": "Ctrl+2 (Viewport) · Properties → Modifier → Subdivision Surface",
+          "objective": "使用Subdivision Surface创建平滑曲面",
+          "principle": "Subdivision Surface（细分曲面）通过算法将低面数模型平滑为高面数曲面。是制作有机形状和高级家具的关键Modifier。",
+          "blenderOperations": [
+            "1. 选中物体 → Ctrl+2 → Viewport细分2级",
+            "2. Properties → Modifier → Subdivision Surface",
+            "3. Levels Viewport → 2, Render → 3",
+            "4. 配合控制线（Loop Cut）调整形状"
+          ],
+          "interiorDesignUse": "弧形沙发、有机形状灯具、流线型接待台——Subdivision Surface让这些从棱角变圆润。",
+          "sketchupReference": "SketchUp没有直接的对应功能。这是Blender在曲面建模上的核心优势。",
+          "commonMistakes": [
+            "不加控制线，物体被细分成球",
+            "细分级别太高，视口卡死",
+            "Viewport和Render级别不一致"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B09-01-P1",
+              "title": "弧形家具建模",
+              "description": "建模一个弧形凳子（从Cube开始），使用Subdivision Surface（级别2）+Loop Cut控制形状，让它变成圆润的弧形。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Subdivision Surface原理",
+            "Viewport vs Render级别",
+            "控制线（Loop Cut）的作用"
+          ]
+        },
+        {
+          "lessonId": "B09-02",
+          "routeId": "B",
+          "week": 9,
+          "lessonNumber": "09.2",
+          "title": "Screw与Curve Modifier",
+          "englishName": "Screw & Curve Modifier",
+          "shortcut": "Properties → Modifier → Add → Screw/Curve",
+          "objective": "使用Screw做旋转体，使用Curve做沿曲线变形",
+          "principle": "Screw Modifier将一个截面旋转生成旋转体（花瓶/柱子）。Curve Modifier让物体沿曲线弯曲变形。",
+          "blenderOperations": [
+            "1. Screw: 画截面 → Modifier → Screw → 选旋转轴 → 调角度",
+            "2. Curve: 添加Bezier Curve → 选中物体 → Modifier → Curve → 选Curve物体"
+          ],
+          "interiorDesignUse": "Screw做花瓶/柱子/螺旋楼梯。Curve做弧形踢脚线/装饰线条沿曲线走。",
+          "sketchupReference": "SketchUp中没有直接对应。通常需要插件。Blender内置这些Modifier是优势。",
+          "commonMistakes": [
+            "Screw截面方向不对，生成结果错误",
+            "Curve Modifier的物体变形位置不对"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B09-02-P1",
+              "title": "制作一个花瓶",
+              "description": "画一个花瓶截面（Edit Mode → 侧面轮廓线），用Screw Modifier旋转360度生成花瓶。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Screw Modifier旋转体",
+            "Curve Modifier沿曲线变形",
+            "截面绘制"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "phase": "B-P3",
+      "title": "拓扑基础",
+      "objective": "理解拓扑原则，掌握四边面布线",
+      "lessons": [
+        {
+          "lessonId": "B10-01",
+          "routeId": "B",
+          "week": 10,
+          "lessonNumber": "10.1",
+          "title": "拓扑原则与四边面",
+          "englishName": "Topology Principles & Quads",
+          "shortcut": "—",
+          "objective": "理解拓扑的重要性，掌握四边面布线原则",
+          "principle": "拓扑是模型表面网格的组织方式。四边面（Quad）是最理想的拓扑——它细分均匀、变形自然、UV展开容易。避免三角面和星点（>4边面的顶点）。",
+          "blenderOperations": [
+            "1. Edit Mode → 选择面 → 查看是否为四边面",
+            "2. Ctrl+F → Poke Face → 查看三角面（避免）",
+            "3. 使用Loop Cut (Ctrl+R) 加线保持四边面流",
+            "4. J → 连接两个顶点切割面（保持四边面）"
+          ],
+          "interiorDesignUse": "好的拓扑让Subdivision Surface效果更好、UV展开更顺、渲染时不会出现异常黑斑。",
+          "sketchupReference": "SketchUp不强调拓扑——它是三角面系统。Blender中理解拓扑是从业余到专业的关键一步。",
+          "commonMistakes": [
+            "大量三角面导致Subdivision异常",
+            "星点（5+条边交汇的顶点）导致变形不均匀",
+            "不关心拓扑，后期修改困难"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B10-01-P1",
+              "title": "拓扑优化练习",
+              "description": "打开一个拓扑混乱的模型，识别三角面和星点，使用Loop Cut和合并顶点优化为四边面拓扑。",
+              "difficultyLevel": 3,
+              "estimatedTime": "25分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "四边面原则",
+            "三角面的问题",
+            "星点(Star Pole)处理",
+            "环形布线(Edge Flow)"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "phase": "B-P3",
+      "title": "Normal与法线",
+      "objective": "理解法线概念，掌握法线控制",
+      "lessons": [
+        {
+          "lessonId": "B11-01",
+          "routeId": "B",
+          "week": 11,
+          "lessonNumber": "11.1",
+          "title": "法线方向与平滑",
+          "englishName": "Normals & Smoothing",
+          "shortcut": "Shift+N (Recalculate Outside) · Ctrl+Shift+N (Recalculate Inside) · Right-click → Shade Smooth · Right-click → Shade Auto Smooth",
+          "objective": "理解法线概念，掌握法线修复和平滑设置",
+          "principle": "法线决定面的朝向。法线朝外的面正常显示，朝内的面显示为黑色。Shade Smooth让物体表面平滑过渡，Auto Smooth在特定角度保持锐利边。",
+          "blenderOperations": [
+            "1. Edit Mode → 全选 → Shift+N → 重计算法线朝外",
+            "2. Object Mode → 右键 → Shade Smooth → 平滑显示",
+            "3. 右键 → Shade Auto Smooth → 设置角度（30度）→ 锐利边保持锐利",
+            "4. Face → Custom Split Normals → 精确控制法线"
+          ],
+          "interiorDesignUse": "从SU导入的模型经常法线翻转（黑面）。Shade Smooth让家具看起来圆润。Auto Smooth让圆润和锐利并存。",
+          "sketchupReference": "SketchUp自动处理面方向和平滑。Blender需要手动控制——但这也意味着更精细的控制。",
+          "commonMistakes": [
+            "Shade Smooth后所有边都变圆，失去硬朗感",
+            "不知道Auto Smooth，只能选择全平滑或全锐利",
+            "不修复翻转法线，渲染时大面积黑面"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B11-01-P1",
+              "title": "法线修复与平滑设置",
+              "description": "选一个从SU导入的模型，修复所有翻转法线（Shift+N），设置Shade Auto Smooth（30度），观察锐利边和圆润面的共存效果。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "法线方向概念",
+            "Recalculate Normals (Shift+N)",
+            "Shade Smooth vs Flat",
+            "Auto Smooth角度控制"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "phase": "B-P4",
+      "title": "UV Mapping（一）",
+      "objective": "掌握UV Mapping基础和Smart UV",
+      "lessons": [
+        {
+          "lessonId": "B12-01",
+          "routeId": "B",
+          "week": 12,
+          "lessonNumber": "12.1",
+          "title": "UV基础与Smart UV Project",
+          "englishName": "UV Basics & Smart UV Project",
+          "shortcut": "U (UV Menu) · U → Smart UV Project",
+          "objective": "理解UV概念，使用Smart UV Project快速展开",
+          "principle": "UV Mapping是将3D模型表面展开为2D平面的过程。Smart UV Project是Blender的自动展开算法，适合大多数室内模型。",
+          "blenderOperations": [
+            "1. Edit Mode → 全选(A) → U → Smart UV Project",
+            "2. 打开UV Editor窗口查看展开结果",
+            "3. 调整Angle Limit（66度默认）",
+            "4. 检查UV是否有重叠",
+            "5. 必要时手动Mark Seam → Unwrap"
+          ],
+          "interiorDesignUse": "正确的UV让贴图正确显示在模型上。木地板方向、大理石拼花、墙面肌理——都需要UV支持。",
+          "sketchupReference": "SketchUp不使用UV，贴图直接投影。Blender中UV是贴图精确控制的基础。",
+          "commonMistakes": [
+            "不展开UV直接贴图，贴图方向和大小不可控",
+            "Smart UV结果不检查，接缝出现在显眼位置"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "B12-01-P1",
+              "title": "UV展开练习",
+              "description": "对一个室内家具模型使用Smart UV Project展开UV，检查结果，手动调整不合理的UV岛。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "UV Editor界面",
+            "Smart UV Project",
+            "Mark Seam手动接缝",
+            "UV Island概念"
+          ]
+        }
+      ]
+    }
+  ]
+}

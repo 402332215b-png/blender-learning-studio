@@ -1,0 +1,194 @@
+{
+  "animationCourses": [
+    {
+      "id": "anim-001",
+      "name": "Keyframe动画基础",
+      "nameEn": "Keyframe Animation",
+      "description": "理解关键帧概念，掌握基本动画制作",
+      "concepts": [
+        "Keyframe：记录物体在某一时间点的状态（位置/旋转/缩放）",
+        "Timeline：时间轴，显示动画帧范围",
+        "Interpolation：关键帧之间的过渡方式（Linear/Bezier/Constant）",
+        "FPS：帧率，通常24（电影）/25（PAL）/30（NTSC）"
+      ],
+      "operations": [
+        "1. 选中Camera → I → Location（插入位置关键帧）",
+        "2. 时间线移动到第60帧 → 移动Camera位置 → I → Location",
+        "3. Space播放预览",
+        "4. Dope Sheet → 调整关键帧时间"
+      ],
+      "interiorUse": "制作室内漫游动画的基础——通过Camera位置变化产生镜头运动",
+      "practiceTask": "Camera从位置A到位置B做30帧直线移动动画"
+    },
+    {
+      "id": "anim-002",
+      "name": "Timeline与Dope Sheet",
+      "nameEn": "Timeline & Dope Sheet",
+      "description": "掌握时间轴和动画表的使用",
+      "concepts": [
+        "Timeline：底部时间轴，控制播放范围",
+        "Dope Sheet：关键帧管理视图，可看到所有物体的关键帧",
+        "Start Frame / End Frame：动画范围",
+        "Frame Step：跳帧渲染（测试用）"
+      ],
+      "operations": [
+        "1. Timeline → 设置Start=1, End=120",
+        "2. 打开Dope Sheet编辑器",
+        "3. 框选关键帧 → G移动时间位置",
+        "4. 删除不需要的关键帧（X → Delete Keyframes）"
+      ],
+      "interiorUse": "管理复杂的多镜头动画——比如多个Camera切换"
+    },
+    {
+      "id": "anim-003",
+      "name": "Interpolation与缓动",
+      "nameEn": "Interpolation & Easing",
+      "description": "掌握动画过渡方式，让运动自然",
+      "concepts": [
+        "Linear：匀速（机械感，通常不用）",
+        "Bezier：平滑加速/减速（最常用）",
+        "Constant：瞬间跳变（不连续）",
+        "缓动：动画开始和结束减速，中间加速——像真实的相机运动"
+      ],
+      "operations": [
+        "1. 选中关键帧 → T → 打开插值菜单",
+        "2. 选择Bezier（推荐）",
+        "3. 打开Graph Editor调整曲线",
+        "4. 拖拽控制柄调整缓动"
+      ],
+      "interiorUse": "Camera运动需要缓动——开始慢、中间快、结束慢，才像真实的摄影机运动"
+    },
+    {
+      "id": "anim-004",
+      "name": "Bezier Curve路径",
+      "nameEn": "Bezier Curve",
+      "description": "使用Bezier曲线定义Camera运动路径",
+      "concepts": [
+        "Bezier Curve：贝塞尔曲线，可定义任意曲线路径",
+        "Curve Object：曲线物体，在场景中可见但渲染时不显示",
+        "Path：Camera沿曲线移动"
+      ],
+      "operations": [
+        "1. Shift+A → Curve → Bezier",
+        "2. Edit Mode → 调整曲线形状",
+        "3. 选中Camera → Add Constraint → Follow Path",
+        "4. Target → 选择Curve",
+        "5. 勾选Follow Curve → Animate Path"
+      ],
+      "interiorUse": "室内漫游动画的核心——Camera沿曲线路径穿过房间/走廊"
+    },
+    {
+      "id": "anim-005",
+      "name": "Follow Path约束",
+      "nameEn": "Follow Path Constraint",
+      "description": "让Camera沿指定路径移动",
+      "concepts": [
+        "Follow Path：物体沿Curve路径移动",
+        "Forward Axis：物体前进方向",
+        "Up Axis：物体朝上方向",
+        "Follow Curve：物体旋转跟随曲线方向"
+      ],
+      "operations": [
+        "1. 选中Camera → Constraint → Follow Path",
+        "2. Target → 选择Bezier Curve",
+        "3. 勾选Follow Curve + Forward",
+        "4. 调整Forward Axis到正确方向"
+      ],
+      "interiorUse": "Camera沿设计好的路线穿过室内空间，比手动Keyframe更平滑"
+    },
+    {
+      "id": "anim-006",
+      "name": "Track To约束",
+      "nameEn": "Track To Constraint",
+      "description": "让Camera始终看向指定目标",
+      "concepts": [
+        "Track To：物体始终朝向目标物体",
+        "Target Object：被追踪的物体（如一个Empty）",
+        "组合使用：Follow Path + Track To = Camera沿路径移动且始终看向目标"
+      ],
+      "operations": [
+        "1. Shift+A → Empty → 添加目标点",
+        "2. 选中Camera → Constraint → Track To",
+        "3. Target → 选择Empty",
+        "4. To: -Z, Up: Y"
+      ],
+      "interiorUse": "Camera在移动过程中始终看向室内某个焦点（如接待台/沙发/艺术品）"
+    },
+    {
+      "id": "anim-007",
+      "name": "Camera Animation组合",
+      "nameEn": "Camera Animation Combo",
+      "description": "组合Follow Path + Track To制作专业Camera动画",
+      "concepts": [
+        "Follow Path控制位置",
+        "Track To控制朝向",
+        "Graph Editor微调速度",
+        "多段路径拼接"
+      ],
+      "operations": [
+        "1. 创建Bezier Curve路径",
+        "2. Camera → Follow Path（位置）",
+        "3. Camera → Track To Empty（朝向）",
+        "4. Graph Editor调整缓动",
+        "5. 空格键预览"
+      ],
+      "interiorUse": "完整室内漫游动画的基础——Camera沿路径移动+始终看向目标"
+    },
+    {
+      "id": "anim-008",
+      "name": "Graph Editor",
+      "nameEn": "Graph Editor",
+      "description": "通过曲线编辑器精确控制动画",
+      "concepts": [
+        "F-Curve：动画曲线，X=时间 Y=值",
+        "Keyframe Handle：关键帧控制柄，控制曲线切线",
+        "Handle Type：Free/Auto/Vector/Aligned",
+        "Extrapolation：超出关键帧范围的延伸方式"
+      ],
+      "operations": [
+        "1. 切换到Animation工作区",
+        "2. Graph Editor → 选中Camera",
+        "3. 选中关键帧 → T → 设置Handle Type",
+        "4. 拖拽控制柄调整曲线形状"
+      ],
+      "interiorUse": "微调Camera运动速度——开始慢加速、中间匀速、结束减速"
+    },
+    {
+      "id": "anim-009",
+      "name": "镜头运动类型",
+      "nameEn": "Shot Types",
+      "description": "室内漫游中常用的镜头运动方式",
+      "shots": [
+        { "name": "推进", "nameEn": "Dolly In", "description": "Camera沿视线方向前进", "use": "强调某个空间/家具" },
+        { "name": "拉远", "nameEn": "Dolly Out", "description": "Camera沿视线方向后退", "use": "展示整体空间" },
+        { "name": "横移", "nameEn": "Trucking", "description": "Camera平行移动", "use": "展示墙面/展柜" },
+        { "name": "环绕", "nameEn": "Orbit", "description": "Camera围绕物体旋转", "use": "展示家具/空间全貌" },
+        { "name": "转弯", "nameEn": "Turn", "description": "Camera在走廊/转角处转弯", "use": "室内空间导览" },
+        { "name": "固定机位微推", "nameEn": "Micro Push", "description": "固定位置微调推进", "use": "微妙呼吸感，增加画面活力" }
+      ]
+    },
+    {
+      "id": "anim-010",
+      "name": "渲染动画与视频输出",
+      "nameEn": "Render Animation & Video Output",
+      "description": "渲染动画序列并输出为视频文件",
+      "concepts": [
+        "Render Animation (Ctrl+F12)：逐帧渲染",
+        "Output格式：FFmpeg Video",
+        "Container：MPEG-4",
+        "Codec：H.264",
+        "Quality：10-15（中等质量）",
+        "FPS：24或25"
+      ],
+      "operations": [
+        "1. Output Properties → Output → 选择保存路径",
+        "2. File Format → FFmpeg Video",
+        "3. Container → MPEG-4",
+        "4. Video Codec → H.264",
+        "5. Ctrl+F12 → 开始渲染动画",
+        "6. 完成后在指定路径找到.mp4文件"
+      ],
+      "interiorUse": "最终输出完整的室内漫游视频文件，交付给客户"
+    }
+  ]
+}

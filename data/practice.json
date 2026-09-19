@@ -1,0 +1,98 @@
+{
+  "levels": [
+    {
+      "id": "level-01",
+      "level": 1,
+      "name": "基础操作",
+      "nameEn": "Basic Operations",
+      "description": "Move, Rotate, Scale等基础操作练习",
+      "tasks": [
+        { "taskId": "P-L01-01", "title": "移动家具到指定位置", "description": "使用G+轴向快捷键将一把椅子精确移动到指定位置", "estimatedTime": "5分钟" },
+        { "taskId": "P-L01-02", "title": "旋转物体到指定角度", "description": "使用R+轴向将一个灯具旋转30度", "estimatedTime": "5分钟" },
+        { "taskId": "P-L01-03", "title": "缩放物体比例", "description": "使用S+轴向将一个花瓶缩放到80%", "estimatedTime": "5分钟" },
+        { "taskId": "P-L01-04", "title": "精确数值输入", "description": "用G+X+数值精确移动一个柜子1200mm", "estimatedTime": "5分钟" }
+      ]
+    },
+    {
+      "id": "level-02",
+      "level": 2,
+      "name": "单体模型",
+      "nameEn": "Single Object",
+      "description": "床头柜、桌子、柜子等单体家具建模",
+      "tasks": [
+        { "taskId": "P-L02-01", "title": "建模床头柜", "description": "从Cube挤出建模一个床头柜(400×400×500mm)", "estimatedTime": "20分钟" },
+        { "taskId": "P-L02-02", "title": "建模办公桌", "description": "从Cube挤出建模一个办公桌(1200×600×750mm)", "estimatedTime": "25分钟" },
+        { "taskId": "P-L02-03", "title": "建模简单柜子", "description": "使用挤出+Bevel+Solidify建模一个柜子", "estimatedTime": "30分钟" }
+      ]
+    },
+    {
+      "id": "level-03",
+      "level": 3,
+      "name": "空间构件",
+      "nameEn": "Space Components",
+      "description": "墙体、吊顶、背景墙、门洞等空间构件",
+      "tasks": [
+        { "taskId": "P-L03-01", "title": "建模一面墙（含门窗洞）", "description": "从平面图出发，建模一面墙(3000×2700mm)并开门窗洞", "estimatedTime": "30分钟" },
+        { "taskId": "P-L03-02", "title": "建模简单吊顶", "description": "建模带灯槽的吊顶(2500高，留一圈灯槽)", "estimatedTime": "25分钟" },
+        { "taskId": "P-L03-03", "title": "建模电视背景墙", "description": "木饰面+石材+金属线条的电视背景墙", "estimatedTime": "35分钟" }
+      ]
+    },
+    {
+      "id": "level-04",
+      "level": 4,
+      "name": "完整房间",
+      "nameEn": "Complete Room",
+      "description": "办公室、酒店客房等完整房间建模",
+      "tasks": [
+        { "taskId": "P-L04-01", "title": "建模一个办公室", "description": "完整建模一个办公室空间(5×6m，含墙体/吊顶/地面)", "estimatedTime": "60分钟" },
+        { "taskId": "P-L04-02", "title": "建模一个酒店客房", "description": "完整建模一个酒店客房空间(4×5m)", "estimatedTime": "60分钟" }
+      ]
+    },
+    {
+      "id": "level-05",
+      "level": 5,
+      "name": "完整项目",
+      "nameEn": "Full Project",
+      "description": "完整室内空间建模+材质",
+      "tasks": [
+        { "taskId": "P-L05-01", "title": "完整办公室空间", "description": "建模+材质+基本灯光的完整办公室空间", "estimatedTime": "120分钟" },
+        { "taskId": "P-L05-02", "title": "完整酒店客房", "description": "建模+材质+基本灯光的完整酒店客房", "estimatedTime": "120分钟" }
+      ]
+    },
+    {
+      "id": "level-06",
+      "level": 6,
+      "name": "效果图",
+      "nameEn": "Render",
+      "description": "完整室内效果图输出",
+      "tasks": [
+        { "taskId": "P-L06-01", "title": "办公室日景效果图", "description": "Eevee快速渲染办公室日景效果图", "estimatedTime": "45分钟" },
+        { "taskId": "P-L06-02", "title": "酒店客房夜景效果图", "description": "Cycles渲染酒店客房夜景效果图", "estimatedTime": "60分钟" },
+        { "taskId": "P-L06-03", "title": "商业空间效果图", "description": "Cycles渲染商业空间高对比度效果图", "estimatedTime": "60分钟" }
+      ]
+    },
+    {
+      "id": "level-07",
+      "level": 7,
+      "name": "动画",
+      "nameEn": "Animation",
+      "description": "Camera动画制作",
+      "tasks": [
+        { "taskId": "P-L07-01", "title": "Camera推进动画", "description": "制作30帧Camera推进动画", "estimatedTime": "20分钟" },
+        { "taskId": "P-L07-02", "title": "Follow Path环绕动画", "description": "使用Bezier Curve+Follow Path制作环绕动画", "estimatedTime": "30分钟" },
+        { "taskId": "P-L07-03", "title": "多镜头组合动画", "description": "设计3个镜头并组合为120帧动画", "estimatedTime": "45分钟" }
+      ]
+    },
+    {
+      "id": "level-08",
+      "level": 8,
+      "name": "完整室内漫游视频",
+      "nameEn": "Walkthrough Video",
+      "description": "完整室内漫游视频输出",
+      "tasks": [
+        { "taskId": "P-L08-01", "title": "单房间漫游视频", "description": "制作一个房间的完整漫游视频(10秒, 240帧)", "estimatedTime": "90分钟" },
+        { "taskId": "P-L08-02", "title": "多房间漫游视频", "description": "制作多房间穿越漫游视频(30秒, 720帧)", "estimatedTime": "180分钟" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "categories": [
+    {
+      "id": "basic",
+      "name": "基础",
+      "nameEn": "Basic",
+      "shortcuts": [
+        { "id": "sc-001", "nameEn": "Select", "nameCn": "选择", "keys": "左键", "function": "选中物体或元素", "interiorUse": "选择场景中的家具、灯具等", "suRef": "选择工具(Q)" },
+        { "id": "sc-002", "nameEn": "Select All", "nameCn": "全选", "keys": "A", "function": "全选/取消全选", "interiorUse": "选中所有家具批量操作", "suRef": "Ctrl+A" },
+        { "id": "sc-003", "nameEn": "Box Select", "nameCn": "框选", "keys": "B", "function": "拖拽框选区域", "interiorUse": "框选区域内的物体", "suRef": "选择工具+拖拽" },
+        { "id": "sc-004", "nameEn": "Circle Select", "nameCn": "刷选", "keys": "C", "function": "刷选（滚轮调半径）", "interiorUse": "刷选多个物体", "suRef": "—（无）" },
+        { "id": "sc-005", "nameEn": "Lasso Select", "nameCn": "套索选", "keys": "Ctrl+左键", "function": "自由形状选择", "interiorUse": "自由框选不规则区域的物体", "suRef": "—（无）" },
+        { "id": "sc-006", "nameEn": "Move", "nameCn": "移动", "keys": "G", "function": "移动物体（+X/Y/Z限制轴向）", "interiorUse": "摆放家具位置", "suRef": "移动工具(M)" },
+        { "id": "sc-007", "nameEn": "Rotate", "nameCn": "旋转", "keys": "R", "function": "旋转物体（+X/Y/Z限制轴向）", "interiorUse": "旋转家具方向", "suRef": "旋转工具" },
+        { "id": "sc-008", "nameEn": "Scale", "nameCn": "缩放", "keys": "S", "function": "缩放物体（+X/Y/Z限制轴向）", "interiorUse": "调整家具大小", "suRef": "缩放工具(S)" },
+        { "id": "sc-009", "nameEn": "Delete", "nameCn": "删除", "keys": "X / Delete", "function": "删除选中物体", "interiorUse": "删除不需要的物体", "suRef": "Delete" },
+        { "id": "sc-010", "nameEn": "Duplicate", "nameCn": "复制", "keys": "Shift+D", "function": "复制选中物体", "interiorUse": "复制家具（如重复椅子）", "suRef": "Ctrl+C / Ctrl+V" },
+        { "id": "sc-011", "nameEn": "Linked Duplicate", "nameCn": "关联复制", "keys": "Alt+D", "function": "复制物体（修改一个全部跟着改）", "interiorUse": "复制相同灯具/家具", "suRef": "组件复制" },
+        { "id": "sc-012", "nameEn": "Save", "nameCn": "保存", "keys": "Ctrl+S", "function": "保存.blend文件", "interiorUse": "保存工作进度", "suRef": "Ctrl+S" },
+        { "id": "sc-013", "nameEn": "Save As", "nameCn": "另存为", "keys": "Ctrl+Shift+S", "function": "另存为新文件", "interiorUse": "另存版本/备份", "suRef": "Ctrl+Shift+S" },
+        { "id": "sc-014", "nameEn": "Undo", "nameCn": "撤销", "keys": "Ctrl+Z", "function": "撤销上一步", "interiorUse": "撤销误操作", "suRef": "Ctrl+Z" },
+        { "id": "sc-015", "nameEn": "Redo", "nameCn": "重做", "keys": "Ctrl+Shift+Z", "function": "重做撤销的操作", "interiorUse": "恢复撤销的内容", "suRef": "Ctrl+Y" },
+        { "id": "sc-016", "nameEn": "Search Menu", "nameCn": "搜索菜单", "keys": "F3", "function": "搜索所有操作命令", "interiorUse": "快速找到不记得快捷键的操作", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "view",
+      "name": "视图",
+      "nameEn": "View",
+      "shortcuts": [
+        { "id": "sc-101", "nameEn": "Rotate View", "nameCn": "旋转视图", "keys": "中键", "function": "旋转3D视图角度", "interiorUse": "从不同角度查看室内空间", "suRef": "轨道工具(O)" },
+        { "id": "sc-102", "nameEn": "Pan View", "nameCn": "平移视图", "keys": "Shift+中键", "function": "平移视图", "interiorUse": "移动到室内不同区域", "suRef": "平移工具(H)" },
+        { "id": "sc-103", "nameEn": "Zoom", "nameCn": "缩放视图", "keys": "滚轮", "function": "放大/缩小视图", "interiorUse": "放大查看细节", "suRef": "缩放工具" },
+        { "id": "sc-104", "nameEn": "Front View", "nameCn": "正视图", "keys": "Numpad 1", "function": "切换到正视图", "interiorUse": "查看墙面正立面", "suRef": "标准视图→前" },
+        { "id": "sc-105", "nameEn": "Right View", "nameCn": "右视图", "keys": "Numpad 3", "function": "切换到右视图", "interiorUse": "查看侧立面", "suRef": "标准视图→右" },
+        { "id": "sc-106", "nameEn": "Top View", "nameCn": "顶视图", "keys": "Numpad 7", "function": "切换到顶视图", "interiorUse": "查看平面布局", "suRef": "标准视图→顶" },
+        { "id": "sc-107", "nameEn": "Toggle Ortho/Persp", "nameCn": "正交/透视切换", "keys": "Numpad 5", "function": "切换正交和透视视图", "interiorUse": "正交模式查看真实比例", "suRef": "—（SU始终是透视）" },
+        { "id": "sc-108", "nameEn": "Camera View", "nameCn": "相机视角", "keys": "Numpad 0", "function": "进入相机视角", "interiorUse": "查看渲染构图", "suRef": "—（无直接对应）" },
+        { "id": "sc-109", "nameEn": "Frame Selected", "nameCn": "聚焦选中", "keys": "Numpad .", "function": "视图聚焦到选中物体", "interiorUse": "快速定位到某个家具", "suRef": "Zoom Extents" },
+        { "id": "sc-110", "nameEn": "Toggle Fullscreen", "nameCn": "全屏切换", "keys": "Ctrl+Space", "function": "全屏当前面板", "interiorUse": "全屏3D视图工作", "suRef": "—（无）" },
+        { "id": "sc-111", "nameEn": "Shading Pie Menu", "nameCn": "着色模式菜单", "keys": "Z", "function": "切换Wireframe/Solid/Material/Rendered", "interiorUse": "切换查看材质效果", "suRef": "着色模式按钮" },
+        { "id": "sc-112", "nameEn": "Toggle X-Ray", "nameCn": "X-Ray透视", "keys": "Alt+Z", "function": "透视看穿模型", "interiorUse": "选择被遮挡的物体", "suRef": "X-Ray模式" },
+        { "id": "sc-113", "nameEn": "Local View", "nameCn": "局部视图", "keys": "Numpad /", "function": "只显示选中物体", "interiorUse": "隔离编辑单个家具", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "object",
+      "name": "对象",
+      "nameEn": "Object",
+      "shortcuts": [
+        { "id": "sc-201", "nameEn": "Add Object", "nameCn": "添加物体", "keys": "Shift+A", "function": "打开添加菜单", "interiorUse": "添加家具/灯具/参考图", "suRef": "—（用工具栏）" },
+        { "id": "sc-202", "nameEn": "Edit Mode Toggle", "nameCn": "编辑模式切换", "keys": "Tab", "function": "Object/Edit模式切换", "interiorUse": "进入编辑修改家具", "suRef": "—（直接编辑）" },
+        { "id": "sc-203", "nameEn": "Join Objects", "nameCn": "合并物体", "keys": "Ctrl+J", "function": "合并多个物体为一个", "interiorUse": "合并多个部件为一个家具", "suRef": "Group/组件" },
+        { "id": "sc-204", "nameEn": "Separate Objects", "nameCn": "分离物体", "keys": "P", "function": "分离选中部分为新物体", "interiorUse": "分离家具部件", "suRef": "Explode" },
+        { "id": "sc-205", "nameEn": "Apply Transform", "nameCn": "应用变换", "keys": "Ctrl+A", "function": "应用位移/旋转/缩放到数据", "interiorUse": "修复SU导入的Scale问题", "suRef": "—（无）" },
+        { "id": "sc-206", "nameEn": "Parent", "nameCn": "建立父级", "keys": "Ctrl+P", "function": "设置父物体", "interiorUse": "把灯具关联到天花板", "suRef": "—（无直接对应）" },
+        { "id": "sc-207", "nameEn": "Shade Smooth", "nameCn": "平滑着色", "keys": "右键 → Shade Smooth", "function": "平滑物体表面", "interiorUse": "让家具表面圆润", "suRef": "—（自动）" },
+        { "id": "sc-208", "nameEn": "Shade Auto Smooth", "nameCn": "自动平滑", "keys": "右键 → Shade Auto Smooth", "function": "按角度自动平滑/锐利", "interiorUse": "圆润+锐利边共存", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "edit",
+      "name": "编辑",
+      "nameEn": "Edit",
+      "shortcuts": [
+        { "id": "sc-301", "nameEn": "Vertex/Edge/Face", "nameCn": "顶点/边/面", "keys": "1/2/3", "function": "切换选择模式", "interiorUse": "编辑家具的不同级别", "suRef": "—（无）" },
+        { "id": "sc-302", "nameEn": "Extrude", "nameCn": "挤出", "keys": "E", "function": "从面/边挤出新几何体", "interiorUse": "从平面挤出家具/墙体", "suRef": "推拉工具(P)" },
+        { "id": "sc-303", "nameEn": "Bevel", "nameCn": "倒角", "keys": "Ctrl+B", "function": "给边/面加圆角", "interiorUse": "给家具边加圆角", "suRef": "倒角工具(B)" },
+        { "id": "sc-304", "nameEn": "Loop Cut", "nameCn": "环切", "keys": "Ctrl+R", "function": "在面上加环线", "interiorUse": "给家具加细分线", "suRef": "—（无直接对应）" },
+        { "id": "sc-305", "nameEn": "Fill", "nameCn": "填充", "keys": "F", "function": "给空洞封面", "interiorUse": "封住模型缺口", "suRef": "封面工具" },
+        { "id": "sc-306", "nameEn": "Merge", "nameCn": "合并", "keys": "M", "function": "合并顶点", "interiorUse": "修复重叠顶点/重面", "suRef": "—（无）" },
+        { "id": "sc-307", "nameEn": "Knife", "nameCn": "切刀", "keys": "K", "function": "手动切割面", "interiorUse": "在面上自由切线", "suRef": "画线工具" },
+        { "id": "sc-308", "nameEn": "Recalculate Normals", "nameCn": "重计算法线", "keys": "Shift+N", "function": "法线朝外", "interiorUse": "修复黑面问题", "suRef": "—（自动）" },
+        { "id": "sc-309", "nameEn": "Mark Seam", "nameCn": "标记接缝", "keys": "右键 → Mark Seam", "function": "标记UV展开接缝", "interiorUse": "控制UV展开方向", "suRef": "—（无）" },
+        { "id": "sc-310", "nameEn": "UV Unwrap Menu", "nameCn": "UV展开菜单", "keys": "U", "function": "打开UV展开选项", "interiorUse": "展开模型UV", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "modeling",
+      "name": "建模",
+      "nameEn": "Modeling",
+      "shortcuts": [
+        { "id": "sc-401", "nameEn": "Inset Face", "nameCn": "内缩面", "keys": "I", "function": "面向内缩进", "interiorUse": "做柜体凹槽/踢脚", "suRef": "偏移工具" },
+        { "id": "sc-402", "nameEn": "Edge Slide", "nameCn": "边滑动", "keys": "G+G (Edge)", "function": "沿边线方向滑动", "interiorUse": "调整边的位置不改变拓扑", "suRef": "—（无）" },
+        { "id": "sc-403", "nameEn": "Bridge Edge Loops", "nameCn": "桥接", "keys": "Face → Bridge Edge Loops", "function": "连接两个边环", "interiorUse": "连接两个断开的面", "suRef": "—（无）" },
+        { "id": "sc-404", "nameEn": "Poke Face", "nameCn": "三角化面", "keys": "Ctrl+F → Poke Face", "function": "将面三角化", "interiorUse": "—（通常要避免）", "suRef": "—（自动）" },
+        { "id": "sc-405", "nameEn": "Subdivide", "nameCn": "细分", "keys": "右键 → Subdivide", "function": "细分选中边/面", "interiorUse": "增加面数做细节", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "modifier",
+      "name": "修改器",
+      "nameEn": "Modifier",
+      "shortcuts": [
+        { "id": "sc-501", "nameEn": "Subdivision Surface", "nameCn": "细分曲面", "keys": "Ctrl+1/2/3/4", "function": "快速添加细分Modifier", "interiorUse": "让家具变圆润", "suRef": "—（无）" },
+        { "id": "sc-502", "nameEn": "Apply Modifier", "nameCn": "应用修改器", "keys": "Ctrl+A (在Modifier面板)", "function": "应用Modifier到模型数据", "interiorUse": "最终确认Modifier效果", "suRef": "—（无）" },
+        { "id": "sc-503", "nameEn": "Shade Smooth", "nameCn": "平滑着色", "keys": "右键 → Shade Smooth", "function": "配合Subdivision使用", "interiorUse": "细分+平滑=圆润曲面", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "material",
+      "name": "材质",
+      "nameEn": "Material",
+      "shortcuts": [
+        { "id": "sc-601", "nameEn": "Material Preview", "nameCn": "材质预览", "keys": "Shift+Z", "function": "切换到材质预览模式", "interiorUse": "查看材质效果", "suRef": "着色模式" },
+        { "id": "sc-602", "nameEn": "Shader Editor", "nameCn": "着色器编辑器", "keys": "Shift+Click material icon", "function": "打开Shader Editor", "interiorUse": "编辑材质节点", "suRef": "—（无）" },
+        { "id": "sc-603", "nameEn": "New Material", "nameCn": "新建材质", "keys": "Material Properties → New", "function": "给物体新建材质", "interiorUse": "为家具赋予材质", "suRef": "材质面板" },
+        { "id": "sc-604", "nameEn": "Assign Material", "nameCn": "指定材质", "keys": "Material Properties → Assign", "function": "将材质指定给选中面", "interiorUse": "给家具不同部分不同材质", "suRef": "材质面板" },
+        { "id": "sc-605", "nameEn": "Add Node", "nameCn": "添加节点", "keys": "Shift+A (Shader Editor)", "function": "在节点编辑器添加节点", "interiorUse": "创建材质节点网络", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "camera",
+      "name": "相机",
+      "nameEn": "Camera",
+      "shortcuts": [
+        { "id": "sc-701", "nameEn": "Camera View", "nameCn": "相机视角", "keys": "Numpad 0", "function": "进入相机视角", "interiorUse": "查看渲染构图", "suRef": "—（无）" },
+        { "id": "sc-702", "nameEn": "Set Camera to View", "nameCn": "相机对齐视图", "keys": "Ctrl+Alt+Numpad 0", "function": "将相机对齐当前视图", "interiorUse": "快速设置渲染角度", "suRef": "Position Camera" },
+        { "id": "sc-703", "nameEn": "Add Camera", "nameCn": "添加相机", "keys": "Shift+A → Camera", "function": "添加新相机", "interiorUse": "设置多个渲染机位", "suRef": "Add Camera" },
+        { "id": "sc-704", "nameEn": "Active Camera", "nameCn": "设为活跃相机", "keys": "Ctrl+Numpad 0", "function": "设选中相机为渲染相机", "interiorUse": "切换不同渲染角度", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "animation",
+      "name": "动画",
+      "nameEn": "Animation",
+      "shortcuts": [
+        { "id": "sc-801", "nameEn": "Insert Keyframe", "nameCn": "插入关键帧", "keys": "I", "function": "在当前位置插入关键帧", "interiorUse": "制作Camera移动动画", "suRef": "—（无）" },
+        { "id": "sc-802", "nameEn": "Timeline Play", "nameCn": "播放动画", "keys": "Space", "function": "播放/暂停时间线", "interiorUse": "预览动画效果", "suRef": "—（无）" },
+        { "id": "sc-803", "nameEn": "Timeline Start", "nameCn": "跳到开始", "keys": "Shift+Left / Home", "function": "跳到时间线起始位置", "interiorUse": "回到动画开头", "suRef": "—（无）" },
+        { "id": "sc-804", "nameEn": "Timeline End", "nameCn": "跳到结束", "keys": "Shift+Right / End", "function": "跳到时间线结束位置", "interiorUse": "跳到动画结尾", "suRef": "—（无）" },
+        { "id": "sc-805", "nameEn": "Next Frame", "nameCn": "下一帧", "keys": "Right Arrow", "function": "前进一帧", "interiorUse": "逐帧检查动画", "suRef": "—（无）" },
+        { "id": "sc-806", "nameEn": "Previous Frame", "nameCn": "上一帧", "keys": "Left Arrow", "function": "后退一帧", "interiorUse": "逐帧检查动画", "suRef": "—（无）" },
+        { "id": "sc-807", "nameEn": "Dope Sheet", "nameCn": "动画表", "keys": "—（工作区切换）", "function": "打开Dope Sheet查看关键帧", "interiorUse": "管理动画关键帧", "suRef": "—（无）" },
+        { "id": "sc-808", "nameEn": "Graph Editor", "nameCn": "曲线编辑器", "keys": "—（工作区切换）", "function": "打开Graph Editor编辑动画曲线", "interiorUse": "调整动画缓动效果", "suRef": "—（无）" }
+      ]
+    },
+    {
+      "id": "render",
+      "name": "渲染",
+      "nameEn": "Render",
+      "shortcuts": [
+        { "id": "sc-901", "nameEn": "Render Image", "nameCn": "渲染图片", "keys": "F12", "function": "渲染当前帧", "interiorUse": "输出效果图", "suRef": "—（SU无渲染）" },
+        { "id": "sc-902", "nameEn": "Render Animation", "nameCn": "渲染动画", "keys": "Ctrl+F12", "function": "渲染动画序列", "interiorUse": "输出室内漫游视频", "suRef": "—（无）" },
+        { "id": "sc-903", "nameEn": "Render Properties", "nameCn": "渲染设置", "keys": "—（Properties面板）", "function": "打开渲染设置面板", "interiorUse": "设置渲染参数", "suRef": "—（无）" },
+        { "id": "sc-904", "nameEn": "Viewport Render", "nameCn": "视口渲染预览", "keys": "Shift+Z → Rendered", "function": "切换到渲染预览模式", "interiorUse": "实时查看渲染效果", "suRef": "—（无）" }
+      ]
+    }
+  ]
+}

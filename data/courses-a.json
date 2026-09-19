@@ -1,0 +1,664 @@
+{
+  "routeId": "A",
+  "routeName": "SU + Blender 工作路线",
+  "weeks": [
+    {
+      "week": 1,
+      "phase": "A-P1",
+      "title": "SU → Blender 模型传递",
+      "objective": "掌握从SketchUp到Blender的完整模型传递流程",
+      "lessons": [
+        {
+          "lessonId": "A01-01",
+          "routeId": "A",
+          "week": 1,
+          "lessonNumber": "01.1",
+          "title": "SketchUp模型检查与整理",
+          "englishName": "SketchUp Model Preparation",
+          "shortcut": "—",
+          "objective": "在导出前确保SU模型干净、有组织",
+          "principle": "好的导出始于好的源文件。在SketchUp中整理好Group/Component和Tag（图层），能大幅减少Blender中的清理工作。",
+          "blenderOperations": [
+            "1. 打开SketchUp模型",
+            "2. 检查所有Group/Component命名是否清晰",
+            "3. 整理Tag（图层）——墙体/门窗/家具/灯具等",
+            "4. 删除不可见/不需要的几何体",
+            "5. 确认坐标原点在合理位置（通常在建筑角点）"
+          ],
+          "interiorDesignUse": "这是你每个室内设计项目导出前都要做的检查。良好的SU组织习惯直接决定Blender中的工作效率。",
+          "sketchupReference": "这是你在SketchUp中已经熟悉的操作——Group/Component/Tag管理。这里强调的是为导出做准备。",
+          "commonMistakes": [
+            "Group嵌套过深导致FBX层级混乱",
+            "Tag未清理，导出大量隐藏几何体",
+            "坐标原点远离模型导致Blender中视角丢失"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A01-01-P1",
+              "title": "整理一个SU室内场景",
+              "description": "选择一个你正在做的室内设计SU模型，按照清单整理Group、Tag、清理多余几何体。",
+              "difficultyLevel": 1,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Group/Component整理原则",
+            "Tag（图层）管理",
+            "坐标原点设置"
+          ]
+        },
+        {
+          "lessonId": "A01-02",
+          "routeId": "A",
+          "week": 1,
+          "lessonNumber": "01.2",
+          "title": "FBX导出设置",
+          "englishName": "FBX Export Settings",
+          "shortcut": "File → Export → FBX",
+          "objective": "正确设置FBX导出参数，确保Blender中导入正确",
+          "principle": "FBX是连接SketchUp和Blender的桥梁。正确的导出参数确保单位、材质、法线方向正确传递。",
+          "blenderOperations": [
+            "1. File → Export → 3D Model → 选择FBX格式",
+            "2. 导出选项中勾选：Triangulate, Keep Original Position",
+            "3. 单位设置为Millimeters或Centimeters",
+            "4. 导出范围：仅选中/全部场景"
+          ],
+          "interiorDesignUse": "每次从SU到Blender的模型传递都需要这个步骤。掌握后每次导出只需30秒。",
+          "sketchupReference": "相当于SketchUp的'导出3D模型'功能，但需要选择FBX格式并检查特定参数。",
+          "commonMistakes": [
+            "忘记设置单位导致Blender中模型比例错误",
+            "导出时未勾选某些选项导致材质丢失",
+            "导出全部场景包含参考线等非模型元素"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A01-02-P1",
+              "title": "导出FBX并记录参数",
+              "description": "将整理好的SU模型导出为FBX，截图导出参数设置，保存参数清单。",
+              "difficultyLevel": 1,
+              "estimatedTime": "10分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "SketchUp FBX导出参数",
+            "单位与坐标原点",
+            "导出范围选择"
+          ]
+        },
+        {
+          "lessonId": "A01-03",
+          "routeId": "A",
+          "week": 1,
+          "lessonNumber": "01.3",
+          "title": "Blender导入与单位检查",
+          "englishName": "Blender Import & Unit Check",
+          "shortcut": "File → Import → FBX",
+          "objective": "成功导入FBX并完成单位、Scale、Normal检查",
+          "principle": "导入后第一件事不是看模型好不好看，而是检查单位是否正确、Scale是否匹配、法线是否朝外。这三个检查通过后才进入后续工作。",
+          "blenderOperations": [
+            "1. File → Import → FBX (.fbx)",
+            "2. 导入设置：Scale=1.0, Forward=-Z, Up=Y（按实际情况调整）",
+            "3. Scene Properties → Units → Metric → Centimeters",
+            "4. 选中模型 → N面板 → Item → 查看Dimensions",
+            "5. 检查Scale是否为1.0（Ctrl+A → Apply All Transforms）",
+            "6. Edit Mode → 全选 → Mesh → Normals → Recalculate Outside (Shift+N)"
+          ],
+          "interiorDesignUse": "这是SU→Blender工作流中最关键的一步。如果单位/Scale/Normal不对，后续所有材质灯光工作都会出问题。",
+          "sketchupReference": "SketchUp中没有单位检查的概念——它的单位是自动的。Blender需要手动确认单位和Scale一致。Normal相当于SketchUp中的面方向，但Blender中更严格——翻转的面会显示为黑色。",
+          "commonMistakes": [
+            "导入后Scale不是1.0，导致后续材质UV异常",
+            "忘记Recalculate Normals，部分墙面显示黑色",
+            "单位设置错误，一个房间变成几公里大"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A01-03-P1",
+              "title": "导入FBX并完成检查清单",
+              "description": "导入上一步导出的FBX文件，按照单位检查→Scale检查→Normal检查的顺序完成全部步骤，截图每个检查结果。",
+              "difficultyLevel": 2,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "FBX导入设置",
+            "Blender单位设置（Metric/Centimeters）",
+            "Scale检查与修正（Apply All Transforms）",
+            "Normal检查与翻转（Recalculate Normals）"
+          ]
+        },
+        {
+          "lessonId": "A01-04",
+          "routeId": "A",
+          "week": 1,
+          "lessonNumber": "01.4",
+          "title": "常见导入问题排查",
+          "englishName": "Import Troubleshooting",
+          "shortcut": "—",
+          "objective": "能快速识别和修复导入后的常见问题",
+          "principle": "模型导入后可能出现碎片化、材质丢失、法线翻转等问题。建立系统化的排查流程能节省大量时间。",
+          "blenderOperations": [
+            "1. 模型碎片 → 检查SU中Group是否合理，必要时合并",
+            "2. 材质丢失 → 在Blender中重新赋予材质",
+            "3. 法线翻转 → Edit Mode → 全选 → Shift+N",
+            "4. Scale异常 → Object Mode → Ctrl+A → All Transforms"
+          ],
+          "interiorDesignUse": "实际项目中你不会只有一次导入。每次修改SU模型后重新传递到Blender都可能遇到不同的问题，掌握排查方法至关重要。",
+          "sketchupReference": "SketchUp中较少出现这些问题。Blender对模型的规范要求更高——这是从'快速建模'到'精细渲染'的代价。",
+          "commonMistakes": [
+            "遇到问题直接放弃，认为Blender'不好用'",
+            "反复导出导入而不检查根本原因",
+            "忽略Scale问题直接开始做材质，后面全部受影响"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A01-04-P1",
+              "title": "问题排查清单实操",
+              "description": "故意制造一个有问题的SU模型（嵌套Group+隐藏几何体），导出导入后按照排查清单逐个修复。",
+              "difficultyLevel": 2,
+              "estimatedTime": "25分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "模型碎片问题识别与处理",
+            "材质丢失修复",
+            "法线翻转识别与修复",
+            "Scale异常修复"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "phase": "A-P1",
+      "title": "模型整理与优化",
+      "objective": "将导入的模型整理为干净可用的Blender场景",
+      "lessons": [
+        {
+          "lessonId": "A02-01",
+          "routeId": "A",
+          "week": 2,
+          "lessonNumber": "02.1",
+          "title": "Mesh清理",
+          "englishName": "Mesh Cleanup",
+          "shortcut": "M (Merge by Distance) · Shift+N (Recalculate Normals)",
+          "objective": "清理导入模型中的Mesh问题，确保拓扑干净",
+          "principle": "从SketchUp导入的模型通常有重叠顶点、零面积面等问题。清理后才能正确进行材质、UV等后续工作。",
+          "blenderOperations": [
+            "1. Edit Mode → A (全选)",
+            "2. M → By Distance (合并重叠顶点)",
+            "3. Face → Delete Zero Faces (如有)",
+            "4. Shift+N → Recalculate Normals Outside"
+          ],
+          "interiorDesignUse": "干净的Mesh意味着渲染时不会出现黑斑、材质不会出现异常闪烁。这是专业效果图与业余效果图的第一个分水岭。",
+          "sketchupReference": "SketchUp自动处理大部分这些问题，但Blender需要手动清理——这也是为什么Blender渲染质量更高的原因之一。",
+          "commonMistakes": [
+            "不清理就直接做材质，导致渲染黑斑",
+            "过度清理删除了需要的细节"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A02-01-P1",
+              "title": "清理导入模型的Mesh问题",
+              "description": "使用上周导入的模型，执行完整Mesh清理流程，对比清理前后面数变化。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Merge by Distance（重面/重叠顶点）",
+            "删除零面积面",
+            "Recalculate Normals"
+          ]
+        },
+        {
+          "lessonId": "A02-02",
+          "routeId": "A",
+          "week": 2,
+          "lessonNumber": "02.2",
+          "title": "场景组织",
+          "englishName": "Scene Organization",
+          "shortcut": "M (Move to Collection) · F2 (Rename)",
+          "objective": "建立规范的Blender场景Collection结构",
+          "principle": "良好的场景组织让你在复杂的室内场景中快速找到需要修改的对象。这直接关系到工作效率。",
+          "blenderOperations": [
+            "1. Outliner → 新建Collections: 墙体/地面/天花/家具/灯具/饰品",
+            "2. 选中对象 → M → 选择目标Collection",
+            "3. F2 重命名重要对象",
+            "4. 使用Instance/Link处理重复家具"
+          ],
+          "interiorDesignUse": "一个室内设计项目可能有几百个对象。没有Collection组织的场景就是噩梦。这和你在SketchUp中用Tag管理图层是同一个道理。",
+          "sketchupReference": "Collection相当于SketchUp的Tag（图层），但Blender的Collection可以嵌套，更灵活。Instance相当于SketchUp的Component——改一个全部跟着改。",
+          "commonMistakes": [
+            "所有对象都在一个Collection里，无法快速选择",
+            "不命名对象，Outliner全是Cube.001/Cube.002",
+            "重复家具用复制而不是Link，修改时只改了一个"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A02-02-P1",
+              "title": "建立室内场景Collection结构",
+              "description": "为导入的室内场景建立至少5个Collection（墙体/地面/天花/家具/灯具），将所有对象归类并重命名。",
+              "difficultyLevel": 2,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Collection组织与嵌套",
+            "命名规范",
+            "实例化与Link"
+          ]
+        },
+        {
+          "lessonId": "A02-03",
+          "routeId": "A",
+          "week": 2,
+          "lessonNumber": "02.3",
+          "title": "模型优化",
+          "englishName": "Model Optimization",
+          "shortcut": "— (Modifier Stack)",
+          "objective": "控制模型面数，确保渲染效率",
+          "principle": "室内场景面数过高会导致渲染卡顿。通过合理的LOD策略和Decimate Modifier控制面数，在不影响视觉效果的前提下提升性能。",
+          "blenderOperations": [
+            "1. 选中高面数对象 → Add Modifier → Decimate",
+            "2. 调整Ratio，观察视觉变化",
+            "3. 对远距离对象使用更激进的Decimate",
+            "4. 保持近景对象高精度"
+          ],
+          "interiorDesignUse": "实际项目中经常需要渲染大量家具。优化面数能将渲染时间从小时缩短到分钟。",
+          "sketchupReference": "SketchUp中面数管理相对宽松（因为没有实时渲染）。Blender中面数直接影响渲染和视口性能。",
+          "commonMistakes": [
+            "对所有对象一刀切Decimate，近景细节丢失",
+            "不做任何优化，渲染时卡死"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A02-03-P1",
+              "title": "优化模型面数",
+              "description": "选择场景中3个高面数对象，使用Decimate Modifier优化，记录优化前后面数和视觉差异。",
+              "difficultyLevel": 3,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "LOD概念",
+            "面数控制策略",
+            "Decimate Modifier使用"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "phase": "A-P2",
+      "title": "材质基础（室内）",
+      "objective": "掌握室内材质创建的基本方法",
+      "lessons": [
+        {
+          "lessonId": "A03-01",
+          "routeId": "A",
+          "week": 3,
+          "lessonNumber": "03.1",
+          "title": "Principled BSDF基础",
+          "englishName": "Principled BSDF",
+          "shortcut": "Shift+Z (Material Preview) · Shift+Click material icon (Shader Editor)",
+          "objective": "理解Principled BSDF各参数含义，掌握室内材质创建的基本方法",
+          "principle": "Principled BSDF是Blender的统一材质着色器，基于PBR（基于物理的渲染）原理。几乎所有室内材质都可以通过它创建——区别只是参数值不同。",
+          "blenderOperations": [
+            "1. 选中物体 → Material Properties → New",
+            "2. 切换到Shader Editor (Shift+Click material icon in Properties)",
+            "3. 调整Base Color / Roughness / Metallic参数",
+            "4. 切换Material Preview (Shift+Z) 查看效果"
+          ],
+          "interiorDesignUse": "乳胶漆墙面、木饰面家具、金属配件等所有室内材质的基础。掌握后可以快速创建90%的室内材质。",
+          "sketchupReference": "SketchUp中材质是简单的颜色+贴图，没有PBR概念。Blender的Principled BSDF相当于把SU材质升级为真实物理材质——有粗糙度、反射、金属质感等。",
+          "commonMistakes": [
+            "Roughness=0导致所有材质像镜面金属",
+            "Metallic不是0就是1，不要用中间值（除非特殊效果）",
+            "忘记切换到Material Preview或Rendered模式看不到效果"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A03-01-P1",
+              "title": "创建三种基础室内材质",
+              "description": "创建乳胶漆（白色高Roughness）、木饰面（棕色中Roughness+Normal Map）、金属（Metallic=1低Roughness）三种材质并赋予场景中的物体。",
+              "difficultyLevel": 2,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Base Color - 材质基础颜色",
+            "Roughness - 表面粗糙度（0=镜面 1=磨砂）",
+            "Metallic - 金属度（0=非金属 1=金属）",
+            "Specular - 反射强度",
+            "IOR - 折射率"
+          ]
+        },
+        {
+          "lessonId": "A03-02",
+          "routeId": "A",
+          "week": 3,
+          "lessonNumber": "03.2",
+          "title": "室内基础材质库",
+          "englishName": "Interior Material Library",
+          "shortcut": "—",
+          "objective": "建立室内设计师常用的8种基础材质库",
+          "principle": "室内设计中有一套高频使用的材质。提前做好这些材质，每个项目都能快速调用，大幅提升效率。",
+          "blenderOperations": [
+            "1. 创建乳胶漆材质：Base=白色, Roughness=0.9, 微Bump",
+            "2. 创建木饰面：Base=木色, Roughness=0.5, Normal Map木纹",
+            "3. 创建金属：Metallic=1, Roughness=0.3",
+            "4. 创建玻璃：Transmission=1, IOR=1.5, Roughness=0",
+            "5. 创建深灰石材：Base=深灰, Roughness=0.4",
+            "6. 创建布艺：Base=布色, Roughness=0.8, Sheen=0.5",
+            "7. 创建皮革：Base=皮色, Roughness=0.6, 微SSS",
+            "8. 创建肌理漆：程序化Noise+Bump"
+          ],
+          "interiorDesignUse": "这8种材质覆盖了80%的室内场景需求。建立好后保存为.blend文件或Asset，每个新项目直接导入使用。",
+          "sketchupReference": "SketchUp中材质库是简单的图片贴图。Blender的材质库是完整的PBR材质——有物理正确的反射、粗糙度、金属感。",
+          "commonMistakes": [
+            "每种材质都从头做，浪费时间",
+            "材质参数过于极端（全黑/全白/全金属）",
+            "不保存材质库，每次新项目重做"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A03-02-P1",
+              "title": "建立室内基础材质库",
+              "description": "创建上述8种室内基础材质，保存为一个.blend材质库文件，并尝试将材质赋予场景中的对应物体。",
+              "difficultyLevel": 3,
+              "estimatedTime": "40分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "乳胶漆材质参数（高Roughness、微Bump）",
+            "木饰面材质参数（Base Color + Roughness + Normal）",
+            "金属材质参数（Metallic=1、Roughness变化）",
+            "玻璃材质参数（Transmission、IOR=1.5）",
+            "布艺/皮革材质参数",
+            "肌理漆程序化材质"
+          ]
+        },
+        {
+          "lessonId": "A03-03",
+          "routeId": "A",
+          "week": 3,
+          "lessonNumber": "03.3",
+          "title": "布艺与皮革",
+          "englishName": "Fabric & Leather Materials",
+          "shortcut": "—",
+          "objective": "掌握布艺和皮革这类室内高频材质的制作方法",
+          "principle": "布艺和皮革是室内设计中最常见的软装材质。关键在于通过Roughness、Sheen和微Bump模拟织物和皮革的表面质感。",
+          "blenderOperations": [
+            "1. 布艺材质：Base Color=布色, Roughness=0.8-0.9, Sheen=0.5, Bump用Noise纹理",
+            "2. 皮革材质：Base Color=皮色, Roughness=0.5-0.7, 微Subsurface Scattering, Bump用Leather纹理"
+          ],
+          "interiorDesignUse": "沙发、窗帘、抱枕、皮椅、床头软包——这些是室内效果图中最需要质感表现的元素。",
+          "sketchupReference": "SketchUp中布艺和皮革都只能用图片贴图表现。Blender通过PBR参数能模拟出真实的织物光泽和皮革柔软感。",
+          "commonMistakes": [
+            "布艺Roughness太低，看起来像塑料",
+            "皮革没有Bump，看起来像PU皮",
+            "忽略Sheen参数，织物没有毛感"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A03-03-P1",
+              "title": "创建布艺沙发与皮革材质",
+              "description": "为一个沙发模型创建布艺材质，为一个椅子模型创建皮革材质，对比不同参数的效果。",
+              "difficultyLevel": 3,
+              "estimatedTime": "25分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Sheen（织物光泽）",
+            "Subsurface Scattering（皮革/石材微SSS）",
+            "Bump纹理模拟纹理感"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "phase": "A-P2",
+      "title": "PBR材质与贴图",
+      "objective": "掌握PBR工作流和贴图使用",
+      "lessons": [
+        {
+          "lessonId": "A04-01",
+          "routeId": "A",
+          "week": 4,
+          "lessonNumber": "04.1",
+          "title": "PBR工作流",
+          "englishName": "PBR Workflow",
+          "shortcut": "—",
+          "objective": "理解PBR原理和贴图通道对应关系",
+          "principle": "PBR（Physically Based Rendering）是基于物理的渲染方法。使用真实世界的材质属性（反射率、粗糙度等）来创建材质，确保在不同光照条件下都看起来真实。",
+          "blenderOperations": [
+            "1. 在Shader Editor中连接Image Texture到对应通道",
+            "2. Base Color贴图 → Principled BSDF Base Color",
+            "3. Roughness贴图 → Principled BSDF Roughness",
+            "4. Normal Map贴图 → Normal Map节点 → Principled BSDF Normal",
+            "5. Metallic贴图 → Principled BSDF Metallic"
+          ],
+          "interiorDesignUse": "PBR材质是专业效果图的标准。使用真实PBR贴图能让你的效果图从'还可以'提升到'照片级'。",
+          "sketchupReference": "SketchUp不使用PBR。这是从SketchUp到Blender最大的概念升级——材质不再只是颜色+图片，而是完整的物理属性模拟。",
+          "commonMistakes": [
+            "把Normal Map连到Bump通道（应该用Normal Map节点）",
+            "Roughness贴图不连ColorRamp直接用",
+            "不同贴图的UV Scale不一致"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A04-01-P1",
+              "title": "完成一个PBR木地板材质",
+              "description": "下载或使用提供的木地板PBR贴图套装（Color+Roughness+Normal），在Blender中正确连接所有通道，应用到地面。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "PBR原理（Albedo/Roughness/Normal/Metallic）",
+            "贴图通道对应关系",
+            "Normal Map节点使用"
+          ]
+        },
+        {
+          "lessonId": "A04-02",
+          "routeId": "A",
+          "week": 4,
+          "lessonNumber": "04.2",
+          "title": "Image Texture与Mapping",
+          "englishName": "Image Texture & Mapping Node",
+          "shortcut": "Shift+A → Texture → Image Texture · Shift+A → Converter → Mapping",
+          "objective": "掌握贴图的导入、缩放和UV控制",
+          "principle": "Image Texture节点导入图片贴图，Mapping节点控制贴图的位置、旋转和缩放。理解它们的关系是控制材质效果的关键。",
+          "blenderOperations": [
+            "1. Shader Editor → Shift+A → Texture → Image Texture → Open image",
+            "2. Shift+A → Converter → Mapping",
+            "3. 连接: Image Texture → Mapping → 然后连接到对应通道",
+            "4. 在Mapping中调整Scale来控制贴图重复次数"
+          ],
+          "interiorDesignUse": "控制大理石地面的拼花方向、木地板的板宽、墙面肌理的大小——这些都靠Mapping节点。",
+          "sketchupReference": "SketchUp中调整贴图大小是用'调整贴图'工具拖拽。Blender用Mapping节点的Scale数值精确控制。",
+          "commonMistakes": [
+            "贴图Scale太大，纹理变成像素点",
+            "贴图Scale太小，纹理重复明显",
+            "不同材质的贴图UV不统一"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A04-02-P1",
+              "title": "大理石地面PBR材质",
+              "description": "导入大理石PBR贴图，使用Mapping节点调整到合适的纹理大小，确保拼花自然。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Image Texture节点",
+            "Mapping节点与UV Map",
+            "贴图Scale与重复控制"
+          ]
+        },
+        {
+          "lessonId": "A04-03",
+          "routeId": "A",
+          "week": 4,
+          "lessonNumber": "04.3",
+          "title": "程序化纹理",
+          "englishName": "Procedural Textures",
+          "shortcut": "Shift+A → Texture → (Noise/Voronoi/Musgrave)",
+          "objective": "使用程序化纹理创建不依赖图片的材质",
+          "principle": "程序化纹理是Blender内置的数学生成的纹理（Noise、Voronoi、Musgrave等），不需要外部图片，可以无限缩放不重复。",
+          "blenderOperations": [
+            "1. Shader Editor → Shift+A → Texture → Noise Texture",
+            "2. 连接Noise → ColorRamp → Bump → Principled BSDF Normal",
+            "3. 调整Noise Scale和ColorRamp来控制肌理粗细",
+            "4. 尝试Voronoi做石材裂纹效果"
+          ],
+          "interiorDesignUse": "肌理漆、微水泥、混凝土这类材质用程序化纹理比图片贴图更好——无缝、可调、不占内存。",
+          "sketchupReference": "SketchUp没有程序化纹理。这是Blender的独有优势——不依赖外部图片也能做出复杂纹理。",
+          "commonMistakes": [
+            "Noise Scale过大，肌理变成大块斑点",
+            "ColorRamp没有调整，黑白对比太强",
+            "程序化纹理在动画中会闪烁（需要调高采样）"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A04-03-P1",
+              "title": "程序化肌理漆材质",
+              "description": "使用Noise Texture + ColorRamp + Bump创建一面墙的肌理漆材质，对比不同参数效果。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Noise / Voronoi / Musgrave纹理",
+            "ColorRamp调节",
+            "Bump vs Normal Map"
+          ]
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "phase": "A-P2",
+      "title": "UV展开",
+      "objective": "掌握UV Mapping基础和手动展开",
+      "lessons": [
+        {
+          "lessonId": "A05-01",
+          "routeId": "A",
+          "week": 5,
+          "lessonNumber": "05.1",
+          "title": "UV基础",
+          "englishName": "UV Mapping Fundamentals",
+          "shortcut": "Tab (Edit Mode) · U (UV Menu)",
+          "objective": "理解UV的概念和UV Editor的使用",
+          "principle": "UV Mapping就是将3D模型的表面展开成2D平面，让2D贴图正确贴在3D模型上。像拆纸盒一样把模型展开。",
+          "blenderOperations": [
+            "1. Edit Mode → 全选(A)",
+            "2. U → UV Mapping菜单",
+            "3. 打开UV Editor窗口（分屏或新窗口）",
+            "4. 查看展开后的UV"
+          ],
+          "interiorDesignUse": "当你导入的SU模型贴图不正确时，90%是UV问题。理解UV是解决贴图问题的根本。",
+          "sketchupReference": "SketchUp中贴图是直接投影到面上的，不需要UV。Blender中UV是贴图正确显示的基础——尤其是复杂模型。",
+          "commonMistakes": [
+            "不理解UV概念，以为是贴图本身的问题",
+            "展开后UV重叠，贴图出现接缝"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A05-01-P1",
+              "title": "UV基础练习",
+              "description": "创建一个Box，尝试不同的UV展开方式（Smart Project / Cube Projection），查看UV Editor中的结果差异。",
+              "difficultyLevel": 2,
+              "estimatedTime": "15分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "UV Editor界面",
+            "UV Map概念",
+            "展开方法对比"
+          ]
+        },
+        {
+          "lessonId": "A05-02",
+          "routeId": "A",
+          "week": 5,
+          "lessonNumber": "05.2",
+          "title": "Smart UV Project",
+          "englishName": "Smart UV Project",
+          "shortcut": "U → Smart UV Project",
+          "objective": "使用智能UV展开快速处理模型UV",
+          "principle": "Smart UV Project是Blender的自动UV展开算法，适合大多数室内模型的快速UV处理。",
+          "blenderOperations": [
+            "1. Edit Mode → 全选(A)",
+            "2. U → Smart UV Project",
+            "3. 调整Angle Limit（通常66度）",
+            "4. 查看UV Editor结果",
+            "5. 如有需要，手动标记接缝(Mark Seam)后重新展开"
+          ],
+          "interiorDesignUse": "室内场景中大量家具、柜体等都可以用Smart UV快速处理，节省时间。",
+          "sketchupReference": "SketchUp不需要这个——贴图直接贴。但如果你需要精确控制贴图方向和重复，UV是必须的。",
+          "commonMistakes": [
+            "Angle Limit设置不当，UV碎片过多",
+            "不检查展开结果就直接贴图，接缝处出现明显痕迹"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A05-02-P1",
+              "title": "展开一个柜子UV",
+              "description": "选择一个柜子模型，使用Smart UV Project展开UV，检查接缝位置，手动调整不合理的地方。",
+              "difficultyLevel": 3,
+              "estimatedTime": "20分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "智能UV展开",
+            "接缝标记（Mark Seam）",
+            "Angle Limit参数"
+          ]
+        },
+        {
+          "lessonId": "A05-03",
+          "routeId": "A",
+          "week": 5,
+          "lessonNumber": "05.3",
+          "title": "手动UV与Pack",
+          "englishName": "Manual UV Unwrap & Pack",
+          "shortcut": "U → Unwrap · U → Pack Islands",
+          "objective": "手动展开复杂模型UV并优化排布",
+          "principle": "对于复杂模型（曲面、有机形状），自动展开不够精确，需要手动标记接缝并展开。Pack Islands优化UV利用率。",
+          "blenderOperations": [
+            "1. Edit Mode → 选择边 → Mark Seam (Edge → Mark Seam)",
+            "2. 全选 → U → Unwrap",
+            "3. 在UV Editor中 → U → Pack Islands",
+            "4. 手动调整UV岛位置和方向"
+          ],
+          "interiorDesignUse": "异形家具（弧形沙发、曲面背景墙）需要手动UV才能正确贴图。",
+          "sketchupReference": "无直接对应。这是Blender比SketchUp强大的地方——精确控制贴图。",
+          "commonMistakes": [
+            "接缝标记位置不合理，展开后变形严重",
+            "不Pack Islands，UV利用率低",
+            "UV重叠导致贴图异常"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A05-03-P1",
+              "title": "展开复杂模型UV",
+              "description": "选择一个弧形或异形模型，手动标记接缝并展开UV，使用Pack Islands优化排布。",
+              "difficultyLevel": 4,
+              "estimatedTime": "25分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "手动展开方法",
+            "UV Pack优化",
+            "UV同步（Sync选项）"
+          ]
+        }
+      ]
+    }
+  ]
+}

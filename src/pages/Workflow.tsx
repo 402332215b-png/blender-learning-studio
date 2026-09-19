@@ -1,0 +1,570 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  RefreshCw,
+  Boxes,
+  CheckCircle2,
+  ArrowRight,
+  Star,
+  BookOpen,
+  Zap,
+  Palette,
+  Lightbulb,
+  Camera,
+  Clapperboard,
+  Play,
+} from 'lucide-react'
+import {
+  Card,
+  PageHeader,
+  Tag,
+  Metric,
+  BulletList,
+  EmptyState,
+  ProgressBar,
+} from '../components/ui'
+import { useProgressStore } from '../stores'
+import {
+  workflows,
+  allLessons,
+  allShortcuts,
+  materials,
+  lightingTypes,
+  cameraPresets,
+  animationCourses,
+  practiceLevels,
+  routes,
+  contentStats,
+} from '../lib/content'
+
+// ---------------------------------------------------------------------------
+// SU → Blender 工作流
+// ---------------------------------------------------------------------------
+
+/**
+ * 「实际工作模块」——把 SketchUp 建模 → Blender 出图的全流程拆成可勾选的清单。
+ *
+ * 定位和「学习路线」不同：路线是「按周推进的学习计划」，这里是
+ * 「接了个项目、今天就要干活」时的操作手册。所以它不按周分，按工作任务分。
+ */
+export function SuToBlender() {
+  const [activeId, setActiveId] = useState(workflows[0]?.id ?? '')
+  // 步骤勾选状态存本地（跟学习进度分开，避免污染课时统计）
+  const [checked, setChecked] = useState<Record<string, boolean>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('bls_wf_checks') || '{}')
+    } catch {
+      return {}
+    }
+  })
+
+  const active = workflows.find((w) => w.id === activeId) ?? workflows[0]
+
+  const toggle = (key: string) => {
+    setChecked((prev) => {
+      const next = { ...prev, [key]: !prev[key] }
+      localStorage.setItem('bls_wf_checks', JSON.stringify(next))
+      return next
+    })
+  }
+
+  const resetActive = () => {
+    setChecked((prev) => {
+      const next = { ...prev }
+      active?.steps.forEach((s) => delete next[`${active.id}:${s.id}`])
+      localStorage.setItem('bls_wf_checks', JSON.stringify(next))
+      return next
+    })
+  }
+
+  if (!active) {
+    return (
+      <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
+        <EmptyState title="没有可用的工作流数据" />
+      </div>
+    )
+  }
+
+  const doneCount = active.steps.filter(
+    (s) => checked[`${active.id}:${s.id}`],
+  ).length
+
+  return (
+    <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
+      <PageHeader
+        kicker="SU → BLENDER"
+        title="实际工作模块"
+        description="这不是学习计划，是干活时对着用的操作清单。按工作类型选一条流程，从 SketchUp 模型检查一路走到 Blender 出图，每一步都标注了具体操作。"
+      />
+
+      {/* 概况 */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <Metric value={workflows.length} label="工作流程" tone="on" />
+        <Metric
+          value={workflows.reduce((n, w) => n + w.steps.length, 0)}
+          label="操作步骤总数"
+        />
+        <Metric value={contentStats.lessonCount} label="配套课时" />
+        <Metric value={allShortcuts.length} label="快捷键可查" />
+      </div>
+
+      {/* 工作流选择 */}
+      <div className="mb-6">
+        <h2 className="text-sm font-semibold text-text-primary mb-3">
+          选择你的工作类型
+        </h2>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {workflows.map((w) => {
+            const isActive = w.id === active.id
+            const n = w.steps.filter((s) => checked[`${w.id}:${s.id}`]).length
+            const pct = w.steps.length ? (n / w.steps.length) * 100 : 0
+            return (
+              <button
+                key={w.id}
+                onClick={() => setActiveId(w.id)}
+                className={`text-left rounded-xl border p-4 transition-all ${
+                  isActive
+                    ? 'border-blender-orange bg-blender-orange/5 shadow-lg shadow-blender-orange/5'
+                    : 'border-dark-border bg-dark-surface hover:border-blender-orange/40'
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                      isActive
+                        ? 'bg-blender-orange text-white'
+                        : 'bg-dark-elevated text-text-tertiary'
+                    }`}
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-text-primary">
+                      {w.name}
+                    </p>
+                    <p className="text-[10px] text-text-tertiary mt-0.5 font-mono">
+                      {w.nameEn}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[11px] text-text-secondary mt-2.5 leading-relaxed">
+                  {w.description}
+                </p>
+                <div className="mt-3">
+                  <div className="flex items-center justify-between text-[10px] mb-1">
+                    <span className="text-text-tertiary">
+                      {w.steps.length} 步
+                    </span>
+                    <span className="text-blender-orange">
+                      {n}/{w.steps.length}
+                    </span>
+                  </div>
+                  <ProgressBar value={pct} />
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* 步骤清单 */}
+      <Card
+        eyebrow={active.nameEn.toUpperCase()}
+        title={`${active.name} · ${active.steps.length} 步`}
+        action={
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-blender-orange font-medium">
+              {doneCount}/{active.steps.length}
+            </span>
+            {doneCount > 0 && (
+              <button
+                onClick={resetActive}
+                className="text-[11px] text-text-tertiary hover:text-text-primary transition-colors"
+              >
+                重置
+              </button>
+            )}
+          </div>
+        }
+      >
+        <p className="text-xs text-text-secondary leading-relaxed mb-1">
+          {active.description}
+        </p>
+        <ProgressBar
+          value={active.steps.length ? (doneCount / active.steps.length) * 100 : 0}
+        />
+
+        <ol className="mt-5 space-y-2">
+          {active.steps.map((s, i) => {
+            const key = `${active.id}:${s.id}`
+            const on = !!checked[key]
+            return (
+              <li key={s.id}>
+                <button
+                  onClick={() => toggle(key)}
+                  className={`w-full text-left flex items-start gap-3 rounded-lg border px-4 py-3 transition-all ${
+                    on
+                      ? 'border-status-completed/40 bg-status-completed/5'
+                      : 'border-dark-border bg-dark-bg hover:border-blender-orange/40'
+                  }`}
+                >
+                  <span
+                    className={`w-6 h-6 shrink-0 rounded-md border flex items-center justify-center text-[11px] font-mono transition-colors ${
+                      on
+                        ? 'border-status-completed bg-status-completed text-white'
+                        : 'border-dark-border bg-dark-elevated text-blender-orange'
+                    }`}
+                  >
+                    {on ? <CheckCircle2 className="w-3.5 h-3.5" /> : i + 1}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                      <span
+                        className={`text-xs font-medium ${
+                          on
+                            ? 'text-text-tertiary line-through'
+                            : 'text-text-primary'
+                        }`}
+                      >
+                        {s.name}
+                      </span>
+                      <span className="text-[10px] text-text-tertiary font-mono">
+                        {s.nameEn}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-text-secondary mt-1 leading-relaxed">
+                      {s.detail}
+                    </p>
+                  </div>
+                </button>
+              </li>
+            )
+          })}
+        </ol>
+      </Card>
+
+      {/* 相关资源 */}
+      <div className="grid gap-4 lg:grid-cols-2 mt-6">
+        <Card eyebrow="GO DEEPER" title="做这条流程卡住时，去这些地方">
+          <ul className="space-y-2">
+            <ResLink
+              to="/learn/route-a"
+              icon={BookOpen}
+              title="路线 A — SU + Blender 工作路线"
+              desc="12 周工作型计划，和这套流程一一对应"
+            />
+            <ResLink
+              to="/library/shortcuts"
+              icon={Zap}
+              title="快捷键中心"
+              desc={`${allShortcuts.length} 个快捷键，含 SU 对照`}
+            />
+            <ResLink
+              to="/materials"
+              icon={Palette}
+              title="材质实验室"
+              desc={`${materials.length} 个室内常用材质的参数`}
+            />
+            <ResLink
+              to="/lighting"
+              icon={Lightbulb}
+              title="灯光实验室"
+              desc={`${lightingTypes.length} 种灯光 + 室内布光方案`}
+            />
+            <ResLink
+              to="/camera"
+              icon={Camera}
+              title="相机实验室"
+              desc="焦距选择与构图技巧"
+            />
+            <ResLink
+              to="/animation"
+              icon={Clapperboard}
+              title="动画实验室"
+              desc={`${animationCourses.length} 节漫游视频课`}
+            />
+          </ul>
+        </Card>
+
+        <Card eyebrow="CHECKLIST NOTES" title="用之前先看这几条">
+          <BulletList
+            items={[
+              '清单状态只存在你本机，不上传。关掉软件再打开，勾选还在。',
+              '「重置」只清空当前这条流程，其他流程的勾选不受影响。',
+              'SU 导出前一定要清 Tag —— 这一步省下来，后面在 Blender 里要花三倍时间。',
+              '单位（Units）和缩放（Scale）是最容易被忽略的两步，出问题往往就出在这里。',
+              'Eevee 先出低质量预览确认构图，确认没问题再上 Cycles，能省掉大量等待时间。',
+            ]}
+            tone="info"
+          />
+        </Card>
+      </div>
+    </div>
+  )
+}
+
+function ResLink({
+  to,
+  icon: Icon,
+  title,
+  desc,
+}: {
+  to: string
+  icon: typeof BookOpen
+  title: string
+  desc: string
+}) {
+  return (
+    <li>
+      <Link
+        to={to}
+        className="flex items-center gap-3 rounded-lg border border-dark-border bg-dark-bg px-3 py-2.5 hover:border-blender-orange/50 transition-colors group"
+      >
+        <div className="w-7 h-7 rounded-md bg-dark-elevated flex items-center justify-center shrink-0 group-hover:bg-blender-orange/15 transition-colors">
+          <Icon className="w-3.5 h-3.5 text-blender-orange" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-medium text-text-primary truncate">{title}</p>
+          <p className="text-[10px] text-text-tertiary mt-0.5 truncate">{desc}</p>
+        </div>
+        <ArrowRight className="w-3.5 h-3.5 text-text-tertiary shrink-0 group-hover:text-blender-orange transition-colors" />
+      </Link>
+    </li>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// 资源库
+// ---------------------------------------------------------------------------
+
+/**
+ * 资源库 —— 把散在各处的可查内容集中到一个入口。
+ *
+ * 定位：主页是「今天学什么」，这里是「我想找某个东西」。
+ */
+export function LibraryHome() {
+  const favorites = useProgressStore((s) => s.favorites)
+  const progress = useProgressStore((s) => s.progress)
+
+  const done = Object.values(progress).filter(
+    (p) => p.status === 'completed' || p.status === 'mastered',
+  ).length
+
+  const groups: {
+    key: string
+    title: string
+    desc: string
+    icon: typeof BookOpen
+    items: { label: string; value: number | string; to: string }[]
+  }[] = [
+    {
+      key: 'learn',
+      title: '课程与路线',
+      desc: '系统学习的主体内容',
+      icon: BookOpen,
+      items: [
+        { label: '学习路线', value: routes.length, to: '/learn' },
+        { label: '课时总数', value: allLessons.length, to: '/learn/route-a' },
+        { label: '已学完', value: done, to: '/growth' },
+      ],
+    },
+    {
+      key: 'shortcut',
+      title: '快捷键',
+      desc: '按键速查，含 SU 对照',
+      icon: Zap,
+      items: [
+        { label: '快捷键总数', value: allShortcuts.length, to: '/library/shortcuts' },
+        {
+          label: '已收藏',
+          value: favorites.filter((f) => f.itemType === 'shortcut').length,
+          to: '/library/shortcuts',
+        },
+      ],
+    },
+    {
+      key: 'lab',
+      title: '知识实验室',
+      desc: '材质 / 灯光 / 相机 / 动画',
+      icon: Palette,
+      items: [
+        { label: '材质', value: materials.length, to: '/materials' },
+        { label: '灯光类型', value: lightingTypes.length, to: '/lighting' },
+        { label: '相机预设', value: cameraPresets.length, to: '/camera' },
+        { label: '动画课程', value: animationCourses.length, to: '/animation' },
+      ],
+    },
+    {
+      key: 'practice',
+      title: '练习',
+      desc: '按难度递进的手上功夫',
+      icon: Play,
+      items: [
+        { label: '难度等级', value: practiceLevels.length, to: '/practice' },
+        {
+          label: '任务总数',
+          value: practiceLevels.reduce((n, l) => n + l.tasks.length, 0),
+          to: '/practice',
+        },
+      ],
+    },
+    {
+      key: 'workflow',
+      title: '实际工作',
+      desc: '干活时对着用的操作清单',
+      icon: Boxes,
+      items: [
+        { label: '工作流程', value: workflows.length, to: '/su-to-blender' },
+        {
+          label: '步骤总数',
+          value: workflows.reduce((n, w) => n + w.steps.length, 0),
+          to: '/su-to-blender',
+        },
+      ],
+    },
+    {
+      key: 'fav',
+      title: '我的收藏',
+      desc: '你标过星的内容都在这里',
+      icon: Star,
+      items: [
+        { label: '收藏总数', value: favorites.length, to: '/growth' },
+        {
+          label: '待复习',
+          value: Object.values(progress).filter(
+            (p) => p.status === 'needs_review',
+          ).length,
+          to: '/review',
+        },
+      ],
+    },
+  ]
+
+  return (
+    <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
+      <PageHeader
+        kicker="LIBRARY"
+        title="资源库"
+        description="不按学习顺序，按「我现在想要什么」。所有内容都在本机，随时可查。"
+      />
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {groups.map((g) => (
+          <Card key={g.key} eyebrow={g.title.toUpperCase()} title={g.title}>
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-lg bg-blender-orange/10 flex items-center justify-center shrink-0">
+                <g.icon className="w-4 h-4 text-blender-orange" />
+              </div>
+              <p className="text-[11px] text-text-tertiary leading-relaxed pt-1">
+                {g.desc}
+              </p>
+            </div>
+            <ul className="mt-3 space-y-1.5">
+              {g.items.map((it) => (
+                <li key={it.label}>
+                  <Link
+                    to={it.to}
+                    className="flex items-center justify-between gap-3 rounded-lg border border-dark-border bg-dark-bg px-3 py-2 hover:border-blender-orange/50 transition-colors group"
+                  >
+                    <span className="text-[11px] text-text-secondary group-hover:text-text-primary transition-colors">
+                      {it.label}
+                    </span>
+                    <span className="text-xs font-semibold text-blender-orange shrink-0">
+                      {it.value}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <Card eyebrow="CONTENT OVERVIEW" title="全部可查内容一览">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <MiniStat label="学习路线" value={contentStats.routeCount} />
+            <MiniStat label="课时" value={contentStats.lessonCount} />
+            <MiniStat label="周计划" value={contentStats.weekCount} />
+            <MiniStat label="快捷键" value={contentStats.shortcutCount} />
+            <MiniStat label="材质" value={contentStats.materialCount} />
+            <MiniStat label="灯光类型" value={contentStats.lightingCount} />
+            <MiniStat label="相机预设" value={contentStats.cameraCount} />
+            <MiniStat label="动画课程" value={contentStats.animationCount} />
+            <MiniStat label="练习等级" value={contentStats.practiceLevelCount} />
+            <MiniStat label="练习任务" value={contentStats.practiceTaskCount} />
+            <MiniStat label="工作流程" value={contentStats.workflowCount} />
+            <MiniStat label="已收藏" value={favorites.length} />
+          </div>
+        </Card>
+      </div>
+
+      <div className="mt-6">
+        <Card eyebrow="ENTRY POINTS" title="不知道从哪开始？">
+          <div className="grid gap-2 md:grid-cols-3">
+            <EntryBtn
+              to="/today"
+              icon={Zap}
+              title="今日学习"
+              desc="不知道学什么就点这里"
+              primary
+            />
+            <EntryBtn
+              to="/learn"
+              icon={BookOpen}
+              title="看学习路线"
+              desc="按周推进的完整计划"
+            />
+            <EntryBtn
+              to="/su-to-blender"
+              icon={Boxes}
+              title="要干活了"
+              desc="直接拿操作清单"
+            />
+          </div>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
+function EntryBtn({
+  to,
+  icon: Icon,
+  title,
+  desc,
+  primary = false,
+}: {
+  to: string
+  icon: typeof BookOpen
+  title: string
+  desc: string
+  primary?: boolean
+}) {
+  return (
+    <Link
+      to={to}
+      className={`flex items-center gap-3 rounded-lg border px-4 py-3 transition-all group ${
+        primary
+          ? 'border-blender-orange bg-blender-orange/5 hover:bg-blender-orange/10'
+          : 'border-dark-border bg-dark-bg hover:border-blender-orange/50'
+      }`}
+    >
+      <Icon className="w-4 h-4 text-blender-orange shrink-0" />
+      <div className="min-w-0 flex-1">
+        <p className="text-xs font-medium text-text-primary">{title}</p>
+        <p className="text-[10px] text-text-tertiary mt-0.5 truncate">{desc}</p>
+      </div>
+      <ArrowRight className="w-3.5 h-3.5 text-text-tertiary group-hover:text-blender-orange transition-colors shrink-0" />
+    </Link>
+  )
+}
+
+function MiniStat({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="rounded-lg border border-dark-border bg-dark-bg px-3 py-2">
+      <p className="text-base font-bold text-text-primary leading-none">{value}</p>
+      <p className="text-[10px] text-text-tertiary mt-1.5">{label}</p>
+    </div>
+  )
+}
