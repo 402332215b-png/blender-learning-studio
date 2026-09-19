@@ -1,0 +1,17 @@
+# 统一换行符，避免 Windows/macOS 协作者之间的 CRLF 问题
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+*.exe binary
+*.dll binary
+*.woff binary
+*.woff2 binary
+
+# 锁文件在 diff 里折叠显示
+package-lock.json linguist-generated=true
