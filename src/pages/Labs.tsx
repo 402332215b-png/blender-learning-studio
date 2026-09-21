@@ -21,11 +21,25 @@ import {
   animationCourses,
 } from '../lib/content'
 import type { FavoriteType } from '../types'
+import { tr, tpl } from '../i18n'
 
 // ---------------------------------------------------------------------------
 // 实验室通用：子导航
 // ---------------------------------------------------------------------------
 
+/**
+ * 子导航的四个入口。
+ *
+ * ⚠️ label 存中文原文，翻译放到渲染时做。
+ *    原来写的是 `label: tr('材质实验室')` —— 模块作用域求值一次就冻住了，
+ *    用户在设置里切语言时不会重新 import 这个模块，
+ *    于是**只有四个实验页顶部的这排切换按钮**留在旧语言。
+ *    同类问题在 config/navigation.ts 和 Sidebar.tsx 的 GROUP_LABELS 已经出现过两次，
+ *    统一约定：数据层只放原文，视图层 tr()。
+ *
+ *    这个 bug 用「改 localStorage + 刷新页面」的测法是**照不出来**的
+ *    （刷新会重新求值模块），必须走「应用内点按钮切换」这条路径才能暴露。
+ */
 const LABS = [
   { path: '/materials', label: '材质实验室', icon: Triangle },
   { path: '/lighting', label: '灯光实验室', icon: Sun },
@@ -49,7 +63,7 @@ function LabNav() {
           }
         >
           <l.icon className="w-3.5 h-3.5" />
-          {l.label}
+          {tr(l.label)}
         </NavLink>
       ))}
     </div>
@@ -81,14 +95,15 @@ function FavButton({
           createdAt: new Date().toISOString(),
         })
       }
-      className={`inline-flex items-center gap-1.5 text-[11px] px-2 py-1 rounded-md border transition-colors ${
+      className={`inline-flex items-center gap-1.5 text-3xs px-2 py-1 rounded-md border transition-colors ${
         active
           ? 'text-blender-orange border-blender-orange/50 bg-blender-orange/10'
           : 'text-text-tertiary border-dark-border hover:text-text-primary'
       }`}
     >
       <Star className={`w-3 h-3 ${active ? 'fill-current' : ''}`} />
-      {active ? '已收藏' : '收藏'}
+      {/* 两个分支都要过 tr()：只包 false 分支的话，收藏过的条目在英文界面会回落中文 */}
+      {active ? tr('已收藏') : tr('收藏')}
     </button>
   )
 }
@@ -107,39 +122,45 @@ export function LabsHome() {
   const cards = [
     {
       to: '/materials',
-      label: '材质实验室',
+      label: tr('材质实验室'),
       icon: Triangle,
       n: materials.length,
-      unit: '种材质',
-      desc: '室内常用的墙漆、木地板、布艺、金属、玻璃等，每种都给可照抄的参数。',
-      when: '调材质卡在「看着不像」的时候',
+      unit: tr('种材质'),
+      desc: tr('室内常用的墙漆、木地板、布艺、金属、玻璃等，每种都给可照抄的参数。'),
+      when: tr('调材质卡在「看着不像」的时候'),
     },
     {
       to: '/lighting',
-      label: '灯光实验室',
+      label: tr('灯光实验室'),
       icon: Sun,
       n: lightingTypes.length,
-      unit: '种灯光',
-      desc: `${lightingTypes.length} 种灯光类型的作用与参数，外加 ${interiorScenes.length} 套完整室内布光方案。`,
-      when: '画面发灰、没有层次、光比不对的时候',
+      unit: tr('种灯光'),
+      desc: tpl('{a} 种灯光类型的作用与参数，外加 {b} 套完整室内布光方案。', {
+        a: lightingTypes.length,
+        b: interiorScenes.length,
+      }),
+      when: tr('画面发灰、没有层次、光比不对的时候'),
     },
     {
       to: '/camera',
-      label: '相机实验室',
+      label: tr('相机实验室'),
       icon: CameraIcon,
       n: cameraPresets.length,
-      unit: '个预设',
-      desc: `${cameraPresets.length} 个焦距预设（含室内常用 24/35/50mm）+ ${cameraTechniques.length} 条构图技巧。`,
-      when: '不知道站哪、用多长焦距、怎么摆构图的时候',
+      unit: tr('个预设'),
+      desc: tpl('{a} 个焦距预设（含室内常用 24/35/50mm）+ {b} 条构图技巧。', {
+        a: cameraPresets.length,
+        b: cameraTechniques.length,
+      }),
+      when: tr('不知道站哪、用多长焦距、怎么摆构图的时候'),
     },
     {
       to: '/animation',
-      label: '动画实验室',
+      label: tr('动画实验室'),
       icon: Film,
       n: animationCourses.length,
-      unit: '节课',
-      desc: '从关键帧基础到完整室内漫游视频，含镜头运动节奏与输出设置。',
-      when: '要做漫游视频、或者之前渲染出来镜头很抖的时候',
+      unit: tr('节课'),
+      desc: tr('从关键帧基础到完整室内漫游视频，含镜头运动节奏与输出设置。'),
+      when: tr('要做漫游视频、或者之前渲染出来镜头很抖的时候'),
     },
   ]
 
@@ -147,8 +168,8 @@ export function LabsHome() {
     <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
       <PageHeader
         kicker="KNOWLEDGE LABS"
-        title="知识实验室"
-        description="四个可随时查阅的实验室。和「成长路线」不同 —— 路线是按顺序学的，实验室是遇到具体问题时按需查的。"
+        title={tr('知识实验室')}
+        description={tr('四个可随时查阅的实验室。和「成长路线」不同 —— 路线是按顺序学的，实验室是遇到具体问题时按需查的。')}
       />
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -167,16 +188,16 @@ export function LabsHome() {
                   <h3 className="text-base font-semibold text-text-primary">
                     {c.label}
                   </h3>
-                  <span className="text-[11px] text-blender-orange font-medium">
+                  <span className="text-3xs text-blender-orange font-medium">
                     {c.n} {c.unit}
                   </span>
                 </div>
                 <p className="text-xs text-text-secondary mt-2 leading-relaxed">
                   {c.desc}
                 </p>
-                <p className="text-[11px] text-text-tertiary mt-2.5 flex items-center gap-1.5">
+                <p className="text-3xs text-text-tertiary mt-2.5 flex items-center gap-1.5">
                   <span className="w-1 h-1 rounded-full bg-blender-orange" />
-                  适合：{c.when}
+                  {tpl('适合：{w}', { w: c.when })}
                 </p>
               </div>
             </div>
@@ -185,13 +206,13 @@ export function LabsHome() {
       </div>
 
       <div className="mt-6">
-        <Card eyebrow="HOW TO USE" title="怎么用这四个实验室">
+        <Card eyebrow="HOW TO USE" title={tr('怎么用这四个实验室')}>
           <BulletList
             items={[
-              '不要按顺序看完 —— 内容量大，硬看会记不住。遇到问题再查，边用边记。',
-              '看到有用的条目点右上角「收藏」，之后在「我的成长 → 收藏汇总」里能一键找到。',
-              '材质和灯光是最影响出图效果的两块，如果只能挑一个先看，先看灯光。',
-              '相机和动画偏输出环节，等前面建模、材质、灯光都顺了再看，效率更高。',
+              tr('不要按顺序看完 —— 内容量大，硬看会记不住。遇到问题再查，边用边记。'),
+              tr('看到有用的条目点右上角「收藏」，之后在「我的成长 → 收藏汇总」里能一键找到。'),
+              tr('材质和灯光是最影响出图效果的两块，如果只能挑一个先看，先看灯光。'),
+              tr('相机和动画偏输出环节，等前面建模、材质、灯光都顺了再看，效率更高。'),
             ]}
             tone="info"
           />
@@ -206,22 +227,24 @@ export function LabsHome() {
 // ---------------------------------------------------------------------------
 
 export function Materials() {
-  const [cat, setCat] = useState<string>('全部')
+  const [cat, setCat] = useState<string>(tr('全部'))
   const list =
-    cat === '全部' ? materials : materials.filter((m) => m.category === cat)
+    cat === tr('全部') ? materials : materials.filter((m) => m.category === cat)
 
   return (
     <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
       <PageHeader
         kicker="MATERIAL LAB"
-        title="材质实验室"
-        description={`${materials.length} 种室内常用材质，每种都给出可直接照着调的参数、用法和常见错误。`}
+        title={tr('材质实验室')}
+        description={tpl('{a} 种室内常用材质，每种都给出可直接照着调的参数、用法和常见错误。', {
+          a: materials.length,
+        })}
       />
       <LabNav />
 
       {/* 分类筛选 */}
       <div className="flex flex-wrap gap-2 mb-5">
-        {['全部', ...materialCategories].map((c) => (
+        {[tr('全部'), ...materialCategories].map((c) => (
           <button
             key={c}
             onClick={() => setCat(c)}
@@ -232,8 +255,8 @@ export function Materials() {
             }`}
           >
             {c}
-            <span className="ml-1.5 text-[10px] opacity-70">
-              {c === '全部'
+            <span className="ml-1.5 text-3xs opacity-70">
+              {c === tr('全部')
                 ? materials.length
                 : materials.filter((m) => m.category === c).length}
             </span>
@@ -259,22 +282,22 @@ export function Materials() {
                   className="w-6 h-6 rounded border border-dark-border shrink-0"
                   style={{ backgroundColor: String(m.parameters.baseColor) }}
                 />
-                <span className="text-[11px] font-mono text-text-tertiary">
+                <span className="text-3xs font-mono text-text-tertiary">
                   {String(m.parameters.baseColor)}
                 </span>
               </div>
             )}
 
             <div className="mt-3 rounded-lg border border-dark-border bg-dark-bg px-3 py-2">
-              <p className="text-[11px] font-medium text-text-tertiary mb-1">
-                参数
+              <p className="text-3xs font-medium text-text-tertiary mb-1">
+                {tr('参数')}
               </p>
               <ParameterList params={m.parameters} />
             </div>
 
             <div className="mt-3 rounded-lg border border-status-learning/30 bg-status-learning/5 px-3 py-2">
-              <p className="text-[11px] font-medium text-status-learning mb-1">
-                室内用法
+              <p className="text-3xs font-medium text-status-learning mb-1">
+                {tr('室内用法')}
               </p>
               <p className="text-xs text-text-secondary leading-relaxed">
                 {m.interiorUse}
@@ -283,18 +306,18 @@ export function Materials() {
 
             {m.commonMistakes.length > 0 && (
               <div className="mt-3">
-                <p className="text-[11px] font-medium text-status-needs-review mb-1">
-                  常见错误
+                <p className="text-3xs font-medium text-status-needs-review mb-1">
+                  {tr('常见错误')}
                 </p>
                 <BulletList items={m.commonMistakes} tone="warn" />
               </div>
             )}
 
             <div className="mt-3 pt-3 border-t border-dark-border flex items-start gap-2">
-              <span className="text-[11px] text-blender-orange shrink-0 mt-0.5">
-                练习
+              <span className="text-3xs text-blender-orange shrink-0 mt-0.5">
+                {tr('练习')}
               </span>
-              <p className="text-[11px] text-text-secondary leading-relaxed">
+              <p className="text-3xs text-text-secondary leading-relaxed">
                 {m.practiceTask}
               </p>
             </div>
@@ -314,12 +337,15 @@ export function Lighting() {
     <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
       <PageHeader
         kicker="LIGHTING LAB"
-        title="灯光实验室"
-        description={`${lightingTypes.length} 种灯光类型 + ${interiorScenes.length} 个室内场景布光方案。`}
+        title={tr('灯光实验室')}
+        description={tpl('{a} 种灯光类型 + {b} 个室内场景布光方案。', {
+          a: lightingTypes.length,
+          b: interiorScenes.length,
+        })}
       />
       <LabNav />
 
-      <h2 className="text-sm font-semibold text-text-primary mb-3">灯光类型</h2>
+      <h2 className="text-sm font-semibold text-text-primary mb-3">{tr('灯光类型')}</h2>
       <div className="grid gap-4 lg:grid-cols-2 mb-8">
         {lightingTypes.map((l) => (
           <Card
@@ -334,17 +360,17 @@ export function Lighting() {
 
             <div className="flex items-center gap-2 mt-3">
               <Tag tone="accent">{String(l.parameters.type ?? '—')}</Tag>
-              <Tag>强度 {String(l.parameters.strength ?? '—')}</Tag>
+              <Tag>{tpl('强度 {v}', { v: String(l.parameters.strength ?? '—') })}</Tag>
             </div>
 
             <div className="mt-3 rounded-lg border border-dark-border bg-dark-bg px-3 py-2">
-              <p className="text-[11px] font-medium text-text-tertiary mb-1">参数</p>
+              <p className="text-3xs font-medium text-text-tertiary mb-1">{tr('参数')}</p>
               <ParameterList params={l.parameters} />
             </div>
 
             <div className="mt-3 rounded-lg border border-status-learning/30 bg-status-learning/5 px-3 py-2">
-              <p className="text-[11px] font-medium text-status-learning mb-1">
-                室内用法
+              <p className="text-3xs font-medium text-status-learning mb-1">
+                {tr('室内用法')}
               </p>
               <p className="text-xs text-text-secondary leading-relaxed">
                 {l.interiorUse}
@@ -353,8 +379,8 @@ export function Lighting() {
 
             {l.commonMistakes.length > 0 && (
               <div className="mt-3">
-                <p className="text-[11px] font-medium text-status-needs-review mb-1">
-                  常见错误
+                <p className="text-3xs font-medium text-status-needs-review mb-1">
+                  {tr('常见错误')}
                 </p>
                 <BulletList items={l.commonMistakes} tone="warn" />
               </div>
@@ -362,18 +388,18 @@ export function Lighting() {
 
             <div className="mt-3 pt-3 border-t border-dark-border space-y-2">
               <div className="flex items-start gap-2">
-                <span className="text-[11px] text-blender-orange shrink-0 mt-0.5">
-                  练习场景
+                <span className="text-3xs text-blender-orange shrink-0 mt-0.5">
+                  {tr('练习场景')}
                 </span>
-                <p className="text-[11px] text-text-secondary leading-relaxed">
+                <p className="text-3xs text-text-secondary leading-relaxed">
                   {l.practiceScene}
                 </p>
               </div>
               <div className="flex items-start gap-2">
-                <span className="text-[11px] text-blender-orange shrink-0 mt-0.5">
-                  动手练习
+                <span className="text-3xs text-blender-orange shrink-0 mt-0.5">
+                  {tr('动手练习')}
                 </span>
-                <p className="text-[11px] text-text-secondary leading-relaxed">
+                <p className="text-3xs text-text-secondary leading-relaxed">
                   {l.practiceTask}
                 </p>
               </div>
@@ -383,7 +409,7 @@ export function Lighting() {
       </div>
 
       <h2 className="text-sm font-semibold text-text-primary mb-3">
-        室内场景布光方案
+        {tr('室内场景布光方案')}
       </h2>
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
         {interiorScenes.map((s) => (
@@ -394,7 +420,7 @@ export function Lighting() {
             <div className="flex items-center gap-2 mb-2">
               <Building2 className="w-4 h-4 text-blender-orange shrink-0" />
               <p className="text-sm font-semibold text-text-primary">{s.name}</p>
-              <span className="text-[10px] text-text-tertiary ml-auto">
+              <span className="text-3xs text-text-tertiary ml-auto">
                 {s.nameEn}
               </span>
             </div>
@@ -402,13 +428,13 @@ export function Lighting() {
               {s.description}
             </p>
             <div className="rounded-md border border-dark-border bg-dark-bg px-2.5 py-2 mb-2">
-              <p className="text-[10px] text-text-tertiary mb-1">灯光组合</p>
-              <p className="text-[11px] text-blender-orange font-mono leading-relaxed">
+              <p className="text-3xs text-text-tertiary mb-1">{tr('灯光组合')}</p>
+              <p className="text-3xs text-blender-orange font-mono leading-relaxed">
                 {s.lightingSetup}
               </p>
             </div>
-            <p className="text-[11px] text-text-tertiary leading-relaxed">
-              提示：{s.tips}
+            <p className="text-3xs text-text-tertiary leading-relaxed">
+              {tpl('提示：{t}', { t: s.tips })}
             </p>
           </div>
         ))}
@@ -429,8 +455,11 @@ export function CameraLab() {
     <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
       <PageHeader
         kicker="CAMERA LAB"
-        title="相机实验室"
-        description={`${cameraPresets.length} 个常用焦距 + ${cameraTechniques.length} 个构图技巧。`}
+        title={tr('相机实验室')}
+        description={tpl('{a} 个常用焦距 + {b} 个构图技巧。', {
+          a: cameraPresets.length,
+          b: cameraTechniques.length,
+        })}
       />
       <LabNav />
 
@@ -459,13 +488,13 @@ export function CameraLab() {
               {current.description}
             </p>
             <div className="flex flex-wrap gap-2 mt-3">
-              <Tag tone="accent">焦距 {current.focalLength}</Tag>
-              <Tag>传感器 {current.sensorWidth}</Tag>
+              <Tag tone="accent">{tpl('焦距 {v}', { v: current.focalLength })}</Tag>
+              <Tag>{tpl('传感器 {v}', { v: current.sensorWidth })}</Tag>
             </div>
 
             <div className="mt-4">
-              <p className="text-[11px] font-medium text-text-tertiary mb-1">
-                成像特点
+              <p className="text-3xs font-medium text-text-tertiary mb-1">
+                {tr('成像特点')}
               </p>
               <div className="flex flex-wrap gap-2">
                 {current.characteristics.map((c) => (
@@ -475,8 +504,8 @@ export function CameraLab() {
             </div>
 
             <div className="mt-4 rounded-lg border border-status-learning/30 bg-status-learning/5 px-3 py-2">
-              <p className="text-[11px] font-medium text-status-learning mb-1">
-                室内用法
+              <p className="text-3xs font-medium text-status-learning mb-1">
+                {tr('室内用法')}
               </p>
               <p className="text-xs text-text-secondary leading-relaxed">
                 {current.interiorUse}
@@ -484,8 +513,8 @@ export function CameraLab() {
             </div>
 
             <div className="mt-3 rounded-lg border border-dark-border bg-dark-bg px-3 py-2">
-              <p className="text-[11px] font-medium text-blender-orange mb-1">
-                练习
+              <p className="text-3xs font-medium text-blender-orange mb-1">
+                {tr('练习')}
               </p>
               <p className="text-xs text-text-secondary leading-relaxed">
                 {current.practiceTask}
@@ -494,17 +523,17 @@ export function CameraLab() {
           </Card>
 
           <div className="space-y-4">
-            <Card eyebrow="COMPOSITION" title="构图建议">
+            <Card eyebrow="COMPOSITION" title={tr('构图建议')}>
               <BulletList items={current.compositionTips} tone="info" />
             </Card>
-            <Card eyebrow="MISTAKES" title="常见错误">
+            <Card eyebrow="MISTAKES" title={tr('常见错误')}>
               <BulletList items={current.commonMistakes} tone="warn" />
             </Card>
           </div>
         </div>
       )}
 
-      <h2 className="text-sm font-semibold text-text-primary mb-3">相机技巧</h2>
+      <h2 className="text-sm font-semibold text-text-primary mb-3">{tr('相机技巧')}</h2>
       <div className="grid gap-3 md:grid-cols-2">
         {cameraTechniques.map((t) => (
           <div
@@ -514,7 +543,7 @@ export function CameraLab() {
             <div className="flex items-center gap-2 mb-2">
               <Layers className="w-4 h-4 text-blender-orange shrink-0" />
               <p className="text-sm font-semibold text-text-primary">{t.name}</p>
-              <span className="text-[10px] text-text-tertiary ml-auto">
+              <span className="text-3xs text-text-tertiary ml-auto">
                 {t.nameEn}
               </span>
             </div>
@@ -545,8 +574,10 @@ export function Animation() {
     <div className="max-w-content mx-auto px-4 md:px-8 py-6 md:py-8">
       <PageHeader
         kicker="ANIMATION LAB"
-        title="动画实验室"
-        description={`${animationCourses.length} 个动画主题，从关键帧基础到室内漫游视频输出。`}
+        title={tr('动画实验室')}
+        description={tpl('{a} 个动画主题，从关键帧基础到室内漫游视频输出。', {
+          a: animationCourses.length,
+        })}
       />
       <LabNav />
 
@@ -565,8 +596,8 @@ export function Animation() {
 
             {a.concepts && a.concepts.length > 0 && (
               <div className="mt-4">
-                <p className="text-[11px] font-medium text-text-tertiary mb-1">
-                  核心概念
+                <p className="text-3xs font-medium text-text-tertiary mb-1">
+                  {tr('核心概念')}
                 </p>
                 <BulletList items={a.concepts} tone="info" />
               </div>
@@ -574,8 +605,8 @@ export function Animation() {
 
             {a.operations && a.operations.length > 0 && (
               <div className="mt-4">
-                <p className="text-[11px] font-medium text-text-tertiary mb-1">
-                  操作步骤
+                <p className="text-3xs font-medium text-text-tertiary mb-1">
+                  {tr('操作步骤')}
                 </p>
                 <StepList steps={a.operations} />
               </div>
@@ -583,8 +614,8 @@ export function Animation() {
 
             {a.interiorUse && (
               <div className="mt-4 rounded-lg border border-status-learning/30 bg-status-learning/5 px-3 py-2">
-                <p className="text-[11px] font-medium text-status-learning mb-1">
-                  室内用法
+                <p className="text-3xs font-medium text-status-learning mb-1">
+                  {tr('室内用法')}
                 </p>
                 <p className="text-xs text-text-secondary leading-relaxed">
                   {a.interiorUse}
@@ -594,8 +625,8 @@ export function Animation() {
 
             {a.practiceTask && (
               <div className="mt-3 pt-3 border-t border-dark-border flex items-start gap-2">
-                <Kbd>练习</Kbd>
-                <p className="text-[11px] text-text-secondary leading-relaxed">
+                <Kbd>{tr('练习')}</Kbd>
+                <p className="text-3xs text-text-secondary leading-relaxed">
                   {a.practiceTask}
                 </p>
               </div>
@@ -625,14 +656,14 @@ export function Animation() {
                     <p className="text-xs font-semibold text-text-primary">
                       {s.name}
                     </p>
-                    <span className="text-[10px] text-text-tertiary font-mono">
+                    <span className="text-3xs text-text-tertiary font-mono">
                       {s.nameEn}
                     </span>
                   </div>
-                  <p className="text-[11px] text-text-secondary mt-1.5 leading-relaxed">
+                  <p className="text-3xs text-text-secondary mt-1.5 leading-relaxed">
                     {s.description}
                   </p>
-                  <p className="text-[11px] text-blender-orange mt-2 flex items-center gap-1.5">
+                  <p className="text-3xs text-blender-orange mt-2 flex items-center gap-1.5">
                     <span className="w-1 h-1 rounded-full bg-blender-orange shrink-0" />
                     {s.use}
                   </p>

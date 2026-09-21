@@ -1,3 +1,6 @@
+import { tr } from '../i18n'
+import { live } from '../lib/live'
+
 // ============================================================================
 // 内容数据类型 —— 对应 data/ 目录下的 JSON 文件
 // ============================================================================
@@ -23,6 +26,13 @@ export interface Route {
   color: string
   workflow: string
   phases: Phase[]
+  /**
+   * 是否为主推路线。
+   * 用户明确要求「第一优先是 Blender，其次才是结合 SU 的工作路线」，
+   * 所以路线 B 为 true —— 界面据此打「主推」标记并排在前面。
+   * 用数据字段而不是散落的 `id === 'B'` 判断，方便以后调整。
+   */
+  recommended?: boolean
 }
 
 export interface PracticeTask {
@@ -261,13 +271,13 @@ export type LearningStatus =
   | 'mastered'
   | 'needs_review'
 
-export const LEARNING_STATUS_LABELS: Record<LearningStatus, string> = {
-  not_started: '未开始',
-  learning: '学习中',
-  completed: '已完成',
-  mastered: '已掌握',
-  needs_review: '需要复习',
-}
+export const LEARNING_STATUS_LABELS = live<Record<LearningStatus, string>>(() => ({
+  not_started: tr('未开始'),
+  learning: tr('学习中'),
+  completed: tr('已完成'),
+  mastered: tr('已掌握'),
+  needs_review: tr('需要复习'),
+}))
 
 export interface UserProgress {
   lessonId: string

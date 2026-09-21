@@ -1,5 +1,7 @@
 // Utility functions
 
+import { tr } from '../i18n'
+
 export function cn(...classes: (string | undefined | false)[]): string {
   return classes.filter(Boolean).join(' ')
 }
@@ -28,13 +30,13 @@ export function getProgressBg(status: string): string {
 
 export function getStatusLabel(status: string): string {
   const labels: Record<string, string> = {
-    not_started: '未学习',
-    learning: '学习中',
-    completed: '已完成',
-    mastered: '已掌握',
-    needs_review: '需要复习',
+    not_started: tr('未学习'),
+    learning: tr('学习中'),
+    completed: tr('已完成'),
+    mastered: tr('已掌握'),
+    needs_review: tr('需要复习'),
   }
-  return labels[status] || '未学习'
+  return labels[status] || tr('未学习')
 }
 
 export function formatDate(date: Date | string): string {

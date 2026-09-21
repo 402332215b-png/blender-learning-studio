@@ -5,46 +5,56 @@
     {
       "week": 1,
       "phase": "A-P1",
-      "title": "SU → Blender 模型传递",
-      "objective": "掌握从SketchUp到Blender的完整模型传递流程",
+      "title": "基础操作",
+      "objective": "让 Blender 不再陌生，建立最小操作闭环。（本周产出：一个可反复使用的测试房间）",
       "lessons": [
         {
           "lessonId": "A01-01",
           "routeId": "A",
           "week": 1,
           "lessonNumber": "01.1",
-          "title": "SketchUp模型检查与整理",
-          "englishName": "SketchUp Model Preparation",
-          "shortcut": "—",
-          "objective": "在导出前确保SU模型干净、有组织",
-          "principle": "好的导出始于好的源文件。在SketchUp中整理好Group/Component和Tag（图层），能大幅减少Blender中的清理工作。",
+          "title": "练习视角、选择与 G / R / S",
+          "englishName": "",
+          "shortcut": "G · Move / R · Rotate / S · Scale",
+          "objective": "练习视角、选择与 G / R / S",
+          "principle": "Object Mode 管理完整对象及其变换；位置、旋转、缩放和局部坐标会影响后续 Modifier、灯光和动画。",
           "blenderOperations": [
-            "1. 打开SketchUp模型",
-            "2. 检查所有Group/Component命名是否清晰",
-            "3. 整理Tag（图层）——墙体/门窗/家具/灯具等",
-            "4. 删除不可见/不需要的几何体",
-            "5. 确认坐标原点在合理位置（通常在建筑角点）"
+            "目标：练习视角、选择与 G / R / S。先在独立练习文件中完成，不直接修改正式项目。",
+            "在练习副本中选中目标对象，观察 Outliner、Origin 和 Transform 数值",
+            "分别使用快捷键和数值输入完成目标操作",
+            "切换全局/局部坐标并比较结果",
+            "保存、关闭并重新打开文件，确认状态可恢复",
+            "验收：结果满足“一个可反复使用的测试房间”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "这是你每个室内设计项目导出前都要做的检查。良好的SU组织习惯直接决定Blender中的工作效率。",
-          "sketchupReference": "这是你在SketchUp中已经熟悉的操作——Group/Component/Tag管理。这里强调的是为导出做准备。",
+          "interiorDesignUse": "用于精确放置墙体、家具、灯具和相机，并保持场景层级清晰。",
+          "sketchupReference": "与 SketchUp 的移动、旋转和群组操作相似，但 Blender 还需关注 Origin、局部坐标和 Apply Transform。",
           "commonMistakes": [
-            "Group嵌套过深导致FBX层级混乱",
-            "Tag未清理，导出大量隐藏几何体",
-            "坐标原点远离模型导致Blender中视角丢失"
+            "把 Object Mode 与 Edit Mode 的变换混为一谈",
+            "只凭视图判断尺寸，不检查数值",
+            "忘记保存或覆盖唯一的项目原文件"
           ],
           "practiceTasks": [
             {
-              "taskId": "A01-01-P1",
-              "title": "整理一个SU室内场景",
-              "description": "选择一个你正在做的室内设计SU模型，按照清单整理Group、Tag、清理多余几何体。",
-              "difficultyLevel": 1,
-              "estimatedTime": "15分钟"
+              "taskId": "A-W01-L01-P01",
+              "title": "一个可反复使用的测试房间",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Group/Component整理原则",
-            "Tag（图层）管理",
-            "坐标原点设置"
+            "Object Mode",
+            "Modifier",
+            "Origin",
+            "Apply Transform",
+            "Outliner",
+            "Edit Mode"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/transform/introduction.html"
+            }
           ]
         },
         {
@@ -52,37 +62,48 @@
           "routeId": "A",
           "week": 1,
           "lessonNumber": "01.2",
-          "title": "FBX导出设置",
-          "englishName": "FBX Export Settings",
-          "shortcut": "File → Export → FBX",
-          "objective": "正确设置FBX导出参数，确保Blender中导入正确",
-          "principle": "FBX是连接SketchUp和Blender的桥梁。正确的导出参数确保单位、材质、法线方向正确传递。",
+          "title": "掌握 X / Y / Z 轴向约束",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "掌握 X / Y / Z 轴向约束",
+          "principle": "Object Mode 管理完整对象及其变换；位置、旋转、缩放和局部坐标会影响后续 Modifier、灯光和动画。",
           "blenderOperations": [
-            "1. File → Export → 3D Model → 选择FBX格式",
-            "2. 导出选项中勾选：Triangulate, Keep Original Position",
-            "3. 单位设置为Millimeters或Centimeters",
-            "4. 导出范围：仅选中/全部场景"
+            "目标：掌握 X / Y / Z 轴向约束。先在独立练习文件中完成，不直接修改正式项目。",
+            "在练习副本中选中目标对象，观察 Outliner、Origin 和 Transform 数值",
+            "分别使用快捷键和数值输入完成目标操作",
+            "切换全局/局部坐标并比较结果",
+            "保存、关闭并重新打开文件，确认状态可恢复",
+            "验收：结果满足“一个可反复使用的测试房间”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "每次从SU到Blender的模型传递都需要这个步骤。掌握后每次导出只需30秒。",
-          "sketchupReference": "相当于SketchUp的'导出3D模型'功能，但需要选择FBX格式并检查特定参数。",
+          "interiorDesignUse": "用于精确放置墙体、家具、灯具和相机，并保持场景层级清晰。",
+          "sketchupReference": "与 SketchUp 的移动、旋转和群组操作相似，但 Blender 还需关注 Origin、局部坐标和 Apply Transform。",
           "commonMistakes": [
-            "忘记设置单位导致Blender中模型比例错误",
-            "导出时未勾选某些选项导致材质丢失",
-            "导出全部场景包含参考线等非模型元素"
+            "把 Object Mode 与 Edit Mode 的变换混为一谈",
+            "只凭视图判断尺寸，不检查数值",
+            "忘记保存或覆盖唯一的项目原文件"
           ],
           "practiceTasks": [
             {
-              "taskId": "A01-02-P1",
-              "title": "导出FBX并记录参数",
-              "description": "将整理好的SU模型导出为FBX，截图导出参数设置，保存参数清单。",
-              "difficultyLevel": 1,
-              "estimatedTime": "10分钟"
+              "taskId": "A-W01-L02-P01",
+              "title": "一个可反复使用的测试房间",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "SketchUp FBX导出参数",
-            "单位与坐标原点",
-            "导出范围选择"
+            "Object Mode",
+            "Modifier",
+            "Origin",
+            "Apply Transform",
+            "Outliner",
+            "Edit Mode"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/transform/introduction.html"
+            }
           ]
         },
         {
@@ -90,40 +111,48 @@
           "routeId": "A",
           "week": 1,
           "lessonNumber": "01.3",
-          "title": "Blender导入与单位检查",
-          "englishName": "Blender Import & Unit Check",
-          "shortcut": "File → Import → FBX",
-          "objective": "成功导入FBX并完成单位、Scale、Normal检查",
-          "principle": "导入后第一件事不是看模型好不好看，而是检查单位是否正确、Scale是否匹配、法线是否朝外。这三个检查通过后才进入后续工作。",
+          "title": "完成保存、关闭与重新打开工程",
+          "englishName": "",
+          "shortcut": "Ctrl+S",
+          "objective": "完成保存、关闭与重新打开工程",
+          "principle": "Object Mode 管理完整对象及其变换；位置、旋转、缩放和局部坐标会影响后续 Modifier、灯光和动画。",
           "blenderOperations": [
-            "1. File → Import → FBX (.fbx)",
-            "2. 导入设置：Scale=1.0, Forward=-Z, Up=Y（按实际情况调整）",
-            "3. Scene Properties → Units → Metric → Centimeters",
-            "4. 选中模型 → N面板 → Item → 查看Dimensions",
-            "5. 检查Scale是否为1.0（Ctrl+A → Apply All Transforms）",
-            "6. Edit Mode → 全选 → Mesh → Normals → Recalculate Outside (Shift+N)"
+            "目标：完成保存、关闭与重新打开工程。先在独立练习文件中完成，不直接修改正式项目。",
+            "在练习副本中选中目标对象，观察 Outliner、Origin 和 Transform 数值",
+            "分别使用快捷键和数值输入完成目标操作",
+            "切换全局/局部坐标并比较结果",
+            "保存、关闭并重新打开文件，确认状态可恢复",
+            "验收：结果满足“一个可反复使用的测试房间”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "这是SU→Blender工作流中最关键的一步。如果单位/Scale/Normal不对，后续所有材质灯光工作都会出问题。",
-          "sketchupReference": "SketchUp中没有单位检查的概念——它的单位是自动的。Blender需要手动确认单位和Scale一致。Normal相当于SketchUp中的面方向，但Blender中更严格——翻转的面会显示为黑色。",
+          "interiorDesignUse": "用于精确放置墙体、家具、灯具和相机，并保持场景层级清晰。",
+          "sketchupReference": "与 SketchUp 的移动、旋转和群组操作相似，但 Blender 还需关注 Origin、局部坐标和 Apply Transform。",
           "commonMistakes": [
-            "导入后Scale不是1.0，导致后续材质UV异常",
-            "忘记Recalculate Normals，部分墙面显示黑色",
-            "单位设置错误，一个房间变成几公里大"
+            "把 Object Mode 与 Edit Mode 的变换混为一谈",
+            "只凭视图判断尺寸，不检查数值",
+            "忘记保存或覆盖唯一的项目原文件"
           ],
           "practiceTasks": [
             {
-              "taskId": "A01-03-P1",
-              "title": "导入FBX并完成检查清单",
-              "description": "导入上一步导出的FBX文件，按照单位检查→Scale检查→Normal检查的顺序完成全部步骤，截图每个检查结果。",
-              "difficultyLevel": 2,
-              "estimatedTime": "20分钟"
+              "taskId": "A-W01-L03-P01",
+              "title": "一个可反复使用的测试房间",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "FBX导入设置",
-            "Blender单位设置（Metric/Centimeters）",
-            "Scale检查与修正（Apply All Transforms）",
-            "Normal检查与翻转（Recalculate Normals）"
+            "Object Mode",
+            "Modifier",
+            "Origin",
+            "Apply Transform",
+            "Outliner",
+            "Edit Mode"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/transform/introduction.html"
+            }
           ]
         },
         {
@@ -131,38 +160,48 @@
           "routeId": "A",
           "week": 1,
           "lessonNumber": "01.4",
-          "title": "常见导入问题排查",
-          "englishName": "Import Troubleshooting",
-          "shortcut": "—",
-          "objective": "能快速识别和修复导入后的常见问题",
-          "principle": "模型导入后可能出现碎片化、材质丢失、法线翻转等问题。建立系统化的排查流程能节省大量时间。",
+          "title": "建立 4m × 6m 测试房间",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "建立 4m × 6m 测试房间",
+          "principle": "Object Mode 管理完整对象及其变换；位置、旋转、缩放和局部坐标会影响后续 Modifier、灯光和动画。",
           "blenderOperations": [
-            "1. 模型碎片 → 检查SU中Group是否合理，必要时合并",
-            "2. 材质丢失 → 在Blender中重新赋予材质",
-            "3. 法线翻转 → Edit Mode → 全选 → Shift+N",
-            "4. Scale异常 → Object Mode → Ctrl+A → All Transforms"
+            "目标：建立 4m × 6m 测试房间。先在独立练习文件中完成，不直接修改正式项目。",
+            "在练习副本中选中目标对象，观察 Outliner、Origin 和 Transform 数值",
+            "分别使用快捷键和数值输入完成目标操作",
+            "切换全局/局部坐标并比较结果",
+            "保存、关闭并重新打开文件，确认状态可恢复",
+            "验收：结果满足“一个可反复使用的测试房间”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "实际项目中你不会只有一次导入。每次修改SU模型后重新传递到Blender都可能遇到不同的问题，掌握排查方法至关重要。",
-          "sketchupReference": "SketchUp中较少出现这些问题。Blender对模型的规范要求更高——这是从'快速建模'到'精细渲染'的代价。",
+          "interiorDesignUse": "用于精确放置墙体、家具、灯具和相机，并保持场景层级清晰。",
+          "sketchupReference": "与 SketchUp 的移动、旋转和群组操作相似，但 Blender 还需关注 Origin、局部坐标和 Apply Transform。",
           "commonMistakes": [
-            "遇到问题直接放弃，认为Blender'不好用'",
-            "反复导出导入而不检查根本原因",
-            "忽略Scale问题直接开始做材质，后面全部受影响"
+            "把 Object Mode 与 Edit Mode 的变换混为一谈",
+            "只凭视图判断尺寸，不检查数值",
+            "忘记保存或覆盖唯一的项目原文件"
           ],
           "practiceTasks": [
             {
-              "taskId": "A01-04-P1",
-              "title": "问题排查清单实操",
-              "description": "故意制造一个有问题的SU模型（嵌套Group+隐藏几何体），导出导入后按照排查清单逐个修复。",
-              "difficultyLevel": 2,
-              "estimatedTime": "25分钟"
+              "taskId": "A-W01-L04-P01",
+              "title": "一个可反复使用的测试房间",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "模型碎片问题识别与处理",
-            "材质丢失修复",
-            "法线翻转识别与修复",
-            "Scale异常修复"
+            "Object Mode",
+            "Modifier",
+            "Origin",
+            "Apply Transform",
+            "Outliner",
+            "Edit Mode"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/transform/introduction.html"
+            }
           ]
         }
       ]
@@ -170,44 +209,60 @@
     {
       "week": 2,
       "phase": "A-P1",
-      "title": "模型整理与优化",
-      "objective": "将导入的模型整理为干净可用的Blender场景",
+      "title": "SU 导入与整理",
+      "objective": "把 SketchUp 白模稳定送进 Blender。（本周产出：干净的 SU → Blender 导入模板）",
       "lessons": [
         {
           "lessonId": "A02-01",
           "routeId": "A",
           "week": 2,
           "lessonNumber": "02.1",
-          "title": "Mesh清理",
-          "englishName": "Mesh Cleanup",
-          "shortcut": "M (Merge by Distance) · Shift+N (Recalculate Normals)",
-          "objective": "清理导入模型中的Mesh问题，确保拓扑干净",
-          "principle": "从SketchUp导入的模型通常有重叠顶点、零面积面等问题。清理后才能正确进行材质、UV等后续工作。",
+          "title": "从 SU 导出 FBX 或 OBJ",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "从 SU 导出 FBX 或 OBJ",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
           "blenderOperations": [
-            "1. Edit Mode → A (全选)",
-            "2. M → By Distance (合并重叠顶点)",
-            "3. Face → Delete Zero Faces (如有)",
-            "4. Shift+N → Recalculate Normals Outside"
+            "目标：从 SU 导出 FBX 或 OBJ。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“干净的 SU → Blender 导入模板”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "干净的Mesh意味着渲染时不会出现黑斑、材质不会出现异常闪烁。这是专业效果图与业余效果图的第一个分水岭。",
-          "sketchupReference": "SketchUp自动处理大部分这些问题，但Blender需要手动清理——这也是为什么Blender渲染质量更高的原因之一。",
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
           "commonMistakes": [
-            "不清理就直接做材质，导致渲染黑斑",
-            "过度清理删除了需要的细节"
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
           ],
           "practiceTasks": [
             {
-              "taskId": "A02-01-P1",
-              "title": "清理导入模型的Mesh问题",
-              "description": "使用上周导入的模型，执行完整Mesh清理流程，对比清理前后面数变化。",
-              "difficultyLevel": 2,
-              "estimatedTime": "15分钟"
+              "taskId": "A-W02-L01-P01",
+              "title": "干净的 SU → Blender 导入模板",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Merge by Distance（重面/重叠顶点）",
-            "删除零面积面",
-            "Recalculate Normals"
+            "FBX",
+            "OBJ",
+            "单位",
+            "法线",
+            "渲染",
+            "Collection"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
           ]
         },
         {
@@ -215,37 +270,52 @@
           "routeId": "A",
           "week": 2,
           "lessonNumber": "02.2",
-          "title": "场景组织",
-          "englishName": "Scene Organization",
-          "shortcut": "M (Move to Collection) · F2 (Rename)",
-          "objective": "建立规范的Blender场景Collection结构",
-          "principle": "良好的场景组织让你在复杂的室内场景中快速找到需要修改的对象。这直接关系到工作效率。",
+          "title": "整理 Collection 与对象名称",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "整理 Collection 与对象名称",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
           "blenderOperations": [
-            "1. Outliner → 新建Collections: 墙体/地面/天花/家具/灯具/饰品",
-            "2. 选中对象 → M → 选择目标Collection",
-            "3. F2 重命名重要对象",
-            "4. 使用Instance/Link处理重复家具"
+            "目标：整理 Collection 与对象名称。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“干净的 SU → Blender 导入模板”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "一个室内设计项目可能有几百个对象。没有Collection组织的场景就是噩梦。这和你在SketchUp中用Tag管理图层是同一个道理。",
-          "sketchupReference": "Collection相当于SketchUp的Tag（图层），但Blender的Collection可以嵌套，更灵活。Instance相当于SketchUp的Component——改一个全部跟着改。",
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
           "commonMistakes": [
-            "所有对象都在一个Collection里，无法快速选择",
-            "不命名对象，Outliner全是Cube.001/Cube.002",
-            "重复家具用复制而不是Link，修改时只改了一个"
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
           ],
           "practiceTasks": [
             {
-              "taskId": "A02-02-P1",
-              "title": "建立室内场景Collection结构",
-              "description": "为导入的室内场景建立至少5个Collection（墙体/地面/天花/家具/灯具），将所有对象归类并重命名。",
-              "difficultyLevel": 2,
-              "estimatedTime": "20分钟"
+              "taskId": "A-W02-L02-P01",
+              "title": "干净的 SU → Blender 导入模板",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Collection组织与嵌套",
-            "命名规范",
-            "实例化与Link"
+            "Collection",
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
           ]
         },
         {
@@ -253,36 +323,105 @@
           "routeId": "A",
           "week": 2,
           "lessonNumber": "02.3",
-          "title": "模型优化",
-          "englishName": "Model Optimization",
-          "shortcut": "— (Modifier Stack)",
-          "objective": "控制模型面数，确保渲染效率",
-          "principle": "室内场景面数过高会导致渲染卡顿。通过合理的LOD策略和Decimate Modifier控制面数，在不影响视觉效果的前提下提升性能。",
+          "title": "校正单位、缩放和法线",
+          "englishName": "",
+          "shortcut": "S·Ctrl+A·Alt+N",
+          "objective": "校正单位、缩放和法线",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
           "blenderOperations": [
-            "1. 选中高面数对象 → Add Modifier → Decimate",
-            "2. 调整Ratio，观察视觉变化",
-            "3. 对远距离对象使用更激进的Decimate",
-            "4. 保持近景对象高精度"
+            "目标：校正单位、缩放和法线。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“干净的 SU → Blender 导入模板”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "实际项目中经常需要渲染大量家具。优化面数能将渲染时间从小时缩短到分钟。",
-          "sketchupReference": "SketchUp中面数管理相对宽松（因为没有实时渲染）。Blender中面数直接影响渲染和视口性能。",
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
           "commonMistakes": [
-            "对所有对象一刀切Decimate，近景细节丢失",
-            "不做任何优化，渲染时卡死"
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
           ],
           "practiceTasks": [
             {
-              "taskId": "A02-03-P1",
-              "title": "优化模型面数",
-              "description": "选择场景中3个高面数对象，使用Decimate Modifier优化，记录优化前后面数和视觉差异。",
+              "taskId": "A-W02-L03-P01",
+              "title": "干净的 SU → Blender 导入模板",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "15分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "LOD概念",
-            "面数控制策略",
-            "Decimate Modifier使用"
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A02-04",
+          "routeId": "A",
+          "week": 2,
+          "lessonNumber": "02.4",
+          "title": "完成一次无丢失的往返测试",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "完成一次无丢失的往返测试",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
+          "blenderOperations": [
+            "目标：完成一次无丢失的往返测试。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“干净的 SU → Blender 导入模板”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
+          "commonMistakes": [
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W02-L04-P01",
+              "title": "干净的 SU → Blender 导入模板",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
           ]
         }
       ]
@@ -290,47 +429,56 @@
     {
       "week": 3,
       "phase": "A-P2",
-      "title": "材质基础（室内）",
-      "objective": "掌握室内材质创建的基本方法",
+      "title": "Principled 材质",
+      "objective": "先理解真实材质的四个关键旋钮。（本周产出：4 种稳定基础材质）",
       "lessons": [
         {
           "lessonId": "A03-01",
           "routeId": "A",
           "week": 3,
           "lessonNumber": "03.1",
-          "title": "Principled BSDF基础",
-          "englishName": "Principled BSDF",
-          "shortcut": "Shift+Z (Material Preview) · Shift+Click material icon (Shader Editor)",
-          "objective": "理解Principled BSDF各参数含义，掌握室内材质创建的基本方法",
-          "principle": "Principled BSDF是Blender的统一材质着色器，基于PBR（基于物理的渲染）原理。几乎所有室内材质都可以通过它创建——区别只是参数值不同。",
+          "title": "调整 Base Color 与 Roughness",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "调整 Base Color 与 Roughness",
+          "principle": "PBR 材质通过基础色、粗糙度、金属度、法线、透射和 IOR 描述表面对光的反应，而不是只追求贴图看起来像。",
           "blenderOperations": [
-            "1. 选中物体 → Material Properties → New",
-            "2. 切换到Shader Editor (Shift+Click material icon in Properties)",
-            "3. 调整Base Color / Roughness / Metallic参数",
-            "4. 切换Material Preview (Shift+Z) 查看效果"
+            "目标：调整 Base Color 与 Roughness。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用中性灯光和标准材质球建立可比较环境",
+            "连接 Base Color、Roughness、Metallic 与 Normal/Bump 等核心输入",
+            "按真实尺度校准纹理和细节强度",
+            "在近景、斜角和不同光照下检查高光、接缝与重复纹理",
+            "验收：结果满足“4 种稳定基础材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "乳胶漆墙面、木饰面家具、金属配件等所有室内材质的基础。掌握后可以快速创建90%的室内材质。",
-          "sketchupReference": "SketchUp中材质是简单的颜色+贴图，没有PBR概念。Blender的Principled BSDF相当于把SU材质升级为真实物理材质——有粗糙度、反射、金属质感等。",
+          "interiorDesignUse": "建立乳胶漆、木饰面、石材、金属、玻璃、布艺和皮革等可复用材质。",
+          "sketchupReference": "SketchUp 材质主要表达颜色和贴图；Blender 材质同时控制物理反射、透射和微表面细节。",
           "commonMistakes": [
-            "Roughness=0导致所有材质像镜面金属",
-            "Metallic不是0就是1，不要用中间值（除非特殊效果）",
-            "忘记切换到Material Preview或Rendered模式看不到效果"
+            "把灰度数据贴图当作 sRGB 颜色读取",
+            "粗糙度、凹凸或位移强度过大",
+            "只在材质预览球上判断，不回到真实空间检查"
           ],
           "practiceTasks": [
             {
-              "taskId": "A03-01-P1",
-              "title": "创建三种基础室内材质",
-              "description": "创建乳胶漆（白色高Roughness）、木饰面（棕色中Roughness+Normal Map）、金属（Metallic=1低Roughness）三种材质并赋予场景中的物体。",
-              "difficultyLevel": 2,
-              "estimatedTime": "20分钟"
+              "taskId": "A-W03-L01-P01",
+              "title": "4 种稳定基础材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Base Color - 材质基础颜色",
-            "Roughness - 表面粗糙度（0=镜面 1=磨砂）",
-            "Metallic - 金属度（0=非金属 1=金属）",
-            "Specular - 反射强度",
-            "IOR - 折射率"
+            "Base Color",
+            "Roughness",
+            "PBR",
+            "IOR",
+            "Metallic",
+            "Normal"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/materials/index.html"
+            }
           ]
         },
         {
@@ -338,44 +486,48 @@
           "routeId": "A",
           "week": 3,
           "lessonNumber": "03.2",
-          "title": "室内基础材质库",
-          "englishName": "Interior Material Library",
-          "shortcut": "—",
-          "objective": "建立室内设计师常用的8种基础材质库",
-          "principle": "室内设计中有一套高频使用的材质。提前做好这些材质，每个项目都能快速调用，大幅提升效率。",
+          "title": "理解 Metallic 与 Normal / Bump",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "理解 Metallic 与 Normal / Bump",
+          "principle": "PBR 材质通过基础色、粗糙度、金属度、法线、透射和 IOR 描述表面对光的反应，而不是只追求贴图看起来像。",
           "blenderOperations": [
-            "1. 创建乳胶漆材质：Base=白色, Roughness=0.9, 微Bump",
-            "2. 创建木饰面：Base=木色, Roughness=0.5, Normal Map木纹",
-            "3. 创建金属：Metallic=1, Roughness=0.3",
-            "4. 创建玻璃：Transmission=1, IOR=1.5, Roughness=0",
-            "5. 创建深灰石材：Base=深灰, Roughness=0.4",
-            "6. 创建布艺：Base=布色, Roughness=0.8, Sheen=0.5",
-            "7. 创建皮革：Base=皮色, Roughness=0.6, 微SSS",
-            "8. 创建肌理漆：程序化Noise+Bump"
+            "目标：理解 Metallic 与 Normal / Bump。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用中性灯光和标准材质球建立可比较环境",
+            "连接 Base Color、Roughness、Metallic 与 Normal/Bump 等核心输入",
+            "按真实尺度校准纹理和细节强度",
+            "在近景、斜角和不同光照下检查高光、接缝与重复纹理",
+            "验收：结果满足“4 种稳定基础材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "这8种材质覆盖了80%的室内场景需求。建立好后保存为.blend文件或Asset，每个新项目直接导入使用。",
-          "sketchupReference": "SketchUp中材质库是简单的图片贴图。Blender的材质库是完整的PBR材质——有物理正确的反射、粗糙度、金属感。",
+          "interiorDesignUse": "建立乳胶漆、木饰面、石材、金属、玻璃、布艺和皮革等可复用材质。",
+          "sketchupReference": "SketchUp 材质主要表达颜色和贴图；Blender 材质同时控制物理反射、透射和微表面细节。",
           "commonMistakes": [
-            "每种材质都从头做，浪费时间",
-            "材质参数过于极端（全黑/全白/全金属）",
-            "不保存材质库，每次新项目重做"
+            "把灰度数据贴图当作 sRGB 颜色读取",
+            "粗糙度、凹凸或位移强度过大",
+            "只在材质预览球上判断，不回到真实空间检查"
           ],
           "practiceTasks": [
             {
-              "taskId": "A03-02-P1",
-              "title": "建立室内基础材质库",
-              "description": "创建上述8种室内基础材质，保存为一个.blend材质库文件，并尝试将材质赋予场景中的对应物体。",
+              "taskId": "A-W03-L02-P01",
+              "title": "4 种稳定基础材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "40分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "乳胶漆材质参数（高Roughness、微Bump）",
-            "木饰面材质参数（Base Color + Roughness + Normal）",
-            "金属材质参数（Metallic=1、Roughness变化）",
-            "玻璃材质参数（Transmission、IOR=1.5）",
-            "布艺/皮革材质参数",
-            "肌理漆程序化材质"
+            "Metallic",
+            "Normal",
+            "PBR",
+            "IOR",
+            "Base Color",
+            "Roughness"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/materials/index.html"
+            }
           ]
         },
         {
@@ -383,35 +535,97 @@
           "routeId": "A",
           "week": 3,
           "lessonNumber": "03.3",
-          "title": "布艺与皮革",
-          "englishName": "Fabric & Leather Materials",
-          "shortcut": "—",
-          "objective": "掌握布艺和皮革这类室内高频材质的制作方法",
-          "principle": "布艺和皮革是室内设计中最常见的软装材质。关键在于通过Roughness、Sheen和微Bump模拟织物和皮革的表面质感。",
+          "title": "制作乳胶漆与浅灰石材",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "制作乳胶漆与浅灰石材",
+          "principle": "PBR 材质通过基础色、粗糙度、金属度、法线、透射和 IOR 描述表面对光的反应，而不是只追求贴图看起来像。",
           "blenderOperations": [
-            "1. 布艺材质：Base Color=布色, Roughness=0.8-0.9, Sheen=0.5, Bump用Noise纹理",
-            "2. 皮革材质：Base Color=皮色, Roughness=0.5-0.7, 微Subsurface Scattering, Bump用Leather纹理"
+            "目标：制作乳胶漆与浅灰石材。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用中性灯光和标准材质球建立可比较环境",
+            "连接 Base Color、Roughness、Metallic 与 Normal/Bump 等核心输入",
+            "按真实尺度校准纹理和细节强度",
+            "在近景、斜角和不同光照下检查高光、接缝与重复纹理",
+            "验收：结果满足“4 种稳定基础材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "沙发、窗帘、抱枕、皮椅、床头软包——这些是室内效果图中最需要质感表现的元素。",
-          "sketchupReference": "SketchUp中布艺和皮革都只能用图片贴图表现。Blender通过PBR参数能模拟出真实的织物光泽和皮革柔软感。",
+          "interiorDesignUse": "建立乳胶漆、木饰面、石材、金属、玻璃、布艺和皮革等可复用材质。",
+          "sketchupReference": "SketchUp 材质主要表达颜色和贴图；Blender 材质同时控制物理反射、透射和微表面细节。",
           "commonMistakes": [
-            "布艺Roughness太低，看起来像塑料",
-            "皮革没有Bump，看起来像PU皮",
-            "忽略Sheen参数，织物没有毛感"
+            "把灰度数据贴图当作 sRGB 颜色读取",
+            "粗糙度、凹凸或位移强度过大",
+            "只在材质预览球上判断，不回到真实空间检查"
           ],
           "practiceTasks": [
             {
-              "taskId": "A03-03-P1",
-              "title": "创建布艺沙发与皮革材质",
-              "description": "为一个沙发模型创建布艺材质，为一个椅子模型创建皮革材质，对比不同参数的效果。",
+              "taskId": "A-W03-L03-P01",
+              "title": "4 种稳定基础材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "25分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Sheen（织物光泽）",
-            "Subsurface Scattering（皮革/石材微SSS）",
-            "Bump纹理模拟纹理感"
+            "PBR",
+            "IOR",
+            "Base Color",
+            "Roughness",
+            "Metallic",
+            "Normal"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/materials/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A03-04",
+          "routeId": "A",
+          "week": 3,
+          "lessonNumber": "03.4",
+          "title": "对比同材质的粗糙度变化",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "对比同材质的粗糙度变化",
+          "principle": "PBR 材质通过基础色、粗糙度、金属度、法线、透射和 IOR 描述表面对光的反应，而不是只追求贴图看起来像。",
+          "blenderOperations": [
+            "目标：对比同材质的粗糙度变化。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用中性灯光和标准材质球建立可比较环境",
+            "连接 Base Color、Roughness、Metallic 与 Normal/Bump 等核心输入",
+            "按真实尺度校准纹理和细节强度",
+            "在近景、斜角和不同光照下检查高光、接缝与重复纹理",
+            "验收：结果满足“4 种稳定基础材质”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "建立乳胶漆、木饰面、石材、金属、玻璃、布艺和皮革等可复用材质。",
+          "sketchupReference": "SketchUp 材质主要表达颜色和贴图；Blender 材质同时控制物理反射、透射和微表面细节。",
+          "commonMistakes": [
+            "把灰度数据贴图当作 sRGB 颜色读取",
+            "粗糙度、凹凸或位移强度过大",
+            "只在材质预览球上判断，不回到真实空间检查"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W03-L04-P01",
+              "title": "4 种稳定基础材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "PBR",
+            "IOR",
+            "Base Color",
+            "Roughness",
+            "Metallic",
+            "Normal"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/materials/index.html"
+            }
           ]
         }
       ]
@@ -419,46 +633,54 @@
     {
       "week": 4,
       "phase": "A-P2",
-      "title": "PBR材质与贴图",
-      "objective": "掌握PBR工作流和贴图使用",
+      "title": "UV 与材质库",
+      "objective": "解决木纹方向、尺度和贴图拉伸。（本周产出：可复用的 8 种室内材质）",
       "lessons": [
         {
           "lessonId": "A04-01",
           "routeId": "A",
           "week": 4,
           "lessonNumber": "04.1",
-          "title": "PBR工作流",
-          "englishName": "PBR Workflow",
-          "shortcut": "—",
-          "objective": "理解PBR原理和贴图通道对应关系",
-          "principle": "PBR（Physically Based Rendering）是基于物理的渲染方法。使用真实世界的材质属性（反射率、粗糙度等）来创建材质，确保在不同光照条件下都看起来真实。",
+          "title": "练习 Cube Projection 与 Unwrap",
+          "englishName": "",
+          "shortcut": "U · UV Unwrap",
+          "objective": "练习 Cube Projection 与 Unwrap",
+          "principle": "UV 把三维表面映射到二维纹理；缝合位置、岛屿比例和方向共同决定木纹、石材纹理是否真实。",
           "blenderOperations": [
-            "1. 在Shader Editor中连接Image Texture到对应通道",
-            "2. Base Color贴图 → Principled BSDF Base Color",
-            "3. Roughness贴图 → Principled BSDF Roughness",
-            "4. Normal Map贴图 → Normal Map节点 → Principled BSDF Normal",
-            "5. Metallic贴图 → Principled BSDF Metallic"
+            "目标：练习 Cube Projection 与 Unwrap。先在独立练习文件中完成，不直接修改正式项目。",
+            "应用尺度并检查模型法线",
+            "按不显眼位置标记 Seam，选择合适的 Unwrap 或 Projection",
+            "在 UV Editor 中检查拉伸、岛屿方向和统一比例",
+            "加载测试棋盘或真实贴图，在多个视角复核接缝",
+            "验收：结果满足“可复用的 8 种室内材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "PBR材质是专业效果图的标准。使用真实PBR贴图能让你的效果图从'还可以'提升到'照片级'。",
-          "sketchupReference": "SketchUp不使用PBR。这是从SketchUp到Blender最大的概念升级——材质不再只是颜色+图片，而是完整的物理属性模拟。",
+          "interiorDesignUse": "用于控制木饰面方向、石材分缝、墙布尺度和定制家具贴图。",
+          "sketchupReference": "SketchUp 常直接移动/旋转面贴图；Blender 使用独立 UV 坐标，可精确统一纹理密度和岛屿布局。",
           "commonMistakes": [
-            "把Normal Map连到Bump通道（应该用Normal Map节点）",
-            "Roughness贴图不连ColorRamp直接用",
-            "不同贴图的UV Scale不一致"
+            "未应用尺度就展开 UV",
+            "木纹方向与构件受力或施工方向冲突",
+            "不同物体纹理密度不一致"
           ],
           "practiceTasks": [
             {
-              "taskId": "A04-01-P1",
-              "title": "完成一个PBR木地板材质",
-              "description": "下载或使用提供的木地板PBR贴图套装（Color+Roughness+Normal），在Blender中正确连接所有通道，应用到地面。",
+              "taskId": "A-W04-L01-P01",
+              "title": "可复用的 8 种室内材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "20分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "PBR原理（Albedo/Roughness/Normal/Metallic）",
-            "贴图通道对应关系",
-            "Normal Map节点使用"
+            "Cube Projection",
+            "Unwrap",
+            "UV",
+            "法线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/index.html"
+            }
           ]
         },
         {
@@ -466,37 +688,45 @@
           "routeId": "A",
           "week": 4,
           "lessonNumber": "04.2",
-          "title": "Image Texture与Mapping",
-          "englishName": "Image Texture & Mapping Node",
-          "shortcut": "Shift+A → Texture → Image Texture · Shift+A → Converter → Mapping",
-          "objective": "掌握贴图的导入、缩放和UV控制",
-          "principle": "Image Texture节点导入图片贴图，Mapping节点控制贴图的位置、旋转和缩放。理解它们的关系是控制材质效果的关键。",
+          "title": "校准木纹和石材尺度",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "校准木纹和石材尺度",
+          "principle": "UV 把三维表面映射到二维纹理；缝合位置、岛屿比例和方向共同决定木纹、石材纹理是否真实。",
           "blenderOperations": [
-            "1. Shader Editor → Shift+A → Texture → Image Texture → Open image",
-            "2. Shift+A → Converter → Mapping",
-            "3. 连接: Image Texture → Mapping → 然后连接到对应通道",
-            "4. 在Mapping中调整Scale来控制贴图重复次数"
+            "目标：校准木纹和石材尺度。先在独立练习文件中完成，不直接修改正式项目。",
+            "应用尺度并检查模型法线",
+            "按不显眼位置标记 Seam，选择合适的 Unwrap 或 Projection",
+            "在 UV Editor 中检查拉伸、岛屿方向和统一比例",
+            "加载测试棋盘或真实贴图，在多个视角复核接缝",
+            "验收：结果满足“可复用的 8 种室内材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "控制大理石地面的拼花方向、木地板的板宽、墙面肌理的大小——这些都靠Mapping节点。",
-          "sketchupReference": "SketchUp中调整贴图大小是用'调整贴图'工具拖拽。Blender用Mapping节点的Scale数值精确控制。",
+          "interiorDesignUse": "用于控制木饰面方向、石材分缝、墙布尺度和定制家具贴图。",
+          "sketchupReference": "SketchUp 常直接移动/旋转面贴图；Blender 使用独立 UV 坐标，可精确统一纹理密度和岛屿布局。",
           "commonMistakes": [
-            "贴图Scale太大，纹理变成像素点",
-            "贴图Scale太小，纹理重复明显",
-            "不同材质的贴图UV不统一"
+            "未应用尺度就展开 UV",
+            "木纹方向与构件受力或施工方向冲突",
+            "不同物体纹理密度不一致"
           ],
           "practiceTasks": [
             {
-              "taskId": "A04-02-P1",
-              "title": "大理石地面PBR材质",
-              "description": "导入大理石PBR贴图，使用Mapping节点调整到合适的纹理大小，确保拼花自然。",
+              "taskId": "A-W04-L02-P01",
+              "title": "可复用的 8 种室内材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "20分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Image Texture节点",
-            "Mapping节点与UV Map",
-            "贴图Scale与重复控制"
+            "UV",
+            "法线",
+            "Unwrap"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/index.html"
+            }
           ]
         },
         {
@@ -504,82 +734,146 @@
           "routeId": "A",
           "week": 4,
           "lessonNumber": "04.3",
-          "title": "程序化纹理",
-          "englishName": "Procedural Textures",
-          "shortcut": "Shift+A → Texture → (Noise/Voronoi/Musgrave)",
-          "objective": "使用程序化纹理创建不依赖图片的材质",
-          "principle": "程序化纹理是Blender内置的数学生成的纹理（Noise、Voronoi、Musgrave等），不需要外部图片，可以无限缩放不重复。",
+          "title": "补齐木饰面、金属、玻璃、肌理漆",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "补齐木饰面、金属、玻璃、肌理漆",
+          "principle": "UV 把三维表面映射到二维纹理；缝合位置、岛屿比例和方向共同决定木纹、石材纹理是否真实。",
           "blenderOperations": [
-            "1. Shader Editor → Shift+A → Texture → Noise Texture",
-            "2. 连接Noise → ColorRamp → Bump → Principled BSDF Normal",
-            "3. 调整Noise Scale和ColorRamp来控制肌理粗细",
-            "4. 尝试Voronoi做石材裂纹效果"
+            "目标：补齐木饰面、金属、玻璃、肌理漆。先在独立练习文件中完成，不直接修改正式项目。",
+            "应用尺度并检查模型法线",
+            "按不显眼位置标记 Seam，选择合适的 Unwrap 或 Projection",
+            "在 UV Editor 中检查拉伸、岛屿方向和统一比例",
+            "加载测试棋盘或真实贴图，在多个视角复核接缝",
+            "验收：结果满足“可复用的 8 种室内材质”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "肌理漆、微水泥、混凝土这类材质用程序化纹理比图片贴图更好——无缝、可调、不占内存。",
-          "sketchupReference": "SketchUp没有程序化纹理。这是Blender的独有优势——不依赖外部图片也能做出复杂纹理。",
+          "interiorDesignUse": "用于控制木饰面方向、石材分缝、墙布尺度和定制家具贴图。",
+          "sketchupReference": "SketchUp 常直接移动/旋转面贴图；Blender 使用独立 UV 坐标，可精确统一纹理密度和岛屿布局。",
           "commonMistakes": [
-            "Noise Scale过大，肌理变成大块斑点",
-            "ColorRamp没有调整，黑白对比太强",
-            "程序化纹理在动画中会闪烁（需要调高采样）"
+            "未应用尺度就展开 UV",
+            "木纹方向与构件受力或施工方向冲突",
+            "不同物体纹理密度不一致"
           ],
           "practiceTasks": [
             {
-              "taskId": "A04-03-P1",
-              "title": "程序化肌理漆材质",
-              "description": "使用Noise Texture + ColorRamp + Bump创建一面墙的肌理漆材质，对比不同参数效果。",
+              "taskId": "A-W04-L03-P01",
+              "title": "可复用的 8 种室内材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "20分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "Noise / Voronoi / Musgrave纹理",
-            "ColorRamp调节",
-            "Bump vs Normal Map"
+            "UV",
+            "法线",
+            "Unwrap"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A04-04",
+          "routeId": "A",
+          "week": 4,
+          "lessonNumber": "04.4",
+          "title": "把材质保存到 Material Library",
+          "englishName": "",
+          "shortcut": "Ctrl+S",
+          "objective": "把材质保存到 Material Library",
+          "principle": "UV 把三维表面映射到二维纹理；缝合位置、岛屿比例和方向共同决定木纹、石材纹理是否真实。",
+          "blenderOperations": [
+            "目标：把材质保存到 Material Library。先在独立练习文件中完成，不直接修改正式项目。",
+            "应用尺度并检查模型法线",
+            "按不显眼位置标记 Seam，选择合适的 Unwrap 或 Projection",
+            "在 UV Editor 中检查拉伸、岛屿方向和统一比例",
+            "加载测试棋盘或真实贴图，在多个视角复核接缝",
+            "验收：结果满足“可复用的 8 种室内材质”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于控制木饰面方向、石材分缝、墙布尺度和定制家具贴图。",
+          "sketchupReference": "SketchUp 常直接移动/旋转面贴图；Blender 使用独立 UV 坐标，可精确统一纹理密度和岛屿布局。",
+          "commonMistakes": [
+            "未应用尺度就展开 UV",
+            "木纹方向与构件受力或施工方向冲突",
+            "不同物体纹理密度不一致"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W04-L04-P01",
+              "title": "可复用的 8 种室内材质",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Material Library",
+            "UV",
+            "法线",
+            "Unwrap"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/index.html"
+            }
           ]
         }
       ]
     },
     {
       "week": 5,
-      "phase": "A-P2",
-      "title": "UV展开",
-      "objective": "掌握UV Mapping基础和手动展开",
+      "phase": "A-P3",
+      "title": "自然光",
+      "objective": "先用窗外光把空间层次搭起来。（本周产出：办公室自然光预设）",
       "lessons": [
         {
           "lessonId": "A05-01",
           "routeId": "A",
           "week": 5,
           "lessonNumber": "05.1",
-          "title": "UV基础",
-          "englishName": "UV Mapping Fundamentals",
-          "shortcut": "Tab (Edit Mode) · U (UV Menu)",
-          "objective": "理解UV的概念和UV Editor的使用",
-          "principle": "UV Mapping就是将3D模型的表面展开成2D平面，让2D贴图正确贴在3D模型上。像拆纸盒一样把模型展开。",
+          "title": "测试 HDRI 与环境亮度",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "测试 HDRI 与环境亮度",
+          "principle": "World 环境可以用颜色、天空或 HDRI 提供背景和环境照明；自然光测试应先控制曝光，再判断方向和层次。",
           "blenderOperations": [
-            "1. Edit Mode → 全选(A)",
-            "2. U → UV Mapping菜单",
-            "3. 打开UV Editor窗口（分屏或新窗口）",
-            "4. 查看展开后的UV"
+            "目标：测试 HDRI 与环境亮度。先在独立练习文件中完成，不直接修改正式项目。",
+            "关闭多余灯光，用中性材质检查空间体块",
+            "在 World 中连接 Environment Texture 并调节强度与旋转",
+            "用窗洞、高光和阴影判断主光方向",
+            "分别检查亮部不过曝、暗部有信息和材质颜色稳定",
+            "验收：结果满足“办公室自然光预设”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "当你导入的SU模型贴图不正确时，90%是UV问题。理解UV是解决贴图问题的根本。",
-          "sketchupReference": "SketchUp中贴图是直接投影到面上的，不需要UV。Blender中UV是贴图正确显示的基础——尤其是复杂模型。",
+          "interiorDesignUse": "快速建立办公室、酒店客房和商业空间的日景基础光。",
+          "sketchupReference": "SketchUp 常依赖太阳与阴影预览；Blender 可用 HDRI、World 和灯光对象组合控制真实反射与氛围。",
           "commonMistakes": [
-            "不理解UV概念，以为是贴图本身的问题",
-            "展开后UV重叠，贴图出现接缝"
+            "用曝光掩盖灯光强度问题",
+            "HDRI 方向与窗外环境不一致",
+            "同时修改多个灯光参数，无法判断变化原因"
           ],
           "practiceTasks": [
             {
-              "taskId": "A05-01-P1",
-              "title": "UV基础练习",
-              "description": "创建一个Box，尝试不同的UV展开方式（Smart Project / Cube Projection），查看UV Editor中的结果差异。",
-              "difficultyLevel": 2,
-              "estimatedTime": "15分钟"
+              "taskId": "A-W05-L01-P01",
+              "title": "办公室自然光预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "UV Editor界面",
-            "UV Map概念",
-            "展开方法对比"
+            "HDRI",
+            "自然光",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/world.html"
+            }
           ]
         },
         {
@@ -587,37 +881,45 @@
           "routeId": "A",
           "week": 5,
           "lessonNumber": "05.2",
-          "title": "Smart UV Project",
-          "englishName": "Smart UV Project",
-          "shortcut": "U → Smart UV Project",
-          "objective": "使用智能UV展开快速处理模型UV",
-          "principle": "Smart UV Project是Blender的自动UV展开算法，适合大多数室内模型的快速UV处理。",
+          "title": "建立窗外自然光",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "建立窗外自然光",
+          "principle": "World 环境可以用颜色、天空或 HDRI 提供背景和环境照明；自然光测试应先控制曝光，再判断方向和层次。",
           "blenderOperations": [
-            "1. Edit Mode → 全选(A)",
-            "2. U → Smart UV Project",
-            "3. 调整Angle Limit（通常66度）",
-            "4. 查看UV Editor结果",
-            "5. 如有需要，手动标记接缝(Mark Seam)后重新展开"
+            "目标：建立窗外自然光。先在独立练习文件中完成，不直接修改正式项目。",
+            "关闭多余灯光，用中性材质检查空间体块",
+            "在 World 中连接 Environment Texture 并调节强度与旋转",
+            "用窗洞、高光和阴影判断主光方向",
+            "分别检查亮部不过曝、暗部有信息和材质颜色稳定",
+            "验收：结果满足“办公室自然光预设”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "室内场景中大量家具、柜体等都可以用Smart UV快速处理，节省时间。",
-          "sketchupReference": "SketchUp不需要这个——贴图直接贴。但如果你需要精确控制贴图方向和重复，UV是必须的。",
+          "interiorDesignUse": "快速建立办公室、酒店客房和商业空间的日景基础光。",
+          "sketchupReference": "SketchUp 常依赖太阳与阴影预览；Blender 可用 HDRI、World 和灯光对象组合控制真实反射与氛围。",
           "commonMistakes": [
-            "Angle Limit设置不当，UV碎片过多",
-            "不检查展开结果就直接贴图，接缝处出现明显痕迹"
+            "用曝光掩盖灯光强度问题",
+            "HDRI 方向与窗外环境不一致",
+            "同时修改多个灯光参数，无法判断变化原因"
           ],
           "practiceTasks": [
             {
-              "taskId": "A05-02-P1",
-              "title": "展开一个柜子UV",
-              "description": "选择一个柜子模型，使用Smart UV Project展开UV，检查接缝位置，手动调整不合理的地方。",
+              "taskId": "A-W05-L02-P01",
+              "title": "办公室自然光预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
               "difficultyLevel": 3,
-              "estimatedTime": "20分钟"
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "智能UV展开",
-            "接缝标记（Mark Seam）",
-            "Angle Limit参数"
+            "自然光",
+            "HDRI",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/world.html"
+            }
           ]
         },
         {
@@ -625,37 +927,1559 @@
           "routeId": "A",
           "week": 5,
           "lessonNumber": "05.3",
-          "title": "手动UV与Pack",
-          "englishName": "Manual UV Unwrap & Pack",
-          "shortcut": "U → Unwrap · U → Pack Islands",
-          "objective": "手动展开复杂模型UV并优化排布",
-          "principle": "对于复杂模型（曲面、有机形状），自动展开不够精确，需要手动标记接缝并展开。Pack Islands优化UV利用率。",
+          "title": "观察高光与暗部细节",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "观察高光与暗部细节",
+          "principle": "World 环境可以用颜色、天空或 HDRI 提供背景和环境照明；自然光测试应先控制曝光，再判断方向和层次。",
           "blenderOperations": [
-            "1. Edit Mode → 选择边 → Mark Seam (Edge → Mark Seam)",
-            "2. 全选 → U → Unwrap",
-            "3. 在UV Editor中 → U → Pack Islands",
-            "4. 手动调整UV岛位置和方向"
+            "目标：观察高光与暗部细节。先在独立练习文件中完成，不直接修改正式项目。",
+            "关闭多余灯光，用中性材质检查空间体块",
+            "在 World 中连接 Environment Texture 并调节强度与旋转",
+            "用窗洞、高光和阴影判断主光方向",
+            "分别检查亮部不过曝、暗部有信息和材质颜色稳定",
+            "验收：结果满足“办公室自然光预设”的相关要求，并保存一个可回退版本。"
           ],
-          "interiorDesignUse": "异形家具（弧形沙发、曲面背景墙）需要手动UV才能正确贴图。",
-          "sketchupReference": "无直接对应。这是Blender比SketchUp强大的地方——精确控制贴图。",
+          "interiorDesignUse": "快速建立办公室、酒店客房和商业空间的日景基础光。",
+          "sketchupReference": "SketchUp 常依赖太阳与阴影预览；Blender 可用 HDRI、World 和灯光对象组合控制真实反射与氛围。",
           "commonMistakes": [
-            "接缝标记位置不合理，展开后变形严重",
-            "不Pack Islands，UV利用率低",
-            "UV重叠导致贴图异常"
+            "用曝光掩盖灯光强度问题",
+            "HDRI 方向与窗外环境不一致",
+            "同时修改多个灯光参数，无法判断变化原因"
           ],
           "practiceTasks": [
             {
-              "taskId": "A05-03-P1",
-              "title": "展开复杂模型UV",
-              "description": "选择一个弧形或异形模型，手动标记接缝并展开UV，使用Pack Islands优化排布。",
-              "difficultyLevel": 4,
-              "estimatedTime": "25分钟"
+              "taskId": "A-W05-L03-P01",
+              "title": "办公室自然光预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
             }
           ],
           "knowledgePoints": [
-            "手动展开方法",
-            "UV Pack优化",
-            "UV同步（Sync选项）"
+            "HDRI",
+            "自然光",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/world.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A05-04",
+          "routeId": "A",
+          "week": 5,
+          "lessonNumber": "05.4",
+          "title": "完成一张办公室日景测试",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "完成一张办公室日景测试",
+          "principle": "World 环境可以用颜色、天空或 HDRI 提供背景和环境照明；自然光测试应先控制曝光，再判断方向和层次。",
+          "blenderOperations": [
+            "目标：完成一张办公室日景测试。先在独立练习文件中完成，不直接修改正式项目。",
+            "关闭多余灯光，用中性材质检查空间体块",
+            "在 World 中连接 Environment Texture 并调节强度与旋转",
+            "用窗洞、高光和阴影判断主光方向",
+            "分别检查亮部不过曝、暗部有信息和材质颜色稳定",
+            "验收：结果满足“办公室自然光预设”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "快速建立办公室、酒店客房和商业空间的日景基础光。",
+          "sketchupReference": "SketchUp 常依赖太阳与阴影预览；Blender 可用 HDRI、World 和灯光对象组合控制真实反射与氛围。",
+          "commonMistakes": [
+            "用曝光掩盖灯光强度问题",
+            "HDRI 方向与窗外环境不一致",
+            "同时修改多个灯光参数，无法判断变化原因"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W05-L04-P01",
+              "title": "办公室自然光预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "HDRI",
+            "自然光",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/world.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "phase": "A-P3",
+      "title": "人工灯光",
+      "objective": "一次只改一类光源，建立因果感。（本周产出：中性与 3000K 暖光两套预设）",
+      "lessons": [
+        {
+          "lessonId": "A06-01",
+          "routeId": "A",
+          "week": 6,
+          "lessonNumber": "06.1",
+          "title": "使用 Area 建立主光",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "使用 Area 建立主光",
+          "principle": "Sun、Area、Spot、Point 和 Emission 的形状与用途不同；室内照明应按主光、重点光和装饰光分层。",
+          "blenderOperations": [
+            "目标：使用 Area 建立主光。先在独立练习文件中完成，不直接修改正式项目。",
+            "先关闭 World 强光，单独测试每一类灯的方向、范围和阴影",
+            "用 Area 建立柔和主光，用 Spot 强调重点，用 Emission 表达可见灯带",
+            "按真实空间尺度调整灯具尺寸、功率和色温",
+            "用灰材质与最终材质各检查一次曝光、噪点和反射",
+            "验收：结果满足“中性与 3000K 暖光两套预设”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于办公室均匀照明、酒店暖光、餐饮重点照明和商业空间氛围。",
+          "sketchupReference": "SketchUp 本体不提供完整物理灯光流程；Blender 中灯光会直接参与材质反射、阴影和动画。",
+          "commonMistakes": [
+            "用大量 Point Light 模拟面光源",
+            "灯具尺寸太小造成不自然的硬阴影",
+            "只看亮度，不检查色温、反射和照明层次"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W06-L01-P01",
+              "title": "中性与 3000K 暖光两套预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Area",
+            "Spot",
+            "Emission",
+            "灯带",
+            "色温",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/light_object.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A06-02",
+          "routeId": "A",
+          "week": 6,
+          "lessonNumber": "06.2",
+          "title": "用 Spot 做重点照明",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "用 Spot 做重点照明",
+          "principle": "Sun、Area、Spot、Point 和 Emission 的形状与用途不同；室内照明应按主光、重点光和装饰光分层。",
+          "blenderOperations": [
+            "目标：用 Spot 做重点照明。先在独立练习文件中完成，不直接修改正式项目。",
+            "先关闭 World 强光，单独测试每一类灯的方向、范围和阴影",
+            "用 Area 建立柔和主光，用 Spot 强调重点，用 Emission 表达可见灯带",
+            "按真实空间尺度调整灯具尺寸、功率和色温",
+            "用灰材质与最终材质各检查一次曝光、噪点和反射",
+            "验收：结果满足“中性与 3000K 暖光两套预设”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于办公室均匀照明、酒店暖光、餐饮重点照明和商业空间氛围。",
+          "sketchupReference": "SketchUp 本体不提供完整物理灯光流程；Blender 中灯光会直接参与材质反射、阴影和动画。",
+          "commonMistakes": [
+            "用大量 Point Light 模拟面光源",
+            "灯具尺寸太小造成不自然的硬阴影",
+            "只看亮度，不检查色温、反射和照明层次"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W06-L02-P01",
+              "title": "中性与 3000K 暖光两套预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Spot",
+            "Area",
+            "Emission",
+            "灯带",
+            "色温",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/light_object.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A06-03",
+          "routeId": "A",
+          "week": 6,
+          "lessonNumber": "06.3",
+          "title": "用 Emission 制作灯带",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "用 Emission 制作灯带",
+          "principle": "Sun、Area、Spot、Point 和 Emission 的形状与用途不同；室内照明应按主光、重点光和装饰光分层。",
+          "blenderOperations": [
+            "目标：用 Emission 制作灯带。先在独立练习文件中完成，不直接修改正式项目。",
+            "先关闭 World 强光，单独测试每一类灯的方向、范围和阴影",
+            "用 Area 建立柔和主光，用 Spot 强调重点，用 Emission 表达可见灯带",
+            "按真实空间尺度调整灯具尺寸、功率和色温",
+            "用灰材质与最终材质各检查一次曝光、噪点和反射",
+            "验收：结果满足“中性与 3000K 暖光两套预设”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于办公室均匀照明、酒店暖光、餐饮重点照明和商业空间氛围。",
+          "sketchupReference": "SketchUp 本体不提供完整物理灯光流程；Blender 中灯光会直接参与材质反射、阴影和动画。",
+          "commonMistakes": [
+            "用大量 Point Light 模拟面光源",
+            "灯具尺寸太小造成不自然的硬阴影",
+            "只看亮度，不检查色温、反射和照明层次"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W06-L03-P01",
+              "title": "中性与 3000K 暖光两套预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Emission",
+            "灯带",
+            "Area",
+            "Spot",
+            "色温",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/light_object.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A06-04",
+          "routeId": "A",
+          "week": 6,
+          "lessonNumber": "06.4",
+          "title": "完成酒店或日料暖光测试",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "完成酒店或日料暖光测试",
+          "principle": "Sun、Area、Spot、Point 和 Emission 的形状与用途不同；室内照明应按主光、重点光和装饰光分层。",
+          "blenderOperations": [
+            "目标：完成酒店或日料暖光测试。先在独立练习文件中完成，不直接修改正式项目。",
+            "先关闭 World 强光，单独测试每一类灯的方向、范围和阴影",
+            "用 Area 建立柔和主光，用 Spot 强调重点，用 Emission 表达可见灯带",
+            "按真实空间尺度调整灯具尺寸、功率和色温",
+            "用灰材质与最终材质各检查一次曝光、噪点和反射",
+            "验收：结果满足“中性与 3000K 暖光两套预设”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于办公室均匀照明、酒店暖光、餐饮重点照明和商业空间氛围。",
+          "sketchupReference": "SketchUp 本体不提供完整物理灯光流程；Blender 中灯光会直接参与材质反射、阴影和动画。",
+          "commonMistakes": [
+            "用大量 Point Light 模拟面光源",
+            "灯具尺寸太小造成不自然的硬阴影",
+            "只看亮度，不检查色温、反射和照明层次"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W06-L04-P01",
+              "title": "中性与 3000K 暖光两套预设",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Area",
+            "Spot",
+            "Emission",
+            "灯带",
+            "色温",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/lights/light_object.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "phase": "A-P4",
+      "title": "Camera 与构图",
+      "objective": "固定可交付的室内摄影语言。（本周产出：3 个命名规范的常用机位）",
+      "lessons": [
+        {
+          "lessonId": "A07-01",
+          "routeId": "A",
+          "week": 7,
+          "lessonNumber": "07.1",
+          "title": "比较 24 / 28 / 35mm",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "比较 24 / 28 / 35mm",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：比较 24 / 28 / 35mm。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“3 个命名规范的常用机位”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W07-L01-P01",
+              "title": "3 个命名规范的常用机位",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "机位",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A07-02",
+          "routeId": "A",
+          "week": 7,
+          "lessonNumber": "07.2",
+          "title": "设置 1.5–1.7m 相机高度",
+          "englishName": "",
+          "shortcut": "Num0",
+          "objective": "设置 1.5–1.7m 相机高度",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：设置 1.5–1.7m 相机高度。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“3 个命名规范的常用机位”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W07-L02-P01",
+              "title": "3 个命名规范的常用机位",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "机位",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A07-03",
+          "routeId": "A",
+          "week": 7,
+          "lessonNumber": "07.3",
+          "title": "制作入口、45°与侧视机位",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "制作入口、45°与侧视机位",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：制作入口、45°与侧视机位。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“3 个命名规范的常用机位”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W07-L03-P01",
+              "title": "3 个命名规范的常用机位",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "机位",
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A07-04",
+          "routeId": "A",
+          "week": 7,
+          "lessonNumber": "07.4",
+          "title": "检查垂直线与空间比例",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "检查垂直线与空间比例",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：检查垂直线与空间比例。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“3 个命名规范的常用机位”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W07-L04-P01",
+              "title": "3 个命名规范的常用机位",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "垂直线",
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "机位"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "phase": "A-P4",
+      "title": "EEVEE 与 Cycles",
+      "objective": "一个用于快速反馈，一个用于最终质量。（本周产出：1 张可放入汇报 PPT 的效果图）",
+      "lessons": [
+        {
+          "lessonId": "A08-01",
+          "routeId": "A",
+          "week": 8,
+          "lessonNumber": "08.1",
+          "title": "用 EEVEE 快速检查材质与构图",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "用 EEVEE 快速检查材质与构图",
+          "principle": "PBR 材质通过基础色、粗糙度、金属度、法线、透射和 IOR 描述表面对光的反应，而不是只追求贴图看起来像。",
+          "blenderOperations": [
+            "目标：用 EEVEE 快速检查材质与构图。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用中性灯光和标准材质球建立可比较环境",
+            "连接 Base Color、Roughness、Metallic 与 Normal/Bump 等核心输入",
+            "按真实尺度校准纹理和细节强度",
+            "在近景、斜角和不同光照下检查高光、接缝与重复纹理",
+            "验收：结果满足“1 张可放入汇报 PPT 的效果图”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "建立乳胶漆、木饰面、石材、金属、玻璃、布艺和皮革等可复用材质。",
+          "sketchupReference": "SketchUp 材质主要表达颜色和贴图；Blender 材质同时控制物理反射、透射和微表面细节。",
+          "commonMistakes": [
+            "把灰度数据贴图当作 sRGB 颜色读取",
+            "粗糙度、凹凸或位移强度过大",
+            "只在材质预览球上判断，不回到真实空间检查"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W08-L01-P01",
+              "title": "1 张可放入汇报 PPT 的效果图",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "EEVEE",
+            "IOR",
+            "Base Color",
+            "Roughness",
+            "Metallic",
+            "Normal"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/materials/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A08-02",
+          "routeId": "A",
+          "week": 8,
+          "lessonNumber": "08.2",
+          "title": "设置 Cycles 采样与降噪",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "设置 Cycles 采样与降噪",
+          "principle": "EEVEE 是强调速度和交互的实时渲染器，适合材质、灯光和动画预览，但部分效果与路径追踪不同。",
+          "blenderOperations": [
+            "目标：设置 Cycles 采样与降噪。先在独立练习文件中完成，不直接修改正式项目。",
+            "切换 EEVEE 并确认材质节点兼容",
+            "逐项检查阴影、反射、光线追踪和体积设置",
+            "在目标分辨率下播放视图，定位性能瓶颈",
+            "输出测试帧，与 Cycles 参考帧比较差异",
+            "验收：结果满足“1 张可放入汇报 PPT 的效果图”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于设计沟通、快速材质灯光迭代和漫游动画预览。",
+          "sketchupReference": "类似快速可视化预览，但能使用 Blender 的 PBR 节点、灯光和动画系统。",
+          "commonMistakes": [
+            "把实时预览当成 Cycles 的完全替代",
+            "一次开启过多高成本效果",
+            "只在低分辨率视口判断最终画面"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W08-L02-P01",
+              "title": "1 张可放入汇报 PPT 的效果图",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Cycles",
+            "降噪",
+            "EEVEE",
+            "渲染",
+            "PBR",
+            "材质节点"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/eevee/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A08-03",
+          "routeId": "A",
+          "week": 8,
+          "lessonNumber": "08.3",
+          "title": "比较两种引擎的结果与耗时",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "比较两种引擎的结果与耗时",
+          "principle": "EEVEE 是强调速度和交互的实时渲染器，适合材质、灯光和动画预览，但部分效果与路径追踪不同。",
+          "blenderOperations": [
+            "目标：比较两种引擎的结果与耗时。先在独立练习文件中完成，不直接修改正式项目。",
+            "切换 EEVEE 并确认材质节点兼容",
+            "逐项检查阴影、反射、光线追踪和体积设置",
+            "在目标分辨率下播放视图，定位性能瓶颈",
+            "输出测试帧，与 Cycles 参考帧比较差异",
+            "验收：结果满足“1 张可放入汇报 PPT 的效果图”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于设计沟通、快速材质灯光迭代和漫游动画预览。",
+          "sketchupReference": "类似快速可视化预览，但能使用 Blender 的 PBR 节点、灯光和动画系统。",
+          "commonMistakes": [
+            "把实时预览当成 Cycles 的完全替代",
+            "一次开启过多高成本效果",
+            "只在低分辨率视口判断最终画面"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W08-L03-P01",
+              "title": "1 张可放入汇报 PPT 的效果图",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "EEVEE",
+            "渲染",
+            "PBR",
+            "材质节点",
+            "Cycles"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/eevee/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A08-04",
+          "routeId": "A",
+          "week": 8,
+          "lessonNumber": "08.4",
+          "title": "输出最终静帧",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "输出最终静帧",
+          "principle": "EEVEE 是强调速度和交互的实时渲染器，适合材质、灯光和动画预览，但部分效果与路径追踪不同。",
+          "blenderOperations": [
+            "目标：输出最终静帧。先在独立练习文件中完成，不直接修改正式项目。",
+            "切换 EEVEE 并确认材质节点兼容",
+            "逐项检查阴影、反射、光线追踪和体积设置",
+            "在目标分辨率下播放视图，定位性能瓶颈",
+            "输出测试帧，与 Cycles 参考帧比较差异",
+            "验收：结果满足“1 张可放入汇报 PPT 的效果图”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于设计沟通、快速材质灯光迭代和漫游动画预览。",
+          "sketchupReference": "类似快速可视化预览，但能使用 Blender 的 PBR 节点、灯光和动画系统。",
+          "commonMistakes": [
+            "把实时预览当成 Cycles 的完全替代",
+            "一次开启过多高成本效果",
+            "只在低分辨率视口判断最终画面"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W08-L04-P01",
+              "title": "1 张可放入汇报 PPT 的效果图",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "EEVEE",
+            "渲染",
+            "PBR",
+            "材质节点",
+            "Cycles"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/eevee/index.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "phase": "A-P5",
+      "title": "关键帧与节奏",
+      "objective": "从稳定镜头开始，不追求复杂电影运镜。（本周产出：2 个 5–8 秒稳定镜头）",
+      "lessons": [
+        {
+          "lessonId": "A09-01",
+          "routeId": "A",
+          "week": 9,
+          "lessonNumber": "09.1",
+          "title": "插入位置与旋转关键帧",
+          "englishName": "",
+          "shortcut": "R·I",
+          "objective": "插入位置与旋转关键帧",
+          "principle": "关键帧保存属性在特定时间的值，插值和 Graph Editor 曲线决定运动速度与节奏。",
+          "blenderOperations": [
+            "目标：插入位置与旋转关键帧。先在独立练习文件中完成，不直接修改正式项目。",
+            "确定帧率、起止帧和镜头目的",
+            "在起点和终点插入位置/旋转关键帧",
+            "播放检查运动方向与时长",
+            "在 Graph Editor 调整缓入缓出，消除突然启动和停止",
+            "验收：结果满足“2 个 5–8 秒稳定镜头”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于推进、拉远、横移、环绕和灯光变化等空间展示。",
+          "sketchupReference": "SketchUp 场景切换偏段落式；Blender 关键帧与曲线可连续控制任意属性。",
+          "commonMistakes": [
+            "没有确认当前帧就覆盖关键帧",
+            "同时移动过多轴导致路径不可控",
+            "只看关键帧位置，不检查插值曲线和速度"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W09-L01-P01",
+              "title": "2 个 5–8 秒稳定镜头",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "关键帧",
+            "Graph Editor"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/keyframes/introduction.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A09-02",
+          "routeId": "A",
+          "week": 9,
+          "lessonNumber": "09.2",
+          "title": "理解 Timeline 与帧率",
+          "englishName": "",
+          "shortcut": "Graph Editor · 编辑动画曲线",
+          "objective": "理解 Timeline 与帧率",
+          "principle": "关键帧保存属性在特定时间的值，插值和 Graph Editor 曲线决定运动速度与节奏。",
+          "blenderOperations": [
+            "目标：理解 Timeline 与帧率。先在独立练习文件中完成，不直接修改正式项目。",
+            "确定帧率、起止帧和镜头目的",
+            "在起点和终点插入位置/旋转关键帧",
+            "播放检查运动方向与时长",
+            "在 Graph Editor 调整缓入缓出，消除突然启动和停止",
+            "验收：结果满足“2 个 5–8 秒稳定镜头”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于推进、拉远、横移、环绕和灯光变化等空间展示。",
+          "sketchupReference": "SketchUp 场景切换偏段落式；Blender 关键帧与曲线可连续控制任意属性。",
+          "commonMistakes": [
+            "没有确认当前帧就覆盖关键帧",
+            "同时移动过多轴导致路径不可控",
+            "只看关键帧位置，不检查插值曲线和速度"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W09-L02-P01",
+              "title": "2 个 5–8 秒稳定镜头",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Timeline",
+            "关键帧",
+            "Graph Editor"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/keyframes/introduction.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A09-03",
+          "routeId": "A",
+          "week": 9,
+          "lessonNumber": "09.3",
+          "title": "在 Graph Editor 调整缓入缓出",
+          "englishName": "",
+          "shortcut": "Graph Editor · 编辑动画曲线",
+          "objective": "在 Graph Editor 调整缓入缓出",
+          "principle": "关键帧保存属性在特定时间的值，插值和 Graph Editor 曲线决定运动速度与节奏。",
+          "blenderOperations": [
+            "目标：在 Graph Editor 调整缓入缓出。先在独立练习文件中完成，不直接修改正式项目。",
+            "确定帧率、起止帧和镜头目的",
+            "在起点和终点插入位置/旋转关键帧",
+            "播放检查运动方向与时长",
+            "在 Graph Editor 调整缓入缓出，消除突然启动和停止",
+            "验收：结果满足“2 个 5–8 秒稳定镜头”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于推进、拉远、横移、环绕和灯光变化等空间展示。",
+          "sketchupReference": "SketchUp 场景切换偏段落式；Blender 关键帧与曲线可连续控制任意属性。",
+          "commonMistakes": [
+            "没有确认当前帧就覆盖关键帧",
+            "同时移动过多轴导致路径不可控",
+            "只看关键帧位置，不检查插值曲线和速度"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W09-L03-P01",
+              "title": "2 个 5–8 秒稳定镜头",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Graph Editor",
+            "关键帧"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/keyframes/introduction.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A09-04",
+          "routeId": "A",
+          "week": 9,
+          "lessonNumber": "09.4",
+          "title": "完成推镜与横移测试",
+          "englishName": "",
+          "shortcut": "Graph Editor · 编辑动画曲线",
+          "objective": "完成推镜与横移测试",
+          "principle": "关键帧保存属性在特定时间的值，插值和 Graph Editor 曲线决定运动速度与节奏。",
+          "blenderOperations": [
+            "目标：完成推镜与横移测试。先在独立练习文件中完成，不直接修改正式项目。",
+            "确定帧率、起止帧和镜头目的",
+            "在起点和终点插入位置/旋转关键帧",
+            "播放检查运动方向与时长",
+            "在 Graph Editor 调整缓入缓出，消除突然启动和停止",
+            "验收：结果满足“2 个 5–8 秒稳定镜头”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于推进、拉远、横移、环绕和灯光变化等空间展示。",
+          "sketchupReference": "SketchUp 场景切换偏段落式；Blender 关键帧与曲线可连续控制任意属性。",
+          "commonMistakes": [
+            "没有确认当前帧就覆盖关键帧",
+            "同时移动过多轴导致路径不可控",
+            "只看关键帧位置，不检查插值曲线和速度"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W09-L04-P01",
+              "title": "2 个 5–8 秒稳定镜头",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "关键帧",
+            "Graph Editor"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/keyframes/introduction.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "phase": "A-P5",
+      "title": "路径与镜头",
+      "objective": "把运动路径和相机朝向分开控制。（本周产出：一段 15 秒连续空间漫游）",
+      "lessons": [
+        {
+          "lessonId": "A10-01",
+          "routeId": "A",
+          "week": 10,
+          "lessonNumber": "10.1",
+          "title": "绘制 Bezier 漫游路径",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "绘制 Bezier 漫游路径",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：绘制 Bezier 漫游路径。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“一段 15 秒连续空间漫游”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W10-L01-P01",
+              "title": "一段 15 秒连续空间漫游",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Bezier",
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A10-02",
+          "routeId": "A",
+          "week": 10,
+          "lessonNumber": "10.2",
+          "title": "设置 Follow Path",
+          "englishName": "",
+          "shortcut": "Follow Path · 相机沿路径移动",
+          "objective": "设置 Follow Path",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：设置 Follow Path。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“一段 15 秒连续空间漫游”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W10-L02-P01",
+              "title": "一段 15 秒连续空间漫游",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Follow Path",
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A10-03",
+          "routeId": "A",
+          "week": 10,
+          "lessonNumber": "10.3",
+          "title": "使用 Track To 控制朝向",
+          "englishName": "",
+          "shortcut": "Track To 约束 · 控制相机朝向",
+          "objective": "使用 Track To 控制朝向",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：使用 Track To 控制朝向。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“一段 15 秒连续空间漫游”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W10-L03-P01",
+              "title": "一段 15 秒连续空间漫游",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Track To",
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A10-04",
+          "routeId": "A",
+          "week": 10,
+          "lessonNumber": "10.4",
+          "title": "完成转角 Reveal 或 Orbit",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "完成转角 Reveal 或 Orbit",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：完成转角 Reveal 或 Orbit。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“一段 15 秒连续空间漫游”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W10-L04-P01",
+              "title": "一段 15 秒连续空间漫游",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "焦距",
+            "构图",
+            "Camera",
+            "景深",
+            "机位",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "phase": "A-P6",
+      "title": "真实项目组装",
+      "objective": "用自己的办公室或酒店项目完成全流程。（本周产出：完整项目场景与镜头脚本）",
+      "lessons": [
+        {
+          "lessonId": "A11-01",
+          "routeId": "A",
+          "week": 11,
+          "lessonNumber": "11.1",
+          "title": "整理 SU 白模和导入层级",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "整理 SU 白模和导入层级",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
+          "blenderOperations": [
+            "目标：整理 SU 白模和导入层级。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“完整项目场景与镜头脚本”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
+          "commonMistakes": [
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W11-L01-P01",
+              "title": "完整项目场景与镜头脚本",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A11-02",
+          "routeId": "A",
+          "week": 11,
+          "lessonNumber": "11.2",
+          "title": "配置 8 类材质与日/夜灯光",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "配置 8 类材质与日/夜灯光",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
+          "blenderOperations": [
+            "目标：配置 8 类材质与日/夜灯光。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“完整项目场景与镜头脚本”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
+          "commonMistakes": [
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W11-L02-P01",
+              "title": "完整项目场景与镜头脚本",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A11-03",
+          "routeId": "A",
+          "week": 11,
+          "lessonNumber": "11.3",
+          "title": "确定 3 个静帧机位",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "确定 3 个静帧机位",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
+          "blenderOperations": [
+            "目标：确定 3 个静帧机位。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“完整项目场景与镜头脚本”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
+          "commonMistakes": [
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W11-L03-P01",
+              "title": "完整项目场景与镜头脚本",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A11-04",
+          "routeId": "A",
+          "week": 11,
+          "lessonNumber": "11.4",
+          "title": "建立 30–60 秒镜头清单",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "建立 30–60 秒镜头清单",
+          "principle": "跨软件交接的重点不是单次导入成功，而是单位、层级、命名、法线和材质槽都可检查、可重复。",
+          "blenderOperations": [
+            "目标：建立 30–60 秒镜头清单。先在独立练习文件中完成，不直接修改正式项目。",
+            "在 SketchUp 中按空间、家具和灯具整理 Group 与 Tag，并另存交接副本",
+            "按项目版本命名后导出 FBX；记录单位、贴图和坐标选项",
+            "在 Blender 新文件中导入，逐项核对尺寸、层级、材质槽和法线",
+            "修正后保存为导入模板，并用第二个小模型重复验证",
+            "验收：结果满足“完整项目场景与镜头脚本”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "把已确认的 SketchUp 方案稳定转换为可渲染、可动画的 Blender 场景。",
+          "sketchupReference": "SketchUp 的 Group/Tag 对应 Blender 中需要明确规划的 Object/Collection，但两者并非自动一一对应。",
+          "commonMistakes": [
+            "导出前没有清理隐藏对象和错误 Tag",
+            "导入后直接缩放模型却没有检查单位",
+            "对象命名混乱，后续材质和动画无法批量管理"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W11-L04-P01",
+              "title": "完整项目场景与镜头脚本",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "单位",
+            "法线",
+            "渲染",
+            "OBJ",
+            "Collection",
+            "FBX"
+          ],
+          "sources": [
+            {
+              "publisher": "SketchUp Help",
+              "url": "https://help.sketchup.com/en/sketchup/exporting-fbx-files"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "phase": "A-P6",
+      "title": "毕业输出与复盘",
+      "objective": "把成果变成下一次可以复用的模板。（本周产出：一套可展示、可复用的项目成果）",
+      "lessons": [
+        {
+          "lessonId": "A12-01",
+          "routeId": "A",
+          "week": 12,
+          "lessonNumber": "12.1",
+          "title": "输出 3 张 Cycles 静帧",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "输出 3 张 Cycles 静帧",
+          "principle": "Cycles 使用路径追踪计算更完整的光照；质量控制依赖采样、降噪、光线路径、材质和场景尺度的共同平衡。",
+          "blenderOperations": [
+            "目标：输出 3 张 Cycles 静帧。先在独立练习文件中完成，不直接修改正式项目。",
+            "先用低采样确认构图、材质和灯光方向",
+            "设置目标设备与合理采样，启用降噪",
+            "检查噪点来源、间接光、高光和透明材质",
+            "以最终分辨率输出测试区域，再开始完整渲染",
+            "验收：结果满足“一套可展示、可复用的项目成果”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于最终室内效果图、材质特写和高质量动画帧。",
+          "sketchupReference": "相比 SketchUp 视图输出，Cycles 会计算材质与多次反弹光，质量更高但成本也更高。",
+          "commonMistakes": [
+            "盲目提高采样而不分析噪点来源",
+            "场景尺度或灯光尺寸错误导致异常噪点",
+            "动画直接输出视频，失败后无法从中间帧恢复"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W12-L01-P01",
+              "title": "一套可展示、可复用的项目成果",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Cycles",
+            "采样",
+            "降噪",
+            "构图",
+            "渲染"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cycles/index.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/output/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A12-02",
+          "routeId": "A",
+          "week": 12,
+          "lessonNumber": "12.2",
+          "title": "输出 30–60 秒 MP4",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "输出 30–60 秒 MP4",
+          "principle": "可靠输出应先生成图像序列，再合成为视频；分辨率、帧率、色彩和文件路径必须在渲染前锁定。",
+          "blenderOperations": [
+            "目标：输出 30–60 秒 MP4。先在独立练习文件中完成，不直接修改正式项目。",
+            "确认分辨率、帧率、帧范围和输出目录",
+            "先渲染少量代表帧检查曝光、噪点和运动",
+            "输出 PNG 或 EXR 图像序列，并保留中间结果",
+            "在 Video Sequencer 或剪辑软件合成、调色并导出 MP4",
+            "验收：结果满足“一套可展示、可复用的项目成果”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "交付 30–90 秒室内漫游、项目汇报片和社交媒体短片。",
+          "sketchupReference": "SketchUp 动画输出较直接；Blender 推荐序列化渲染和后期合成以提高容错。",
+          "commonMistakes": [
+            "长动画直接渲染成单个视频文件",
+            "输出目录使用临时路径或覆盖旧版本",
+            "帧率、色彩空间和剪辑项目设置不一致"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W12-L02-P01",
+              "title": "一套可展示、可复用的项目成果",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "合成",
+            "渲染",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/output/index.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/editors/video_sequencer/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A12-03",
+          "routeId": "A",
+          "week": 12,
+          "lessonNumber": "12.3",
+          "title": "记录错误与最慢的 3 个环节",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "记录错误与最慢的 3 个环节",
+          "principle": "可靠输出应先生成图像序列，再合成为视频；分辨率、帧率、色彩和文件路径必须在渲染前锁定。",
+          "blenderOperations": [
+            "目标：记录错误与最慢的 3 个环节。先在独立练习文件中完成，不直接修改正式项目。",
+            "确认分辨率、帧率、帧范围和输出目录",
+            "先渲染少量代表帧检查曝光、噪点和运动",
+            "输出 PNG 或 EXR 图像序列，并保留中间结果",
+            "在 Video Sequencer 或剪辑软件合成、调色并导出 MP4",
+            "验收：结果满足“一套可展示、可复用的项目成果”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "交付 30–90 秒室内漫游、项目汇报片和社交媒体短片。",
+          "sketchupReference": "SketchUp 动画输出较直接；Blender 推荐序列化渲染和后期合成以提高容错。",
+          "commonMistakes": [
+            "长动画直接渲染成单个视频文件",
+            "输出目录使用临时路径或覆盖旧版本",
+            "帧率、色彩空间和剪辑项目设置不一致"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W12-L03-P01",
+              "title": "一套可展示、可复用的项目成果",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "合成",
+            "渲染",
+            "曝光"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/output/index.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/editors/video_sequencer/index.html"
+            }
+          ]
+        },
+        {
+          "lessonId": "A12-04",
+          "routeId": "A",
+          "week": 12,
+          "lessonNumber": "12.4",
+          "title": "归档 Scene、Light、Camera 与 Output 预设",
+          "englishName": "",
+          "shortcut": "",
+          "objective": "归档 Scene、Light、Camera 与 Output 预设",
+          "principle": "室内相机的焦距、高度、构图和运动路径共同决定空间尺度感；先稳定静帧，再制作动画。",
+          "blenderOperations": [
+            "目标：归档 Scene、Light、Camera 与 Output 预设。先在独立练习文件中完成，不直接修改正式项目。",
+            "把相机高度设为接近人眼，并锁定一个可复现机位",
+            "比较指定焦距，观察空间夸张和主体比例",
+            "用安全框、垂直线和前中后景检查构图",
+            "动画时分离路径与朝向，预览速度后再提高采样",
+            "验收：结果满足“一套可展示、可复用的项目成果”的相关要求，并保存一个可回退版本。"
+          ],
+          "interiorDesignUse": "用于入口、45°、侧视、推进、横移、环绕和转角展示。",
+          "sketchupReference": "SketchUp Scene 适合保存视图；Blender Camera 还包含焦距、景深、约束和可编辑动画曲线。",
+          "commonMistakes": [
+            "使用过广焦距造成边缘严重拉伸",
+            "相机高度随意，空间尺度感不可信",
+            "路径拐角过急或 Track 轴设置错误导致镜头翻转"
+          ],
+          "practiceTasks": [
+            {
+              "taskId": "A-W12-L04-P01",
+              "title": "一套可展示、可复用的项目成果",
+              "description": "完成本课操作；保存前后对比；记录一个错误和解决方法",
+              "difficultyLevel": 3,
+              "estimatedTime": "30–45 分钟"
+            }
+          ],
+          "knowledgePoints": [
+            "Camera",
+            "焦距",
+            "构图",
+            "景深",
+            "机位",
+            "垂直线"
+          ],
+          "sources": [
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/render/cameras.html"
+            },
+            {
+              "publisher": "Blender Manual",
+              "url": "https://docs.blender.org/manual/en/latest/animation/constraints/relationship/index.html"
+            }
           ]
         }
       ]

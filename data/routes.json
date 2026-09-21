@@ -1,98 +1,147 @@
 {
   "routes": [
     {
-      "id": "A",
-      "name": "SU + Blender 工作路线",
-      "subtitle": "SketchUp建模 + Blender增强",
-      "duration": 12,
-      "description": "不影响当前室内设计项目工作，以SketchUp为建模主力、Blender为增强工具。学习模型传递、材质、灯光、Camera、渲染、动画到完整漫游视频的全流程。",
-      "target": "马上能够用于真实室内设计项目",
-      "workflow": "CAD → SketchUp → SU完成空间模型 → Blender → 模型整理 → 材质 → 灯光 → Camera → 效果图 → 动画 → 视频",
-      "color": "#F5792A",
-      "phases": [
-        {
-          "id": "A-P1",
-          "name": "模型传递与整理",
-          "weeks": [1, 2],
-          "description": "从SketchUp到Blender的模型传递全流程，包括FBX导出、导入、单位检查、Scale检查、Normal检查和模型整理优化。"
-        },
-        {
-          "id": "A-P2",
-          "name": "材质与贴图",
-          "weeks": [3, 4, 5],
-          "description": "室内材质创建、PBR工作流、UV展开。涵盖乳胶漆、木饰面、金属、玻璃、布艺等室内常用材质。"
-        },
-        {
-          "id": "A-P3",
-          "name": "灯光与环境",
-          "weeks": [6, 7],
-          "description": "室内灯光类型、色温、亮度、阴影控制，以及HDRI环境光设置。"
-        },
-        {
-          "id": "A-P4",
-          "name": "Camera与渲染",
-          "weeks": [8, 9, 10],
-          "description": "Camera设置与构图、Eevee快速渲染、Cycles高品质渲染。"
-        },
-        {
-          "id": "A-P5",
-          "name": "动画与漫游",
-          "weeks": [11, 12],
-          "description": "Camera动画基础、Follow Path、镜头编排、室内漫游视频输出。"
-        }
-      ]
-    },
-    {
       "id": "B",
       "name": "Blender 系统成长路线",
-      "subtitle": "完整掌握Blender",
+      "subtitle": "主推 · 完整掌握 Blender",
       "duration": 24,
-      "description": "系统完整掌握Blender，从基础到高级全链路学习。涵盖基础操作、建模、Modifier、拓扑、UV、材质、灯光、Camera、渲染、动画、Geometry Nodes到完整室内项目。",
-      "target": "真正掌握Blender",
-      "learningOrder": "Blender基础 → 视图 → Object Mode → Edit Mode → 基础建模 → 室内建模 → Modifier → 拓扑 → Normal → UV → Material → PBR → Texture → Lighting → Camera → Eevee → Cycles → Animation → Bezier Curve → Follow Path → Camera Animation → Render Animation → Geometry Nodes → Asset Browser → 完整室内项目",
+      "recommended": true,
+      "description": "主线。面向长期能力：系统理解 Blender，而不是只会几个出图按钮。从对象逻辑、建模、材质与 UV、灯光与渲染，到动画与视频、Geometry Nodes 与资产库，半年建立完整能力框架。",
+      "target": "真正掌握 Blender，拥有软件选择权 —— 而不是「换软件」",
       "color": "#4A90D9",
+      "workflow": "空间与操作 → 建模 → 材质与UV → 灯光与渲染 → 动画与视频 → 高级能力 → 综合项目",
       "phases": [
         {
           "id": "B-P1",
-          "name": "Blender基础",
-          "weeks": [1, 2, 3, 4],
-          "description": "界面布局、视图操作、Object Mode、Edit Mode——Blender四大基础模块。"
+          "name": "空间与操作",
+          "weeks": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "理解 Blender 的对象逻辑：Object Mode / Edit Mode / Origin / Apply Transform，以及用最少命令搭出室内基础空间。"
         },
         {
           "id": "B-P2",
           "name": "建模",
-          "weeks": [5, 6, 7],
-          "description": "基础建模、室内建模（墙体/门窗/吊顶/柜体）——从简单几何到室内空间构件。"
+          "weeks": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "description": "Modifier 全系列（Bevel / Solidify / Array / Mirror / Boolean / Subdivision）+ 拓扑、法线与精确建模。掌握非破坏性建模工作流。"
         },
         {
           "id": "B-P3",
-          "name": "修改器与拓扑",
-          "weeks": [8, 9, 10, 11],
-          "description": "Modifier全系列、拓扑原则、Normal与法线——掌握非破坏性建模工作流。"
+          "name": "材质与UV",
+          "weeks": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "description": "UV 展开与室内常见问题（木纹方向、石材尺度、墙布拉伸）；PBR 材质节点：Base Color / Roughness / Metallic / Normal / Displacement / IOR。"
         },
         {
           "id": "B-P4",
-          "name": "UV与材质",
-          "weeks": [12, 13, 14, 15, 16],
-          "description": "UV Mapping、Material、PBR材质、Texture——完整的材质制作能力。"
+          "name": "灯光与渲染",
+          "weeks": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "description": "色彩管理与曝光、Camera 摄影语言，以及 EEVEE 与 Cycles 的分工：一个给效率，一个给最终质量。"
         },
         {
           "id": "B-P5",
-          "name": "灯光/相机/渲染",
-          "weeks": [17, 18, 19, 20],
-          "description": "Lighting、Camera、Eevee、Cycles——从灯光到最终渲染输出。"
+          "name": "动画与视频",
+          "weeks": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "description": "关键帧与曲线、Bezier 路径与 Follow Path、Constraint 控制朝向，最后渲染序列并完成视频与后期。"
         },
         {
           "id": "B-P6",
-          "name": "动画",
-          "weeks": [21, 22, 23],
-          "description": "Animation基础、Bezier曲线、Camera Animation——室内漫游动画制作。"
+          "name": "高级能力",
+          "weeks": [
+            21,
+            22,
+            23,
+            24
+          ],
+          "description": "Geometry Nodes 入门（重复与规则）、Asset Browser 资产管理，以及综合毕业项目。"
+        }
+      ]
+    },
+    {
+      "id": "A",
+      "name": "SU + Blender 工作路线",
+      "subtitle": "副线 · SketchUp 主力 + Blender 增强",
+      "duration": 12,
+      "description": "面向真实项目：不牺牲出图效率，用 Blender 提升材质、灯光、渲染和视频能力。以 SketchUp 继续做建模主力，Blender 负责「SU 之后」的工作，熟练后再逐步扩大占比。",
+      "target": "不影响在做的客户项目，做出能放进汇报的效果图和 30–60 秒空间漫游视频",
+      "color": "#F5792A",
+      "workflow": "CAD / 现场尺寸 → SketchUp 空间+家具+柜体 → FBX/OBJ 交换 → Blender 材质/灯光/相机 → Render 静帧 → Video 漫游",
+      "phases": [
+        {
+          "id": "A-P1",
+          "name": "操作与导入",
+          "weeks": [
+            1,
+            2
+          ],
+          "description": "界面 / G R S / Edit Mode / SketchUp 导入整理。目标不是建复杂模型，而是让 Blender 不再陌生，形成最小操作闭环。"
         },
         {
-          "id": "B-P7",
-          "name": "综合项目",
-          "weeks": [24],
-          "description": "Asset Browser、Geometry Nodes入门、完整室内场景制作与输出——综合应用全部技能。"
+          "id": "A-P2",
+          "name": "材质",
+          "weeks": [
+            3,
+            4
+          ],
+          "description": "Principled BSDF 四个关键旋钮 + UV 与贴图方向。目标是建立自己的室内材质库（乳胶漆 / 石材 / 木饰面 / 金属 / 玻璃）。"
+        },
+        {
+          "id": "A-P3",
+          "name": "灯光",
+          "weeks": [
+            5,
+            6
+          ],
+          "description": "环境光与 HDRI、窗外自然光、Area 主光、Spot 重点光、Emission 灯带。一次只改一类光源，建立因果感。"
+        },
+        {
+          "id": "A-P4",
+          "name": "效果图",
+          "weeks": [
+            7,
+            8
+          ],
+          "description": "Camera 三类固定机位与焦距比较；EEVEE 用于快速反馈，Cycles 用于最终静帧。目标是独立完成一张能放进汇报的效果图。"
+        },
+        {
+          "id": "A-P5",
+          "name": "动画与漫游",
+          "weeks": [
+            9,
+            10
+          ],
+          "description": "关键帧 / Graph Editor / Follow Path。先学稳定镜头（推、移、转角、定点轻推），不追求复杂电影运镜。"
+        },
+        {
+          "id": "A-P6",
+          "name": "真实项目",
+          "weeks": [
+            11,
+            12
+          ],
+          "description": "用自己的一个真实项目跑完整流程，并把成果变成下次可复用的模板与资产库。"
         }
       ]
     }

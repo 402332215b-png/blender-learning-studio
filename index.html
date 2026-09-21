@@ -8,6 +8,190 @@
     <meta name="description" content="Blender Learning Studio - 室内设计师 Blender 成长系统" />
     <title>Blender Learning Studio</title>
     <!-- 字体改为系统内置字体栈，保证完全离线可用、无外部请求 -->
+
+    <!--
+      首屏配色：必须在浏览器绘制第一帧之前同步执行。
+      交给 React 去做的话，会先看到默认色、再跳到用户设置 —— 明显的闪烁。
+      所以这段刻意写成「不用任何框架的内联脚本」，并且用 try/catch 兜住
+      localStorage 被禁用的情况（隐私模式下会抛异常），坏值一律回落默认。
+
+      ⚠️ 这段是 src/lib/theme.ts 里 palette() 的**副本**，公式必须两边一致。
+         改公式时请同步改两处，并一起升 PALETTE_VERSION（当前 = 1）。
+         为什么要复制而不是共享：内联脚本不能 import，而首帧配色又必须同步。
+    -->
+    <script>
+      (function () {
+        var d = document.documentElement
+        var HUE_STEPS = 128
+        var LIGHT_STEPS = 11
+        var SAT = 88
+
+        function clamp(v, lo, hi) {
+          return Math.min(hi, Math.max(lo, v))
+        }
+        function hsl(h, s, l) {
+          var hh = ((h % 360) + 360) % 360
+          var ss = clamp(s, 0, 100) / 100
+          var ll = clamp(l, 0, 100) / 100
+          var c = (1 - Math.abs(2 * ll - 1)) * ss
+          var x = c * (1 - Math.abs(((hh / 60) % 2) - 1))
+          var m = ll - c / 2
+          var r, g, b
+          if (hh < 60) { r = c; g = x; b = 0 }
+          else if (hh < 120) { r = x; g = c; b = 0 }
+          else if (hh < 180) { r = 0; g = c; b = x }
+          else if (hh < 240) { r = 0; g = x; b = c }
+          else if (hh < 300) { r = x; g = 0; b = c }
+          else { r = c; g = 0; b = x }
+          return [
+            Math.round((r + m) * 255),
+            Math.round((g + m) * 255),
+            Math.round((b + m) * 255),
+          ]
+        }
+        function lum(c) {
+          function f(v) {
+            var q = v / 255
+            return q <= 0.03928 ? q / 12.92 : Math.pow((q + 0.055) / 1.055, 2.4)
+          }
+          return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2])
+        }
+        function contrast(a, b) {
+          var la = lum(a), lb = lum(b)
+          return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05)
+        }
+        var NEAR_BLACK = [18, 16, 14]
+        var PURE_WHITE = [255, 255, 255]
+        function fillPair(h, s, targetL) {
+          for (var l = targetL; l >= 26; l -= 1) {
+            var fill = hsl(h, s, l)
+            var order = lum(fill) > 0.35 ? [NEAR_BLACK, PURE_WHITE] : [PURE_WHITE, NEAR_BLACK]
+            for (var i = 0; i < 2; i += 1) {
+              if (contrast(order[i], fill) >= 3) return { fill: fill, ink: order[i] }
+            }
+          }
+          var f2 = hsl(h, s, 26)
+          return { fill: f2, ink: lum(f2) > 0.35 ? NEAR_BLACK : PURE_WHITE }
+        }
+        function trip(c) {
+          return c[0] + ' ' + c[1] + ' ' + c[2]
+        }
+
+        /** 旧版配色 → 新色相级（老用户升级后颜色不变） */
+        var LEGACY_HUE = { orange: 9, blue: 75, green: 52, violet: 92, rose: 126 }
+
+        /* 皮肤：字体栈 / 圆角 / 图标描边 / 小符号造型。
+           必须与 src/lib/skins.ts 保持一致（改那边这里也要改）。 */
+        var SKINS = {
+          apple: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', sans-serif", 'radius-card': '18px', 'radius-ctl': '12px', 'radius-btn': '999px', 'icon-stroke': '1.5', 'icon-cap': 'round', 'sym-dot': '50%', 'sym-ink': 'round' },
+          mono: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', sans-serif", 'radius-card': '6px', 'radius-ctl': '4px', 'radius-btn': '2px', 'icon-stroke': '1.5', 'icon-cap': 'square', 'sym-dot': '0', 'sym-ink': 'square' },
+          candy: { 'font-sans': "'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', system-ui, sans-serif", 'radius-card': '24px', 'radius-ctl': '16px', 'radius-btn': '999px', 'icon-stroke': '2.5', 'icon-cap': 'round', 'sym-dot': '50%', 'sym-ink': 'round' },
+          glass: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', sans-serif", 'radius-card': '20px', 'radius-ctl': '14px', 'radius-btn': '999px', 'icon-stroke': '2', 'icon-cap': 'round', 'sym-dot': '50%', 'sym-ink': 'ring', 'glass': '1' },
+          print: { 'font-sans': "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif", 'radius-card': '2px', 'radius-ctl': '2px', 'radius-btn': '2px', 'icon-stroke': '1.5', 'icon-cap': 'square', 'sym-dot': '0', 'sym-ink': 'square', 'surface-shadow': 'none', 'surface-hairline': '1' },
+          forest: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', sans-serif", 'font-display': "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif", 'radius-card': '16px', 'radius-ctl': '12px', 'radius-btn': '999px', 'icon-stroke': '2', 'icon-cap': 'round', 'sym-dot': '50%', 'sym-ink': 'ring', 'body-pattern': 'radial-gradient(ellipse at top right, rgb(var(--accent) / .08), transparent 42%)' },
+          retro: { 'font-sans': "'Arial Narrow', 'Aptos Narrow', 'Microsoft YaHei', sans-serif", 'font-display': "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif", 'radius-card': '0px', 'radius-ctl': '0px', 'radius-btn': '0px', 'icon-stroke': '2', 'icon-cap': 'square', 'sym-dot': '0', 'sym-ink': 'square', 'surface-shadow': '6px 6px 0 rgb(var(--fg1) / .15)', 'surface-border-width': '2px', 'surface-border-style': 'solid', 'title-letter-spacing': '-.045em', 'title-transform': 'none', 'body-pattern': 'repeating-linear-gradient(0deg, transparent 0 46px, rgb(var(--fg1) / .035) 46px 47px)', 'glass-blur': '20px', 'button-letter-spacing': '.08em' },
+          launch: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif", 'font-display': "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif", 'radius-card': '28px', 'radius-ctl': '18px', 'radius-btn': '999px', 'icon-stroke': '1.5', 'icon-cap': 'round', 'sym-dot': '50%', 'sym-ink': 'ring', 'surface-shadow': '0 16px 40px rgb(20 38 24 / .10)', 'surface-border-width': '1px', 'surface-border-style': 'solid', 'title-letter-spacing': '-.035em', 'title-transform': 'none', 'body-pattern': 'radial-gradient(circle at 88% 8%, rgb(var(--accent) / .10), transparent 34%)', 'glass-blur': '20px', 'button-letter-spacing': '0' },
+          fashion: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif", 'font-display': "Impact, 'Arial Black', 'Microsoft YaHei', sans-serif", 'radius-card': '0px', 'radius-ctl': '0px', 'radius-btn': '0px', 'icon-stroke': '2.5', 'icon-cap': 'square', 'sym-dot': '0', 'sym-ink': 'square', 'surface-shadow': '4px 4px 0 rgb(var(--fg1) / .28)', 'surface-border-width': '2px', 'surface-border-style': 'solid', 'title-letter-spacing': '-.055em', 'title-transform': 'uppercase', 'body-pattern': 'linear-gradient(135deg, rgb(var(--accent) / .07) 0 12%, transparent 12% 88%, rgb(var(--fg1) / .04) 88%)', 'glass-blur': '20px', 'button-letter-spacing': '.12em' },
+          trust: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif", 'font-display': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif", 'radius-card': '12px', 'radius-ctl': '8px', 'radius-btn': '8px', 'icon-stroke': '2', 'icon-cap': 'square', 'sym-dot': '2px', 'sym-ink': 'square', 'surface-shadow': '0 10px 30px rgb(0 20 10 / .18)', 'surface-border-width': '1px', 'surface-border-style': 'solid', 'title-letter-spacing': '-.02em', 'title-transform': 'none', 'body-pattern': 'linear-gradient(rgb(var(--accent) / .035) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--accent) / .035) 1px, transparent 1px)', 'glass-blur': '20px', 'button-letter-spacing': '.04em' },
+          brandbook: { 'font-sans': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif", 'font-display': "system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif", 'radius-card': '16px', 'radius-ctl': '10px', 'radius-btn': '10px', 'icon-stroke': '2', 'icon-cap': 'round', 'sym-dot': '4px', 'sym-ink': 'square', 'surface-shadow': '0 12px 34px rgb(24 28 48 / .14)', 'surface-border-width': '1px', 'surface-border-style': 'solid', 'title-letter-spacing': '-.03em', 'title-transform': 'none', 'body-pattern': 'radial-gradient(circle at 96% 2%, rgb(var(--accent-light) / .18), transparent 28%), linear-gradient(145deg, transparent 0 78%, rgb(var(--accent) / .07) 78%)', 'glass-blur': '20px', 'button-letter-spacing': '.02em' }
+        }
+
+        function readPrefs() {
+          var hue = null
+          var light = null
+          var skin = 'apple'
+          try {
+            var rh = localStorage.getItem('bls_hue')
+            if (rh !== null && isFinite(Number(rh))) hue = Math.round(Number(rh))
+            var rl = localStorage.getItem('bls_light')
+            if (rl !== null && isFinite(Number(rl))) light = Math.round(Number(rl))
+            var rs = localStorage.getItem('bls_skin')
+            if (rs !== null && SKINS[rs]) skin = rs
+            if (hue === null) {
+              var la = localStorage.getItem('bls_accent')
+              if (la && LEGACY_HUE[la] !== undefined) hue = LEGACY_HUE[la]
+            }
+            if (light === null) {
+              var lt = localStorage.getItem('bls_theme')
+              if (lt === 'system') {
+                lt = window.matchMedia('(prefers-color-scheme: light)').matches
+                  ? 'light'
+                  : 'dark'
+              }
+              if (lt === 'light') light = 8
+              else if (lt === 'dark') light = 0
+            }
+          } catch (e) {
+            /* 隐私模式读不到就用默认 */
+          }
+          if (hue === null || !(hue >= 0 && hue < HUE_STEPS)) hue = 9
+          if (light === null || !(light >= 0 && light < LIGHT_STEPS)) light = 0
+          return { hue: hue, light: light, skin: skin }
+        }
+
+        function apply(hueStep, lightStep, skin) {
+          var h = (hueStep * 360) / HUE_STEPS
+          var t = lightStep / (LIGHT_STEPS - 1)
+          var dark = t < 0.5
+
+          var bgL = 10 + t * 86
+          var surfaceL = dark ? bgL + 5 : Math.min(100, bgL + 4)
+          var raisedL = dark ? bgL + 10 : Math.max(0, bgL - 4)
+          var hairlineL = dark ? bgL + 14 : Math.max(0, bgL - 9)
+
+          var fg1 = dark ? hsl(h, 6, 93) : hsl(h, 8, 12)
+          var fg2 = dark ? hsl(h, 6, 68) : hsl(h, 8, 32)
+          var fg3 = dark ? hsl(h, 6, 54) : hsl(h, 8, 44)
+
+          var textAccentL = dark ? 56 : 44
+          var pair = fillPair(h, SAT, textAccentL)
+
+          var vars = {
+            bg: trip(hsl(h, 6, bgL)),
+            surface: trip(hsl(h, 7, surfaceL)),
+            raised: trip(hsl(h, 8, raisedL)),
+            hairline: trip(hsl(h, 9, hairlineL)),
+            fg1: trip(fg1),
+            fg2: trip(fg2),
+            fg3: trip(fg3),
+            warm: trip(dark ? hsl(h, 6, 68) : hsl(h, 8, 32)),
+            'warm-light': trip(dark ? hsl(h, 8, 74) : hsl(h, 9, 44)),
+            'warm-dark': trip(dark ? hsl(h, 8, 46) : hsl(h, 9, 24)),
+            accent: trip(hsl(h, SAT, textAccentL)),
+            'accent-light': trip(hsl(h, SAT, dark ? 64 : 52)),
+            'accent-dark': trip(hsl(h, SAT, dark ? 46 : 34)),
+            'accent-ink': trip(pair.ink),
+            'st-none': trip(dark ? hsl(h, 6, 54) : hsl(h, 8, 44)),
+            'st-learn': trip(dark ? hsl(210, 62, 62) : hsl(214, 68, 38)),
+            'st-done': trip(dark ? hsl(145, 52, 58) : hsl(148, 62, 30)),
+            'st-review': trip(dark ? hsl(2, 74, 68) : hsl(2, 68, 44)),
+          }
+
+          // 叠加皮肤变量（字体栈 / 圆角 / 图标描边 / 小符号造型）
+          var sk = SKINS[skin] || SKINS.apple
+          for (var kk in sk) {
+            if (Object.prototype.hasOwnProperty.call(sk, kk)) vars[kk] = sk[kk]
+          }
+
+          for (var k in vars) {
+            if (Object.prototype.hasOwnProperty.call(vars, k)) {
+              d.style.setProperty('--' + k, vars[k])
+            }
+          }
+          d.setAttribute('data-ink', dark ? 'dark' : 'light')
+          d.setAttribute('data-skin', skin)
+          var m = document.querySelector('meta[name="theme-color"]')
+          if (m) m.setAttribute('content', 'rgb(' + vars.bg.split(' ').join(',') + ')')
+        }
+
+        try {
+          var p = readPrefs()
+          apply(p.hue, p.light, p.skin)
+        } catch (e) {
+          apply(9, 0, 'apple')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

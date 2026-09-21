@@ -1,6 +1,11 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import type { LearningStatus } from '../../types'
 import { LEARNING_STATUS_LABELS } from '../../types'
+
+/** 把序号塞进 CSS 变量，交给 .anim-stagger 算延迟 */
+function staggerIndex(i: number): CSSProperties {
+  return { '--i': i } as CSSProperties
+}
 
 // ---------------------------------------------------------------------------
 // 通用卡片
@@ -25,7 +30,7 @@ export function Card({
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="min-w-0">
             {eyebrow && (
-              <p className="text-[11px] font-medium tracking-wider text-blender-orange uppercase mb-1">
+              <p className="text-3xs font-medium tracking-wider text-blender-orange uppercase mb-1">
                 {eyebrow}
               </p>
             )}
@@ -62,7 +67,7 @@ export function PageHeader({
     <header className="flex flex-wrap items-end justify-between gap-4 mb-6">
       <div className="min-w-0">
         {kicker && (
-          <p className="text-[11px] font-semibold tracking-[0.14em] text-blender-orange uppercase mb-2">
+          <p className="text-3xs font-semibold tracking-[0.14em] text-blender-orange uppercase mb-2">
             {kicker}
           </p>
         )}
@@ -102,7 +107,11 @@ export function ProgressBar({
     <div className="mt-3">
       <div className="h-1.5 w-full rounded-full bg-dark-border overflow-hidden">
         <div
-          className={`h-full rounded-full ${barTone} transition-all duration-500`}
+          className={`h-full rounded-full ${barTone} transition-all duration-500 ${
+            // 只给「进行中」的进度条挂高光：满了就没有"还在动"的语义，
+            // 0% 则根本看不见；给这两种挂上纯属噪声。
+            v > 0 && v < 100 ? 'shimmer' : ''
+          }`}
           style={{ width: `${v}%` }}
         />
       </div>
@@ -130,7 +139,7 @@ const STATUS_TONE: Record<LearningStatus, string> = {
 export function StatusBadge({ status }: { status: LearningStatus }) {
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded-md border text-[11px] font-medium ${STATUS_TONE[status]}`}
+      className={`inline-flex items-center px-2 py-0.5 rounded-md border text-3xs font-medium ${STATUS_TONE[status]}`}
     >
       {LEARNING_STATUS_LABELS[status]}
     </span>
@@ -156,7 +165,7 @@ export function Tag({
   }
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded-md border text-[11px] font-medium ${tones[tone]}`}
+      className={`inline-flex items-center px-2 py-0.5 rounded-md border text-3xs font-medium ${tones[tone]}`}
     >
       {children}
     </span>
@@ -223,7 +232,7 @@ export function Metric({
       >
         {value}
       </p>
-      <p className="text-[11px] text-text-tertiary mt-2">{label}</p>
+      <p className="text-3xs text-text-tertiary mt-2">{label}</p>
     </div>
   )
 }
@@ -272,9 +281,17 @@ export function BulletList({
         : 'bg-blender-orange'
   return (
     <ul className="mt-3 space-y-2">
-      {items.map((t) => (
-        <li key={t} className="flex gap-2.5 text-xs leading-relaxed">
-          <span className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${dot}`} />
+      {items.map((t, i) => (
+        <li
+          key={t}
+          className="anim-stagger flex gap-2.5 text-xs leading-relaxed"
+          style={staggerIndex(i)}
+        >
+          {/* 小符号：圆点/方点随皮肤 --sym-dot（50% = 圆，0 = 方） */}
+          <span
+            className={`mt-1.5 w-1.5 h-1.5 shrink-0 ${dot}`}
+            style={{ borderRadius: 'var(--sym-dot)' }}
+          />
           <span className="text-text-secondary">{t}</span>
         </li>
       ))}
@@ -290,8 +307,16 @@ export function StepList({ steps }: { steps: string[] }) {
   return (
     <ol className="mt-3 space-y-2.5">
       {steps.map((s, i) => (
-        <li key={s} className="flex gap-3 text-xs leading-relaxed">
-          <span className="w-5 h-5 shrink-0 rounded-md bg-dark-elevated border border-dark-border text-[10px] font-mono text-blender-orange flex items-center justify-center">
+        <li
+          key={s}
+          className="anim-stagger flex gap-3 text-xs leading-relaxed"
+          style={staggerIndex(i)}
+        >
+          {/* 步骤序号方块：圆角随皮肤 --radius-ctl（圆润皮肤更圆，方正皮肤更方） */}
+          <span
+            className="w-5 h-5 shrink-0 bg-dark-elevated border border-dark-border text-3xs font-mono text-blender-orange flex items-center justify-center"
+            style={{ borderRadius: 'var(--radius-ctl)' }}
+          >
             {i + 1}
           </span>
           <span className="text-text-secondary pt-0.5">{s}</span>

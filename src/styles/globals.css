@@ -2,28 +2,145 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   配色系统（v1.0.0 重做）
+   ==========================================================================
+   所有颜色都以「R G B 三元组」的形式存在 CSS 变量里，Tailwind 那边再用
+   `rgb(var(--x) / <alpha-value>)` 包一层。为什么要绕这一道：
+   直接往 Tailwind 里存 hex 的话，`bg-blender-orange/10` 这种带透明度的写法
+   就失效了 —— 而项目里到处都在用（浅底色、描边、hover）。
+
+   ⚠️ v1.0.0 之前这里是**两套静态主题**：`html[data-theme="dark"|"light"]`
+      + `html[data-accent="orange"|"blue"|...]`，靠 CSS 里写死 10 组取值。
+
+   用户 2026-09-20 明确要求：「深色和浅色取消，改成色彩手动调节，
+   采用 128 色的过渡原理」。所以现在**不再有写死的主题**：
+
+     色相带   0–127 级（每级 360/128 = 2.8125°）
+     明暗带   0–10 档（0 = 墨黑，10 = 雪白）
+
+   这两个数字由 `src/lib/theme.ts` 推出整套调色板，再由它
+   `style.setProperty` 写进 `<html>`。本文件只负责**兜底默认值**
+   （= 色相第 10 级 / 明暗第 1 档，也就是现在的品牌橙 + 深底），
+   保证 JS 出问题时界面仍然可读，不会变成一片白光。
+
+   ⚠️ `data-ink` 只影响 `color-scheme`（原生滚动条、表单控件、输入光标
+      跟不跟着变），**不再决定任何颜色** —— 颜色全在上面的变量里。
+
+   ⚠️ 命名说明（写在这里，免得以后被名字误导）：
+      Tailwind 里的 `dark-bg / dark-surface / dark-elevated / dark-border`
+      是**历史遗留名** —— 项目最初只有暗色，就顺手叫了 dark-*。
+      它们现在的真实身份是**语义槽位**：
+         dark-bg       页面底色
+         dark-surface  卡片
+         dark-elevated 卡片之上的浮起层（输入框 / 芯片 / 内嵌块）
+         dark-border   描边
+      名字暂时保留：被引用了约 165 处，一次性改名收益小、回归风险大。
+      新代码请用语义别名：surface / surface-card / surface-raised / hairline。
+   ========================================================================== */
+
 @layer base {
-  html {
-    /* 使用系统字体栈：离线可用，中文优先落到系统中文字体 */
-    font-family: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei',
+  /* ---------- 兜底默认：色相第 10 级（品牌橙）+ 明暗第 1 档（深底） ---------- */
+  :root {
+    color-scheme: dark;
+
+    --bg: 27 25 24;
+    --surface: 41 38 36;
+    --raised: 55 50 47;
+    --hairline: 67 60 56;
+
+    --fg1: 238 237 236;
+    --fg2: 178 173 168;
+    --fg3: 130 121 115;
+
+    --warm: 139 133 128;
+    --warm-light: 168 162 154;
+    --warm-dark: 107 101 96;
+
+    --accent: 242 127 44;
+    --accent-light: 255 148 64;
+    --accent-dark: 216 102 19;
+    /* 压在 accent 实底色上的字色。默认白，theme.ts 会按对比度重算 */
+    --accent-ink: 255 255 255;
+
+    --st-none: 130 121 115;
+    --st-learn: 88 156 226;
+    --st-done: 86 206 128;
+    --st-review: 255 118 118;
+
+    /* ---- 皮肤变量兜底（= 苹果极简）。theme.ts / index.html 会按皮肤覆盖 ---- */
+    --font-sans: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei',
       'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', sans-serif;
+    --radius-card: 18px;
+    --radius-ctl: 12px;
+    --radius-btn: 999px;
+    --icon-stroke: 1.5;
+    --icon-cap: round;
+    --sym-dot: 50%;
+    --sym-ink: round;
+    --font-display: var(--font-sans);
+    --title-letter-spacing: -0.02em;
+    --title-transform: none;
+    --surface-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 4px 12px rgb(0 0 0 / 0.12);
+    --surface-border-width: 0px;
+    --surface-border-style: solid;
+    --body-pattern: none;
+    --glass-blur: 20px;
+    --button-letter-spacing: 0;
+  }
+
+  html[data-ink='light'] {
+    color-scheme: light;
+  }
+
+  html {
+    /* 使用系统字体栈：离线可用，中文优先落到系统中文字体。
+       v1.1.0 起字体栈交给皮肤变量 --font-sans 驱动，
+       这样「黑体/宋体/圆体」等皮肤能整体切换字体气质。 */
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* 字号基准：Tailwind 的 text-* 阶梯是绝对的 px，根字号只影响 rem 类间距。
+       设在 16px 而不是 14px —— 旧版偏小的根因之一。 */
+    font-size: 16px;
+  }
+
+  /* 图标描边粗细 / 线帽随皮肤走。
+     lucide 图标内部用 stroke-width="2" 写在 SVG 属性上，这里用 CSS 覆盖。
+     细线（1.5）偏 Apple 观感，粗线（2.5）偏糖果圆润，锐角（square）偏硬朗。 */
+  svg.lucide,
+  .lucide {
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: var(--icon-cap);
+    stroke-linejoin: var(--icon-cap);
   }
 
   body {
     @apply bg-dark-bg text-text-primary;
     margin: 0;
     min-height: 100vh;
+    background-image: var(--body-pattern);
+    background-attachment: fixed;
+    /* 只给 body 一个很短的过渡：调色时不至于「咔嚓」闪一下，
+       又不至于让每次路由切换都拖泥带水。 */
+    transition: background-color 0.18s ease, color 0.18s ease;
   }
 
   * {
     box-sizing: border-box;
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: var(--title-letter-spacing);
+    text-transform: var(--title-transform);
+  }
+
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {
@@ -40,16 +157,40 @@
 }
 
 @layer components {
+  /* ------------------------------------------------------------------------
+     卡片 / 按钮 / 导航项 —— v1.0.0 按 Apple / macOS 桌面软件的观感重做
+
+     三条改动（都是用户 2026-09-20 选的「方案 E」里承诺的）：
+       1. 卡片**去掉描边**，改用浅阴影浮起 —— 描边会把界面切成一格一格的表格感，
+          阴影才是"层次"。只在浅色底上描边还有意义，但统一成阴影更一致。
+       2. 圆角整体加大（卡片 14 / 控件 12），按钮做成**胶囊**。
+       3. 选中项从「左侧 2px 竖条 + 变色」改成「整个圆角块填色」——
+          macOS 侧栏的做法。形状 + 颜色 + 字重三个通道同时变，
+          比只靠颜色更稳（色觉障碍用户也分得清）。
+     ------------------------------------------------------------------------ */
   .card {
-    @apply bg-dark-surface border border-dark-border rounded-lg p-4;
+    @apply bg-dark-surface p-5 shadow-card;
+    /* 圆角随皮肤走：苹果极简大圆角、经典印刷直角、圆润可爱超大圆角 */
+    border-radius: var(--radius-card);
+    box-shadow: var(--surface-shadow);
+    border-width: var(--surface-border-width);
+    border-style: var(--surface-border-style);
+    border-color: rgb(var(--hairline));
   }
 
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-150;
+    @apply px-5 py-2.5 font-medium transition-colors duration-150;
+    /* 按钮圆角随皮肤：多数胶囊（999px），经典印刷/极简黑白是直角 */
+    border-radius: var(--radius-btn);
+    letter-spacing: var(--button-letter-spacing);
   }
 
   .btn-primary {
-    @apply bg-blender-orange text-white hover:bg-blender-orange-dark;
+    @apply bg-blender-orange hover:bg-blender-orange-dark;
+    /* ⚠️ 不用写死 `text-white`：主色现在是 128 级可调的，
+       浅黄 / 浅青这种色相上白字会糊。--accent-ink 由 theme.ts 按
+       对比度算出来 —— 亮底给深字、深底给白字，任何一级都读得清。 */
+    color: rgb(var(--accent-ink));
   }
 
   .btn-secondary {
@@ -61,10 +202,287 @@
   }
 
   .nav-item {
-    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-dark-elevated transition-colors duration-150 cursor-pointer;
+    @apply flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-text-secondary transition-colors duration-150 cursor-pointer;
   }
 
+  .nav-item:hover {
+    @apply bg-dark-elevated text-text-primary;
+  }
+
+  /* 选中项：圆角块 + 主色淡底 + 主色字 + 加粗（macOS 侧栏观感）。
+     用 18% 透明度的主色底而不是纯色实底：实底 + 白字在浅黄 / 浅青这些
+     色相上对比度只有 2–3:1，而 128 级里一定会被用户拖到那些色相上。
+     淡底 + 主色字则始终是「主色字压在页面底色上」，对比度由 --accent 保证。 */
   .nav-item-active {
-    @apply text-blender-orange bg-dark-elevated;
+    background: rgb(var(--accent) / 0.16);
+    color: rgb(var(--accent));
+    font-weight: 600;
+  }
+
+  .nav-item-active:hover {
+    background: rgb(var(--accent) / 0.22);
+    color: rgb(var(--accent));
+  }
+
+  /* 侧栏当前项额外加一道极细的内描边，让"块"的边界在没有颜色时也成立 */
+  .nav-item-active {
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / 0.28);
+  }
+
+  /* 毛玻璃顶栏（Apple 观感）。
+     为什么要 backdrop-filter：顶栏内容滚动时会从下面透出来，
+     比实底更能保持"内容还在继续"的感觉；同时它天然区分了
+     "固定不动的窗口 chrome" 和 "可滚动的正文"。
+     ⚠️ 必须配 `background` 半透明 —— 只写 backdrop-filter 在
+        accent 是亮色时会糊成一片，读不出边界。 */
+  .glass {
+    background: rgb(var(--bg) / 0.72);
+    backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--glass-blur));
+  }
+
+  /* 五套 Figma 参考风格的原创化组件语法。只改变外观，不改变布局、路由或数据。 */
+  html[data-skin='retro'] .card,
+  html[data-skin='fashion'] .card {
+    border-color: rgb(var(--fg1) / 0.72);
+  }
+
+  html[data-skin='retro'] .nav-item,
+  html[data-skin='fashion'] .nav-item {
+    border-radius: 0;
+  }
+
+  html[data-skin='retro'] .nav-item-active {
+    box-shadow: inset 5px 0 0 rgb(var(--accent));
+  }
+
+  html[data-skin='fashion'] .nav-item-active {
+    box-shadow: 3px 3px 0 rgb(var(--fg1) / 0.28);
+  }
+
+  html[data-skin='launch'] .card {
+    border-color: rgb(var(--accent) / 0.18);
+  }
+
+  html[data-skin='launch'] .btn-primary {
+    box-shadow: 0 7px 18px rgb(var(--accent) / 0.2);
+  }
+
+  html[data-skin='trust'] .card {
+    border-top: 3px solid rgb(var(--accent));
+  }
+
+  html[data-skin='trust'] .nav-item-active {
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / 0.55), 0 0 18px rgb(var(--accent) / 0.1);
+  }
+
+  html[data-skin='brandbook'] .btn-primary {
+    background-image: linear-gradient(135deg, rgb(var(--accent-light)), rgb(var(--accent-dark)));
+  }
+
+  html[data-skin='brandbook'] .card {
+    border-color: rgb(var(--accent) / 0.2);
+  }
+
+  /* ------------------------------------------------------------------------
+     动效层
+     ------------------------------------------------------------------------
+     三条硬约束（来自动效设计规范，别为了好看破例）：
+
+     1) **只动 transform / opacity / filter。**
+        width / height / top / left / margin / padding / font-size 一律不动 ——
+        它们每帧都要重排（reflow），几十个列表项一起动就是肉眼可见的掉帧。
+        进度条那种「宽度变化」是特例：只在值真的变了时跑一次，
+        用 transition 而不是 animation，不存在持续重排。
+
+     2) **零依赖。**
+        不引 framer-motion / GSAP：这个应用是**离线桌面版**，
+        多一个运行时依赖就多一份体积和一次潜在的白屏风险，
+        而这里需要的效果（入场、抬升、触感、呼吸）纯 CSS 就够。
+        代价是不能做滚动编排（pin / scrub）—— 但一个学习工具不需要那个。
+
+     3) **必须可关掉。**
+        `prefers-reduced-motion: reduce` 时全部降到 0.001ms（见文件末尾）。
+        前庭功能敏感的用户、以及"我只是想快点看完"的用户都该被照顾到。
+     ------------------------------------------------------------------------ */
+
+  /* 入场：淡入 + 上移 8px。cubic-bezier(.16,1,.3,1) 是"快出慢收"，
+     比 ease-out 更利落，不会让人觉得界面在"飘"。 */
+  @keyframes bls-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 8px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes bls-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 进度条上的高光扫过。用 translate3d 走 GPU 合成层，不碰背景位置 */
+  @keyframes bls-shimmer {
+    from {
+      transform: translate3d(-120%, 0, 0);
+    }
+    to {
+      transform: translate3d(220%, 0, 0);
+    }
+  }
+
+  /* 「正在进行中」的呼吸感。幅度刻意压得很小（1 → 0.72），
+     它是背景氛围，不该抢正文的注意力。 */
+  @keyframes bls-breathe {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.72;
+    }
+  }
+
+  /* 侧边栏当前项左侧的强调竖条：从 0 高度长出来 */
+  @keyframes bls-bar-in {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .anim-in {
+    animation: bls-fade-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .anim-fade {
+    animation: bls-fade-in 0.3s ease both;
+  }
+
+  /* 逐项入场：列表元素给 style={{ ['--i' as string]: index }}，
+     延迟 = 序号 × 45ms。45ms 是实测"看得出先后、又不必等"的间距 ——
+     超过 80ms 会让人觉得界面卡；低于 25ms 就等于没有。
+
+     ⚠️ 用 min(--i, 8) 把延迟封顶在 360ms。操作步骤清单动辄十几条，
+        不封顶的话最后一条要等 1 秒才出现 —— 用户已经在往下滚了，
+        东西还在淡入，反而像卡顿。 */
+  .anim-stagger {
+    animation: bls-fade-up 0.34s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(min(var(--i, 0), 8) * 45ms);
+  }
+
+  .anim-breathe {
+    animation: bls-breathe 2.6s ease-in-out infinite;
+  }
+
+  /* 漂浮：只动 transform，走 GPU 合成层，不引起重排。
+     给登录页那颗大 Logo 用 —— 幅度 8px、周期 4s，
+     能呼吸但不会让人觉得界面在抖。 */
+  @keyframes bls-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0);
+    }
+  }
+
+  .anim-float {
+    animation: bls-float 4s ease-in-out infinite;
+  }
+
+  /* 可点击卡片：抬升 2px + 描边转成主色。
+     只对 <a> / <button> 生效 —— 纯展示的 <div class="card"> 不该有可点击的暗示，
+     那种"看起来能点其实是死的"是界面里最惹人烦的一种谎。 */
+  a.card,
+  button.card {
+    transition:
+      transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  a.card:hover,
+  button.card:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: rgb(var(--accent) / 0.45);
+  }
+
+  a.card:active,
+  button.card:active {
+    transform: translate3d(0, 0, 0) scale(0.995);
+  }
+
+  /* 进度条高光（由 ProgressBar 组件在「未完成」时挂上） */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.35),
+      transparent
+    );
+    animation: bls-shimmer 2.2s ease-in-out infinite;
+  }
+
+  /* 骨架屏：加载未知时长时给个形状，比转圈更少焦虑 */
+  .skeleton {
+    @apply rounded-md bg-dark-border;
+    animation: bls-breathe 1.6s ease-in-out infinite;
+  }
+}
+
+@layer base {
+  /* --------------------------------------------------------------------------
+     焦点可见性
+     --------------------------------------------------------------------------
+     用 outline 而不是 box-shadow：box-shadow 会被 overflow:hidden 的父元素裁掉
+     （项目里大量 rounded 容器都是 overflow-hidden），专注环一旦被裁就等于没有。
+     outline 不受裁剪影响，而且不占布局空间、不会引起重排。
+     -------------------------------------------------------------------------- */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+  }
+
+  /* 鼠标点击不该出焦点环，键盘 Tab 才要 —— :focus-visible 已经做了这件事，
+     这里额外处理一下 Safari 上 button 的默认行为 */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     动效偏好
+     --------------------------------------------------------------------------
+     0.001ms 而不是 0：某些浏览器对 `animation-duration: 0` 会当成"没设置"
+     而回落到默认值，0.001ms 才能真正把动画压掉；同时保留 animationend 事件，
+     万一将来有代码在等这个事件也不会卡住。
+     -------------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
